@@ -35,5 +35,8 @@ export const themes = [
   "nord",
   "sunset",
 ];
-export const accountsUrl = "http://127.0.0.1:8000/accounts/";
-export const pnrFetchUrl = "http://127.0.0.1:8000/pnr/fetch/";
+export const urlLogin = "http://127.0.0.1:8000/accounts/login/";
+export const urlForgotPassword =
+  "http://127.0.0.1:8000/accounts/forgot-password/";
+export const urlForgotPasswordOtpSubmit =
+  "http://127.0.0.1:8000/accounts/otp-verification/";

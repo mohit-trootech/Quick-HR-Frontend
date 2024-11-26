@@ -1,11 +1,8 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 /**Nav Bar Links */
 import { getLocalStorage } from "../utils/utils";
-import Context from "../context/Contexts";
-import { useContext } from "react";
 function NavBarLinks() {
   /**Nav Bar Links Based on User Authentication */
-  const { logOut } = useContext(Context.UserContext);
   const accessToekn = getLocalStorage("access");
   if (accessToekn) {
     return (
@@ -14,9 +11,7 @@ function NavBarLinks() {
           <a href="/profile">Profile</a>
         </li>
         <li>
-          <button role="button" onClick={logOut}>
-            Logout
-          </button>
+          <button role="button">Logout</button>
         </li>
       </>
     );

@@ -1,18 +1,7 @@
 /**Handle Common Axios Request */
 import axios from "axios";
-import { ExceptionHandling } from "./ToastPromiseHandling";
-import Context from "../context/Contexts";
-import { useContext } from "react";
-
-export const AxiosRequest = async (
-  url,
-  method,
-  data,
-  header,
-  callBack,
-  toast_id
-) => {
-  const { logOut } = useContext(Context.UserContext);
+import { ExceptionHandling } from "./ToastMessage";
+const AxiosRequest = async (url, method, data, header, callBack, id) => {
   let headers = {
     "Content-Type": "multipart/form-data",
   };
@@ -28,15 +17,39 @@ export const AxiosRequest = async (
       headers: headers,
     });
     if (callBack) {
-      callBack(toast_id, response.data);
+      callBack(response.data, id);
     }
-    return response.data;
+    return response;
   } catch (error) {
     console.error(error);
     if (error.response && error.response.status === 401) {
-      logOut();
+      // logOut();
     } else {
-      ExceptionHandling(toast_id, error);
+      ExceptionHandling(id, error);
     }
   }
+};
+
+/**Get Request */
+export const GetRequest = async (url, header, callback, toast) => {
+  /**Common Get Request Handling */
+  return await AxiosRequest(url, "GET", null, header, callback, toast);
+};
+
+/**Post Request */
+export const PostRequest = async (url, data, header, callback, toast) => {
+  /**Common Get Request Handling */
+  return await AxiosRequest(url, "POST", data, header, callback, toast);
+};
+
+/**Patch Request */
+export const PatchRequest = async (url, header, callback, toast) => {
+  /**Common Patch Request Handling */
+  return await AxiosRequest(url, "PATCH", null, header, callback, toast);
+};
+
+/**Delete Request */
+export const DeleteRequest = async (url, header, callback, toast) => {
+  /**Common Delete Request Handling */
+  return await AxiosRequest(url, "DELETE", null, header, callback, toast);
 };

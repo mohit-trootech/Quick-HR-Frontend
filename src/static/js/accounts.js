@@ -1,31 +1,8 @@
-/**React Utilities */
-
-export const updateLocalStorage = (key, value) => {
-  /**Update Browser's LocalStorage Value */
-  localStorage.setItem(key, value);
-};
-
-export const getLocalStorage = (key) => {
-  /**Get Browser's Local Storage Item */
-  return localStorage.getItem(key);
-};
-
-export const removeLocalStorage = (key) => [
-  /**Remove Browser's Local Storage Item */
-  localStorage.removeItem(key),
-];
-export const getBearerToken = () => {
-  return "Bearer " + getLocalStorage("access");
-};
-
-/**Formatted Date time Object */
-export const getFormattedDate = (date) => {
-  return new Date(date).toString().slice(4, 15);
-};
-export const otpInputs = () => {
-  const form = document.querySelector("#otp-form");
-  const inputs = [...form.querySelectorAll("input[name=otp]")];
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("otp-form");
+  const inputs = [...form.querySelectorAll("input[type=text]")];
   const submit = form.querySelector("button[type=submit]");
+
   const handleKeyDown = (e) => {
     if (
       !/^[0-9]{1}$/.test(e.key) &&
@@ -79,4 +56,4 @@ export const otpInputs = () => {
     input.addEventListener("focus", handleFocus);
     input.addEventListener("paste", handlePaste);
   });
-};
+});

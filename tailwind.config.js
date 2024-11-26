@@ -3,9 +3,7 @@ import { themes } from "./src/utils/contants";
 
 module.exports = {
   content: ["./src/**/*.{html,js}"],
-  theme: {
-    extend: {},
-  },
+  theme: {},
   plugins: [require("daisyui")],
   daisyui: {
     themes: themes,
