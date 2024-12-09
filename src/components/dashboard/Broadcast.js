@@ -26,7 +26,7 @@ const Broadcast = () => {
               className="flex items-center gap-x-1 bg-base-200 p-2 rounded-lg cursor-pointer"
             >
               <BsInfo className="h-6 w-6 bg-zinc-300 rounded-full" />
-              <span className="text-sm">No BroadCase Available.</span>
+              <span className="text-sm">No BroadCast Available.</span>
             </div>
           )}
         </div>

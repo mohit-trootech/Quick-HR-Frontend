@@ -5,10 +5,19 @@ import { BsArrowDownLeftCircleFill } from "react-icons/bs";
 import { IoMdCloseCircle, IoMdPlayCircle } from "react-icons/io";
 import { MdOutlineFreeBreakfast } from "react-icons/md";
 import { AiOutlineProduct } from "react-icons/ai";
-
+import ProjectDataList from "../../datalists/ProjectDataList";
+import TaskDataList from "../../datalists/TaskDataList";
 const TimeTracker = () => {
   /**User Occupied Devices Component using DaisyUI and Tailwind CSS */
-  // const { devices } = useContext(DashboardContext);
+  const { getProjects, projects, getTasks, tasks } =
+    useContext(DashboardContext);
+  const handleChange = (event) => {
+    event.preventDefault();
+    if (event.target.name === "project") {
+      getProjects(`?search=${event.target.value}`);
+    } else if (event.target.name === "task")
+      getTasks(`?search=${event.target.value}`);
+  };
   return (
     <>
       <div className="col-span-2">
@@ -29,9 +38,13 @@ const TimeTracker = () => {
                 </div>
                 <input
                   type="text"
-                  placeholder="Type here"
+                  list="project_datalist"
+                  name="project"
+                  placeholder="Choose Project to Continue"
+                  onChange={handleChange}
                   className="input input-bordered w-full input-sm outline-none"
                 />
+                <ProjectDataList data={projects} />
               </label>
               <label className="form-control w-full">
                 <div className="label">
@@ -39,9 +52,13 @@ const TimeTracker = () => {
                 </div>
                 <input
                   type="text"
-                  placeholder="Type here"
+                  list="task_datalist"
+                  name="task"
+                  onChange={handleChange}
+                  placeholder="Choose Task to Continue"
                   className="input input-bordered w-full input-sm outline-none"
                 />
+                <TaskDataList data={tasks} />
               </label>
             </div>
             <div className="flex flex-col justify-center gap-2 items-center border rounded-md bg-base-200 px-3 py-5">

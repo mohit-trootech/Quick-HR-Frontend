@@ -24,12 +24,33 @@ const DashboardProvider = ({ children }) => {
     );
     setBroadCastMessages(response.data);
   };
-
+  /**Project Select */
+  const [projects, setProjects] = useState(null);
+  const getProjects = async (url) => {
+    const response = await GetRequest(
+      BaseUrlPath + "/api/projects/project/" + url,
+      getBearerToken
+    );
+    setProjects(response.data);
+  };
+  /**Task Select */
+  const [tasks, setTasks] = useState(null);
+  const getTasks = async (url) => {
+    const response = await GetRequest(
+      BaseUrlPath + "/api/projects/project/" + url,
+      getBearerToken
+    );
+    setTasks(response.data);
+  };
   const data = {
     availableLeave,
     getAvailableLeaves,
     broadCastMessages,
     getBroadCastMessages,
+    projects,
+    getProjects,
+    tasks,
+    getTasks,
   };
 
   return (
