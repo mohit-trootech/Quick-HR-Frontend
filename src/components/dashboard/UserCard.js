@@ -8,7 +8,7 @@ const UserCard = () => {
         <img src={profile} alt="profile" className="rounded-lg w-14 h-14" />
         <div>
           <p className="text-md text-zinc-500">Welcome,</p>
-          <p className="text-lg font-semibold text-zinc-700 flex flex-row justify-start gap-2 items-center">
+          <div className="text-lg font-semibold text-zinc-700 flex flex-row justify-start gap-2 items-center">
             <span>Darth Vader</span>
             <div className="dropdown">
               <div tabIndex={0} className="btn btn-xs btn-circle">
@@ -16,7 +16,7 @@ const UserCard = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow border "
+                className="dropdown-content menu bg-base-100 rounded-box z-[999] w-40 p-2 shadow border"
               >
                 <li>
                   <p>Item 1</p>
@@ -26,7 +26,7 @@ const UserCard = () => {
                 </li>
               </ul>
             </div>
-          </p>
+          </div>
         </div>
       </div>
     </>

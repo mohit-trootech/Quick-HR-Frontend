@@ -13,3 +13,6 @@ export const handleForgotPassword = (response, id) => {
   /**Handle Forgot Password Response */
   SuccessToast(id, response.message);
 };
+export const LoggedOut = (response, id) => {
+  console.log(response);
+};

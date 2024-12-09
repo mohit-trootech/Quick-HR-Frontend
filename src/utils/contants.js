@@ -35,6 +35,7 @@ export const themes = [
   "nord",
   "sunset",
 ];
+export const BaseUrlPath = "http://127.0.0.1:8000";
 export const urlLogin = "http://127.0.0.1:8000/accounts/login/";
 export const urlForgotPassword =
   "http://127.0.0.1:8000/accounts/forgot-password/";

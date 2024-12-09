@@ -9,7 +9,7 @@ import Home from "./Home";
 import Login from "./apps/accounts/Login";
 import ForgotPassword from "./apps/accounts/ForgotPassword";
 import UserProvider from "./providers/UserProvider";
-
+import DashboardProvider from "./providers/DashboardProvider";
 function App() {
   const { theme } = useContext(ThemeContext);
   useEffect(() => {
@@ -18,18 +18,20 @@ function App() {
   return (
     <BrowserRouter>
       <UserProvider>
-        <ToastContainer
-          draggablePercent={60}
-          draggable
-          className={"capitalize"}
-          stacked
-        />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="*" element={<NoPage />} />
-        </Routes>
+        <DashboardProvider>
+          <ToastContainer
+            draggablePercent={60}
+            draggable
+            className={"capitalize"}
+            stacked
+          />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="*" element={<NoPage />} />
+          </Routes>
+        </DashboardProvider>
       </UserProvider>
     </BrowserRouter>
   );

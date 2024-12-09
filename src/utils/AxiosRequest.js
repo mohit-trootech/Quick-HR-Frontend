@@ -1,12 +1,13 @@
 /**Handle Common Axios Request */
 import axios from "axios";
 import { ExceptionHandling } from "./ToastMessage";
+import { LogOut } from "./LogOut";
 const AxiosRequest = async (url, method, data, header, callBack, id) => {
   let headers = {
     "Content-Type": "multipart/form-data",
   };
   if (header) {
-    headers["Authorization"] = header;
+    headers["Authorization"] = header();
   }
   headers["Accept"] = "application/json";
   try {
@@ -23,7 +24,7 @@ const AxiosRequest = async (url, method, data, header, callBack, id) => {
   } catch (error) {
     console.error(error);
     if (error.response && error.response.status === 401) {
-      // logOut();
+      LogOut();
     } else {
       ExceptionHandling(id, error);
     }
