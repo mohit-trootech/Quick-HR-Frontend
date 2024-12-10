@@ -2,7 +2,7 @@
 import { MdDashboard } from "react-icons/md";
 import { TbBodyScan } from "react-icons/tb";
 import { SlCalender } from "react-icons/sl";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FaList, FaMoneyCheck, FaUserTag } from "react-icons/fa";
 import { VscPreview } from "react-icons/vsc";
 import { MdOutlineMoreTime } from "react-icons/md";
@@ -12,76 +12,85 @@ const SideNav = () => {
     <>
       <ul className="menu rounded-box w-full p-0 m-0 gap-y-1">
         <li>
-          <Link
+          <NavLink
             role="button"
+            to="/"
             className="flex flex-row justify-start gap-2 items-center"
           >
             <MdDashboard /> Dashboard
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
             role="button"
+            to="/attendence"
             className="flex flex-row justify-start gap-2 items-center"
           >
             <TbBodyScan /> Attendence
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
             role="button"
+            to="/leaves"
             className="flex flex-row justify-start gap-2 items-center"
           >
             <SlCalender /> Leave
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
+            to="/holidays"
             role="button"
             className="flex flex-row justify-start gap-2 items-center"
           >
             <FaList /> Holiday
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
             role="button"
+            to="/salary"
             className="flex flex-row justify-start gap-2 items-center"
           >
             <FaMoneyCheck /> Salary
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
             role="button"
+            to="/review"
             className="flex flex-row justify-start gap-2 items-center"
           >
             <VscPreview /> Review
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
             role="button"
+            to="/overtime"
             className="flex flex-row justify-start gap-2 items-center"
           >
             <MdOutlineMoreTime /> Overtime
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
             role="button"
+            to="/users"
             className="flex flex-row justify-start gap-2 items-center"
           >
             <FaUserTag /> User Request
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
             role="button"
+            to="/broadcast"
             className="flex flex-row justify-start gap-2 items-center"
           >
             <FaTowerBroadcast /> Broadcast
-          </Link>
+          </NavLink>
         </li>
         <li>
           <details close="true">
