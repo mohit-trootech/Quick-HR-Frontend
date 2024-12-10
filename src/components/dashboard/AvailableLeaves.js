@@ -6,6 +6,7 @@ import { FaCashRegister } from "react-icons/fa";
 import { MdEmergency } from "react-icons/md";
 import { GiEmptyHourglass } from "react-icons/gi";
 import { BsArrowDownLeftCircleFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const AvailableLeave = () => {
   /**Available DaisyUI & Tailwind CSS Card */
@@ -17,9 +18,9 @@ const AvailableLeave = () => {
           <div className="card-body">
             <div className="flex flex-row justify-start gap-x-2 items-center">
               <h2 className="card-title capitalize">Available Leaves</h2>
-              <span>
+              <Link to="/leaves">
                 <BsArrowDownLeftCircleFill className="hover:text-primary hover:rotate-180 transition duration-200" />
-              </span>
+              </Link>
             </div>
             <div className="grid grid-cols-2 gap-2">
               <div className="flex gap-2">

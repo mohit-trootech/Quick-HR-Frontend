@@ -38,6 +38,7 @@ const TimeTracker = () => {
                 </div>
                 <input
                   type="text"
+                  autoComplete="off"
                   list="project_datalist"
                   name="project"
                   placeholder="Choose Project to Continue"
@@ -52,6 +53,7 @@ const TimeTracker = () => {
                 </div>
                 <input
                   type="text"
+                  autoComplete="off"
                   list="task_datalist"
                   name="task"
                   onChange={handleChange}

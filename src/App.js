@@ -8,6 +8,9 @@ import { ToastContainer } from "react-toastify";
 import Home from "./Home";
 import Login from "./apps/accounts/Login";
 import ForgotPassword from "./apps/accounts/ForgotPassword";
+import Leaves from "./pages/Leaves";
+/**Providers */
+import LeavesProvider from "./providers/LeavesProvider";
 import UserProvider from "./providers/UserProvider";
 import DashboardProvider from "./providers/DashboardProvider";
 function App() {
@@ -19,18 +22,21 @@ function App() {
     <BrowserRouter>
       <UserProvider>
         <DashboardProvider>
-          <ToastContainer
-            draggablePercent={60}
-            draggable
-            className={"capitalize"}
-            stacked
-          />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="*" element={<NoPage />} />
-          </Routes>
+          <LeavesProvider>
+            <ToastContainer
+              draggablePercent={60}
+              draggable
+              className={"capitalize"}
+              stacked
+            />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/leaves" element={<Leaves />} />
+              <Route path="*" element={<NoPage />} />
+            </Routes>
+          </LeavesProvider>
         </DashboardProvider>
       </UserProvider>
     </BrowserRouter>

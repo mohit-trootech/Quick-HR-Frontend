@@ -13,6 +13,8 @@ export const handleForgotPassword = (response, id) => {
   /**Handle Forgot Password Response */
   SuccessToast(id, response.message);
 };
-export const LoggedOut = (response, id) => {
-  console.log(response);
+
+export const newLeaveCreated = (response, id) => {
+  /**Handle New Leave Create Success Response */
+  SuccessToast(id, "Leave Request Created Successfully..");
 };
