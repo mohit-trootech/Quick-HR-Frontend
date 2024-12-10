@@ -9,6 +9,8 @@ import Home from "./Home";
 import Login from "./apps/accounts/Login";
 import ForgotPassword from "./apps/accounts/ForgotPassword";
 import Leaves from "./pages/Leaves";
+import Attendence from "./pages/Attendence";
+import Holiday from "./pages/Holiday";
 /**Providers */
 import LeavesProvider from "./providers/LeavesProvider";
 import UserProvider from "./providers/UserProvider";
@@ -34,6 +36,8 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/leaves" element={<Leaves />} />
+              <Route path="/attendence" element={<Attendence />} />
+              <Route path="/holidays" element={<Holiday />} />
               <Route path="*" element={<NoPage />} />
             </Routes>
           </LeavesProvider>

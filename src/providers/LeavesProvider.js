@@ -11,6 +11,8 @@ const LeavesProvider = ({ children }) => {
   /**Leaves Provider Context */
   const [leaves, setLeaves] = useState(null);
   const [availableLeave, setAvailableLeave] = useState(null);
+  const [previous, setPrevious] = useState(null);
+  const [next, setNext] = useState(null);
   /**Get Available Leaves */
   const getAvailableLeave = async (url) => {
     const response = await GetRequest(
@@ -26,6 +28,8 @@ const LeavesProvider = ({ children }) => {
       getBearerToken
     );
     setLeaves(response.data.results);
+    setPrevious(response.data.previous);
+    setNext(response.data.next);
   };
   /**Create New Leave */
   const createLeave = async (data) => {
@@ -48,6 +52,8 @@ const LeavesProvider = ({ children }) => {
     getAvailableLeave,
     availableLeave,
     createLeave,
+    previous,
+    next,
   };
   return (
     <LeavesContext.Provider value={data}>{children}</LeavesContext.Provider>

@@ -11,15 +11,26 @@ import AddLeaveForm from "../modals/AddLeaveForm";
 import LeaveCard from "../cards/LeaveCard";
 const Leaves = () => {
   /**Leaves Page Designed with Daisy UI, Tailwind CSS & Datatables */
-  const { leaves, getLeaves, getAvailableLeave, availableLeave, createLeave } =
-    useContext(LeavesContext);
+  const {
+    leaves,
+    getLeaves,
+    getAvailableLeave,
+    availableLeave,
+    createLeave,
+    previous,
+    next,
+  } = useContext(LeavesContext);
   useEffect(() => {
-    getLeaves("");
-    getAvailableLeave("");
+    getLeaves("?page=1");
+    getAvailableLeave("?page=2");
   }, []);
   const handleChange = (event) => {
     event.preventDefault();
     getLeaves("?search=" + event.target.value);
+  };
+  const handleClick = (event) => {
+    event.preventDefault();
+    getLeaves("?" + event.target.href.split("?")[1]);
   };
   return (
     <>
@@ -141,6 +152,27 @@ const Leaves = () => {
               <span>No Leaves Data Found.</span>
             </div>
           )}
+          {/* Pagination */}
+          <div className="join m-5 flex justify-end">
+            <a
+              role="button"
+              onClick={handleClick}
+              href={previous}
+              disabled={!previous}
+              className="btn btn-info join-item"
+            >
+              Previous
+            </a>
+            <a
+              role="button"
+              onClick={handleClick}
+              disabled={!next}
+              href={next}
+              className="btn btn-primary join-item"
+            >
+              Next
+            </a>
+          </div>
         </div>
       </div>
     </>
