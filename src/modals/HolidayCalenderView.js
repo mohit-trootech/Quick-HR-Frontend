@@ -17,7 +17,6 @@ const HolidayCalenderView = ({ holidays }) => {
             <FullCalendar
               plugins={[dayGridPlugin]}
               initialView="dayGridMonth"
-              weekends={false}
               events={holidays.map((holiday) => {
                 return {
                   title: holiday.title,

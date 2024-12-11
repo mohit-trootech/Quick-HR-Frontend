@@ -71,7 +71,7 @@ const Holiday = () => {
               <FaMagnifyingGlass className="h-4 w-4 opacity-70" />
             </label>
             <button
-              className="btn btn-sm glass bg-primary text-white hover:text-black"
+              className="btn btn-sm  bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:bg-gradient-to-l transition-all duration-300"
               onClick={() =>
                 document.getElementById("holiday_calender_view").showModal()
               }
