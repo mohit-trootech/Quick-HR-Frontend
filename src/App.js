@@ -14,6 +14,7 @@ import Holiday from "./pages/Holiday";
 import Review from "./pages/Review";
 import OrganizationLogin from "./apps/accounts/OrganizationLogin";
 import OrganizationDashboard from "./pages/OrganizationDashboard";
+import OrganizationCustomization from "./pages/OrganizationCustomization";
 import Unauthorized from "./components/Unauthorized";
 /**Providers */
 import LeavesProvider from "./providers/LeavesProvider";
@@ -50,6 +51,10 @@ function App() {
                   <Route
                     path="/organization"
                     element={<OrganizationDashboard />}
+                  />
+                  <Route
+                    path="/organization/customization"
+                    element={<OrganizationCustomization />}
                   />
                   <Route path="/leaves" element={<Leaves />} />
                   <Route path="/attendence" element={<Attendence />} />

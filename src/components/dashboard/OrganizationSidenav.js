@@ -12,7 +12,8 @@ const OrganizationSidenav = () => {
         <li>
           <NavLink
             role="button"
-            to="/organization"
+            end
+            to="/organization/"
             className="flex flex-row justify-start gap-2 items-center"
           >
             <MdDashboard /> Dashboard
@@ -21,7 +22,8 @@ const OrganizationSidenav = () => {
         <li>
           <NavLink
             role="button"
-            to="/organization/customization"
+            end
+            to="/organization/customization/"
             className="flex flex-row justify-start gap-2 items-center"
           >
             <MdOutlineDeveloperMode /> Customization
@@ -29,7 +31,8 @@ const OrganizationSidenav = () => {
         </li>
         <li>
           <NavLink
-            to="/organization/users"
+            to="/organization/users/"
+            end
             role="button"
             className="flex flex-row justify-start gap-2 items-center"
           >
