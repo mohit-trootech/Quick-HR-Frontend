@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /**Dashboard Menu */
 import { MdDashboard } from "react-icons/md";
 import { TbBodyScan } from "react-icons/tb";
@@ -20,7 +21,7 @@ const SideNav = () => {
             <MdDashboard /> Dashboard
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink
             role="button"
             to="/attendence"
@@ -28,7 +29,7 @@ const SideNav = () => {
           >
             <TbBodyScan /> Attendence
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink
             role="button"
@@ -47,7 +48,7 @@ const SideNav = () => {
             <FaList /> Holiday
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink
             role="button"
             to="/salary"
@@ -55,7 +56,7 @@ const SideNav = () => {
           >
             <FaMoneyCheck /> Salary
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink
             role="button"
@@ -65,7 +66,7 @@ const SideNav = () => {
             <VscPreview /> Review
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink
             role="button"
             to="/overtime"
@@ -73,8 +74,8 @@ const SideNav = () => {
           >
             <MdOutlineMoreTime /> Overtime
           </NavLink>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <NavLink
             role="button"
             to="/users"
@@ -82,7 +83,7 @@ const SideNav = () => {
           >
             <FaUserTag /> User Request
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink
             role="button"
@@ -117,9 +118,6 @@ const SideNav = () => {
               </li>
             </ul>
           </details>
-        </li>
-        <li>
-          <Link>Item 3</Link>
         </li>
       </ul>
     </>

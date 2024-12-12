@@ -1,5 +1,10 @@
 /**React Utilities */
 
+export const redirectPage = (url) => {
+  /**Redirect Page to New Url */
+  window.location.href = url;
+};
+
 export const updateLocalStorage = (key, value) => {
   /**Update Browser's LocalStorage Value */
   localStorage.setItem(key, value);
@@ -16,6 +21,11 @@ export const removeLocalStorage = (key) => [
 ];
 export const getBearerToken = () => {
   return "Bearer " + getLocalStorage("access");
+};
+
+export const isOrganizationHead = async (user) => {
+  /**Check if Logged in User is Organization Head */
+  !user.organization_head && redirectPage("/unauthorized");
 };
 
 /**Formatted Date time Object */

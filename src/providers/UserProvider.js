@@ -8,7 +8,13 @@ import {
 } from "../utils/contants";
 import { PostRequest } from "../utils/AxiosRequest";
 import { toast } from "react-toastify";
-import { handleLogin, handleForgotPassword } from "../utils/handleResponses";
+import {
+  handleLogin,
+  handleForgotPassword,
+  organizationRegisterSuccess,
+  organizationLoginSuccess,
+} from "../utils/handleResponses";
+import { BaseUrlPath } from "../utils/contants";
 
 const UserProvider = ({ children }) => {
   /**User App States */
@@ -39,12 +45,34 @@ const UserProvider = ({ children }) => {
       id
     );
   };
+  const organizationLoginRequest = async (data) => {
+    id = toast.loading("Please Wait,Logging in...");
+    await PostRequest(
+      BaseUrlPath + "/accounts/organization-login/",
+      data,
+      null,
+      organizationLoginSuccess,
+      id
+    );
+  };
+  const organizationRegisterRequest = async (data) => {
+    id = toast.loading("Please Wait, Registering in...");
+    await PostRequest(
+      BaseUrlPath + "/accounts/organization-register/",
+      data,
+      null,
+      organizationRegisterSuccess,
+      id
+    );
+  };
   const data = {
     loginRequest,
     forgotPassword,
     forgotPasswordOtpSubmit,
     toggle,
     setToggle,
+    organizationLoginRequest,
+    organizationRegisterRequest,
   };
   return <UserContext.Provider value={data}>{children}</UserContext.Provider>;
 };

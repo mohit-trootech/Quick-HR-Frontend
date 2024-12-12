@@ -1,9 +1,8 @@
-/**Dashboard Sidebar */
+/**Organization Sidebar */
 import UserCard from "../components/dashboard/UserCard";
-import Stats from "../components/dashboard/Stats";
-import SideNav from "../components/dashboard/SideNav";
+import OrganizationSidenav from "../components/dashboard/OrganizationSidenav";
 // import logo from "../static/img/logo.png";
-const Sidebar = () => {
+const OrganizationSidebar = ({ user }) => {
   /**Sidebar Component */
   return (
     <>
@@ -15,17 +14,15 @@ const Sidebar = () => {
         <div className="divider mr-3"></div> */}
         <div className="pl-3">
           {/* Card */}
-          <UserCard />
+          <UserCard user={user} />
           <div className="divider mr-3"></div>
-          {/* Stats */}
-          <Stats />
-          <div className="divider mr-3"></div>
-          {/* SideNav */}
-          <SideNav />
+
+          {/* Organization SideNav */}
+          <OrganizationSidenav />
         </div>
       </div>
     </>
   );
 };
 
-export default Sidebar;
+export default OrganizationSidebar;

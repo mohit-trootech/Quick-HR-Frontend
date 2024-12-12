@@ -15,3 +15,5 @@ export const ProjectsContext = createContext(null);
 export const TasksContext = createContext(null);
 
 export const ReviewContext = createContext(null);
+
+export const OrganizationContext = createContext(null);

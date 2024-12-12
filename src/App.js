@@ -12,11 +12,15 @@ import Leaves from "./pages/Leaves";
 import Attendence from "./pages/Attendence";
 import Holiday from "./pages/Holiday";
 import Review from "./pages/Review";
+import OrganizationLogin from "./apps/accounts/OrganizationLogin";
+import OrganizationDashboard from "./pages/OrganizationDashboard";
+import Unauthorized from "./components/Unauthorized";
 /**Providers */
 import LeavesProvider from "./providers/LeavesProvider";
 import UserProvider from "./providers/UserProvider";
 import DashboardProvider from "./providers/DashboardProvider";
 import ReviewProvider from "./providers/ReviewProvider";
+import OrganizationProvider from "./providers/OrganizationProvider";
 function App() {
   const { theme } = useContext(ThemeContext);
   useEffect(() => {
@@ -26,26 +30,37 @@ function App() {
     <BrowserRouter>
       <UserProvider>
         <DashboardProvider>
-          <LeavesProvider>
-            <ReviewProvider>
-              <ToastContainer
-                draggablePercent={60}
-                draggable
-                className={"capitalize"}
-                stacked
-              />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/forgot-password" element={<ForgotPassword />} />
-                <Route path="/leaves" element={<Leaves />} />
-                <Route path="/attendence" element={<Attendence />} />
-                <Route path="/holidays" element={<Holiday />} />
-                <Route path="/review" element={<Review />} />
-                <Route path="*" element={<NoPage />} />
-              </Routes>
-            </ReviewProvider>
-          </LeavesProvider>
+          <OrganizationProvider>
+            <LeavesProvider>
+              <ReviewProvider>
+                <ToastContainer
+                  draggablePercent={60}
+                  draggable
+                  className={"capitalize"}
+                  stacked
+                />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route
+                    path="/organization/accounts"
+                    element={<OrganizationLogin />}
+                  />
+                  <Route path="/forgot-password" element={<ForgotPassword />} />
+                  <Route
+                    path="/organization"
+                    element={<OrganizationDashboard />}
+                  />
+                  <Route path="/leaves" element={<Leaves />} />
+                  <Route path="/attendence" element={<Attendence />} />
+                  <Route path="/holidays" element={<Holiday />} />
+                  <Route path="/review" element={<Review />} />
+                  <Route path="*" element={<NoPage />} />
+                  <Route path="/unauthorized" element={<Unauthorized />} />
+                </Routes>
+              </ReviewProvider>
+            </LeavesProvider>
+          </OrganizationProvider>
         </DashboardProvider>
       </UserProvider>
     </BrowserRouter>
