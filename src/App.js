@@ -16,6 +16,7 @@ import OrganizationLogin from "./apps/accounts/OrganizationLogin";
 import OrganizationDashboard from "./pages/OrganizationDashboard";
 import OrganizationCustomization from "./pages/OrganizationCustomization";
 import Unauthorized from "./components/Unauthorized";
+import OrganizationUsers from "./pages/OrganizationUsers";
 /**Providers */
 import LeavesProvider from "./providers/LeavesProvider";
 import UserProvider from "./providers/UserProvider";
@@ -60,6 +61,10 @@ function App() {
                     <Route
                       path="/organization/customization"
                       element={<OrganizationCustomization />}
+                    />
+                    <Route
+                      path="/organization/users"
+                      element={<OrganizationUsers />}
                     />
                     <Route path="/leaves" element={<Leaves />} />
                     <Route path="/attendence" element={<Attendence />} />

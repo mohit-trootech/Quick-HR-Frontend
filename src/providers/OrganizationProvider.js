@@ -13,6 +13,9 @@ const OrganizationProvider = ({ children }) => {
 
   const [userData, setUserData] = useState(null);
   const [organizations, setOrganizations] = useState(null);
+  const [users, setUsers] = useState(null);
+  const [previous, setPrevious] = useState(null);
+  const [next, setNext] = useState(null);
   /**Get User Data */
   const getUserData = async () => {
     const response = await GetRequest(
@@ -26,13 +29,14 @@ const OrganizationProvider = ({ children }) => {
   };
   /**Retreive User Organization */
   const getOrganizations = async (query_params) => {
-    const response = await GetRequest(
-      `${BaseUrlPath}/api/orgnizations/${userData.username}/${query_params}`,
-      getBearerToken
-    );
-    response && setOrganizations(response.data);
+    if (userData) {
+      const response = await GetRequest(
+        `${BaseUrlPath}/api/orgnizations/${userData.username}/${query_params}`,
+        getBearerToken
+      );
+      response && setOrganizations(response.data);
+    }
   };
-
   /**Create a New Organization */
   const postOrganization = async (data) => {
     let response = await PostRequest(
@@ -45,7 +49,16 @@ const OrganizationProvider = ({ children }) => {
     console.log(response);
     // response && setOrganizations([response.data]);
   };
-
+  /**Organization Users */
+  const getOrganizationUsers = async (query_params) => {
+    const response = await GetRequest(
+      `${BaseUrlPath}/api/organization-users/${query_params}`,
+      getBearerToken
+    );
+    response && setUsers(response.data.results);
+    response && setPrevious(response.data.previous);
+    response && setNext(response.data.next);
+  };
   /**Customize Organization */
   const updateCustomization = async (data) => {
     let id = toast.loading("Please Wait, Updating Customization...");
@@ -67,6 +80,10 @@ const OrganizationProvider = ({ children }) => {
     organizations,
     postOrganization,
     updateCustomization,
+    getOrganizationUsers,
+    users,
+    previous,
+    next,
   };
   return (
     <OrganizationContext.Provider value={data}>
