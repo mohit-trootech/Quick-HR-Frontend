@@ -44,9 +44,9 @@ export const PostRequest = async (url, data, header, callback, toast) => {
 };
 
 /**Patch Request */
-export const PatchRequest = async (url, header, callback, toast) => {
+export const PatchRequest = async (url, data, header, callback, toast) => {
   /**Common Patch Request Handling */
-  return await AxiosRequest(url, "PATCH", null, header, callback, toast);
+  return await AxiosRequest(url, "PATCH", data, header, callback, toast);
 };
 
 /**Delete Request */

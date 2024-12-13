@@ -2,10 +2,12 @@
 
 import React, { useState } from "react";
 import { OrganizationContext } from "../context/Contexts";
-import { GetRequest, PostRequest } from "../utils/AxiosRequest";
+import { GetRequest, PostRequest, PatchRequest } from "../utils/AxiosRequest";
 import { getBearerToken } from "../utils/utils";
 import { BaseUrlPath } from "../utils/contants";
 import { isOrganizationHead } from "../utils/utils";
+import { toast } from "react-toastify";
+import { updateCustomizationSuccess } from "../utils/handleResponses";
 const OrganizationProvider = ({ children }) => {
   /**Logged In User Data */
 
@@ -19,16 +21,16 @@ const OrganizationProvider = ({ children }) => {
       null,
       null
     );
-    setUserData(response.data);
-    isOrganizationHead(response.data);
+    response && setUserData(response.data);
+    response && isOrganizationHead(response.data);
   };
   /**Retreive User Organization */
   const getOrganizations = async (query_params) => {
     const response = await GetRequest(
-      BaseUrlPath + "/api/organizations/" + query_params,
+      `${BaseUrlPath}/api/orgnizations/${userData.username}/${query_params}`,
       getBearerToken
     );
-    response.data && setOrganizations(response.data.results[0]);
+    response && setOrganizations(response.data);
   };
 
   /**Create a New Organization */
@@ -41,7 +43,21 @@ const OrganizationProvider = ({ children }) => {
       null
     );
     console.log(response);
-    // setOrganizations([response.data]);
+    // response && setOrganizations([response.data]);
+  };
+
+  /**Customize Organization */
+  const updateCustomization = async (data) => {
+    let id = toast.loading("Please Wait, Updating Customization...");
+    let response = await PatchRequest(
+      `${BaseUrlPath}/api/customization/${organizations.customization.id}/`,
+      data,
+      getBearerToken,
+      updateCustomizationSuccess,
+      id
+    );
+
+    response && console.log(response);
   };
 
   const data = {
@@ -50,6 +66,7 @@ const OrganizationProvider = ({ children }) => {
     getOrganizations,
     organizations,
     postOrganization,
+    updateCustomization,
   };
   return (
     <OrganizationContext.Provider value={data}>

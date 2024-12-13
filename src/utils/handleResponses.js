@@ -30,3 +30,8 @@ export const organizationLoginSuccess = (response, id) => {
   updateLocalStorage("refresh", response.refresh);
   SuccessToast(id, "Login Successful", "/");
 };
+
+export const updateCustomizationSuccess = (response, id) => {
+  /**Handle Update Customization Success Response */
+  SuccessToast(id, "Customization Updated Successfully");
+};

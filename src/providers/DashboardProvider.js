@@ -13,7 +13,7 @@ const DashboardProvider = ({ children }) => {
       BaseUrlPath + "/api/leaves/available/",
       getBearerToken
     );
-    setAvailableLeave(response.data);
+    response && setAvailableLeave(response.data);
   };
   /**BroadCast Messages */
   const [broadCastMessages, setBroadCastMessages] = useState(null);
@@ -22,7 +22,7 @@ const DashboardProvider = ({ children }) => {
       BaseUrlPath + "/api/broadcasts/",
       getBearerToken
     );
-    setBroadCastMessages(response.data);
+   response && setBroadCastMessages(response.data);
   };
   /**Project Select */
   const [projects, setProjects] = useState(null);
@@ -31,7 +31,7 @@ const DashboardProvider = ({ children }) => {
       BaseUrlPath + "/api/projects/project/" + url,
       getBearerToken
     );
-    setProjects(response.data);
+    response && setProjects(response.data);
   };
   /**Task Select */
   const [tasks, setTasks] = useState(null);
@@ -40,7 +40,7 @@ const DashboardProvider = ({ children }) => {
       BaseUrlPath + "/api/projects/project/" + url,
       getBearerToken
     );
-    setTasks(response.data);
+   response && setTasks(response.data);
   };
   const data = {
     availableLeave,

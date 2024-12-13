@@ -19,7 +19,7 @@ const LeavesProvider = ({ children }) => {
       BaseUrlPath + "/api/leaves/available/" + url,
       getBearerToken
     );
-    setAvailableLeave(response.data);
+   response && setAvailableLeave(response.data);
   };
   /**Get Leave Details */
   const getLeaves = async (url) => {
@@ -27,9 +27,9 @@ const LeavesProvider = ({ children }) => {
       BaseUrlPath + "/api/leaves/list/" + url,
       getBearerToken
     );
-    setLeaves(response.data.results);
-    setPrevious(response.data.previous);
-    setNext(response.data.next);
+   response && setLeaves(response.data.results);
+  response && setPrevious(response.data.previous);
+   response && setNext(response.data.next);
   };
   /**Create New Leave */
   const createLeave = async (data) => {

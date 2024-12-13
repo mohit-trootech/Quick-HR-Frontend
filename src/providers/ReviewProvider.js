@@ -13,7 +13,7 @@ const ReviewProvider = ({ children }) => {
       BaseUrlPath + "/accounts/user-list/" + query_params,
       getBearerToken
     );
-    setUsers(response.data.results);
+  response && setUsers(response.data.results);
   };
   /*Post Review */
   const postReview = async (data) => {
@@ -22,7 +22,7 @@ const ReviewProvider = ({ children }) => {
       data,
       getBearerToken
     );
-    console.log(response.data);
+  response && console.log(response.data);
   };
 
   /**Get All Reviews */
