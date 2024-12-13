@@ -40,10 +40,10 @@ const OrganizationUsers = () => {
         <Preloader />
       ) : (
         <div className="grid grid-cols-9 gap-2">
-          <div className="col-span-2 md:hidden block">
+          <div className="hidden lg:block lg:col-span-2">
             <OrganizationSidebar user={userData} />
           </div>
-          <div className="col-span-7 md:col-span-1 mr-5">
+          <div className="col-span-9 lg:col-span-7 mx-3">
             <div className="px-3 py-1 border shadow-md my-2 rounded-lg flex items-center justify-between">
               <span className="text-xl font-semibold">Organization Users</span>
               <div className="breadcrumbs text-sm">
@@ -75,7 +75,7 @@ const OrganizationUsers = () => {
                 }}
                 className="btn btn-sm  bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:bg-gradient-to-l transition-all duration-300"
               >
-                Add New User to Organization
+                Create User
               </button>
               <OrganizationCreateUserModal />
             </div>
