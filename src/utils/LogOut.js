@@ -4,10 +4,9 @@ import { removeLocalStorage } from "./utils";
 import { SuccessToast } from "./ToastMessage";
 export const LogOut = async () => {
   /**Log Out */
-  let id = toast.loading("Unauthroized, Logging out");
   removeLocalStorage("access");
   removeLocalStorage("refresh");
-  SuccessToast("Logged Out Successfully", id);
+  SuccessToast("Logged Out Successfully");
   setTimeout(() => {
     window.location.href = "/login";
   }, 4000);

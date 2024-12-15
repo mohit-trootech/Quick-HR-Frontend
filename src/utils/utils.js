@@ -4,7 +4,12 @@ export const redirectPage = (url) => {
   /**Redirect Page to New Url */
   window.location.href = url;
 };
-
+export const redirectPageLazy = (url) => {
+  /**Redirect Page Lazy */
+  setInterval(() => {
+    window.location.href = url;
+  }, 3000);
+};
 export const updateLocalStorage = (key, value) => {
   /**Update Browser's LocalStorage Value */
   localStorage.setItem(key, value);

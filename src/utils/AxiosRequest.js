@@ -2,7 +2,15 @@
 import axios from "axios";
 import { ExceptionHandling } from "./ToastMessage";
 import { LogOut } from "./LogOut";
-const AxiosRequest = async (url, method, data, header, callBack, id) => {
+const AxiosRequest = async (
+  url,
+  method,
+  data,
+  header,
+  callBack,
+  id,
+  updatePreloader
+) => {
   let headers = {
     "Content-Type": "multipart/form-data",
   };
@@ -22,6 +30,9 @@ const AxiosRequest = async (url, method, data, header, callBack, id) => {
     }
     return response;
   } catch (error) {
+    if (updatePreloader) {
+      updatePreloader();
+    }
     console.error(error);
     if (error.response && error.response.status === 401) {
       LogOut();
@@ -32,25 +43,83 @@ const AxiosRequest = async (url, method, data, header, callBack, id) => {
 };
 
 /**Get Request */
-export const GetRequest = async (url, header, callback, toast) => {
+export const GetRequest = async (
+  url,
+  header,
+  callback,
+  toast,
+  updatePreloader
+) => {
   /**Common Get Request Handling */
-  return await AxiosRequest(url, "GET", null, header, callback, toast);
+  return await AxiosRequest(
+    url,
+    "GET",
+    null,
+    header,
+    callback,
+    toast,
+    updatePreloader
+  );
 };
 
 /**Post Request */
-export const PostRequest = async (url, data, header, callback, toast) => {
+export const PostRequest = async (
+  url,
+  data,
+  header,
+  callback,
+  toast,
+  updatePreloader
+) => {
   /**Common Get Request Handling */
-  return await AxiosRequest(url, "POST", data, header, callback, toast);
+  return await AxiosRequest(
+    url,
+    "POST",
+    data,
+    header,
+    callback,
+    toast,
+    updatePreloader
+  );
 };
 
 /**Patch Request */
-export const PatchRequest = async (url, data, header, callback, toast) => {
+export const PatchRequest = async (
+  url,
+  data,
+  header,
+  callback,
+  toast,
+  updatePreloader
+) => {
   /**Common Patch Request Handling */
-  return await AxiosRequest(url, "PATCH", data, header, callback, toast);
+  return await AxiosRequest(
+    url,
+    "PATCH",
+    data,
+    header,
+    callback,
+    toast,
+    updatePreloader
+  );
 };
 
 /**Delete Request */
-export const DeleteRequest = async (url, header, callback, toast) => {
+export const DeleteRequest = async (
+  url,
+  header,
+  callback,
+  toast,
+  updatePreloader
+) => {
   /**Common Delete Request Handling */
-  return await AxiosRequest(url, "DELETE", null, header, callback, toast);
+  return await AxiosRequest(
+    url,
+    "DELETE",
+    null,
+    header,
+    callback,
+    toast,
+    updatePreloader
+  );
 };

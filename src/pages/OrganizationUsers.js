@@ -7,6 +7,7 @@ import { BiHomeAlt } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import OrganizationUsersTable from "../tables/OrganizationUsersTable";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import AddOrganizationUser from "../modals/AddOrganizationUser";
 const OrganizationUsers = () => {
   const { getUserData, userData, getOrganizationUsers, users, previous, next } =
     useContext(OrganizationContext);
@@ -32,7 +33,6 @@ const OrganizationUsers = () => {
         : event.target.href.split("?")[1];
     getOrganizationUsers("?" + url);
   };
-
   return (
     <>
       {preload ? (
@@ -66,51 +66,77 @@ const OrganizationUsers = () => {
                 />
                 <FaMagnifyingGlass className="h-4 w-4 opacity-70" />
               </label>
-              <button className="btn btn-sm  bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:bg-gradient-to-l transition-all duration-300">
-                Holiday Calender View
+              <button
+                onClick={() =>
+                  document.getElementById("add_organization_user").showModal()
+                }
+                className="btn btn-sm  bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:bg-gradient-to-l transition-all duration-300"
+              >
+                Add Users
               </button>
+              <AddOrganizationUser />
             </div>
             <div className="p-5">
               <div className="overflow-x-auto">
-                <table className="w-full text-left table-auto min-w-max">
-                  <thead className="capitalize">
-                    <tr>
-                      <th className="p-4 border-b border-slate-200 bg-slate-50">
-                        <p className="text-sm font-normal leading-none text-slate-500">
-                          ID
-                        </p>
-                      </th>
-                      <th className="p-4 border-b border-slate-200 bg-slate-50">
-                        <p className="text-sm font-normal leading-none text-slate-500">
-                          Image
-                        </p>
-                      </th>
-                      <th className="p-4 border-b border-slate-200 bg-slate-50">
-                        <p className="text-sm font-normal leading-none text-slate-500">
-                          Username
-                        </p>
-                      </th>
-                      <th className="p-4 border-b border-slate-200 bg-slate-50">
-                        <p className="text-sm font-normal leading-none text-slate-500">
-                          Full Name
-                        </p>
-                      </th>
-                      <th className="p-4 border-b border-slate-200 bg-slate-50">
-                        <p className="text-sm font-normal leading-none text-slate-500">
-                          Action
-                        </p>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {users &&
-                      users[0].users.map((user) => {
+                {(users && users.length && (
+                  <table className="w-full text-left table-auto min-w-max">
+                    <thead className="capitalize">
+                      <tr>
+                        <th className="p-4 border-b border-slate-200 bg-slate-50">
+                          <p className="text-sm font-normal leading-none text-slate-500">
+                            ID
+                          </p>
+                        </th>
+                        <th className="p-4 border-b border-slate-200 bg-slate-50">
+                          <p className="text-sm font-normal leading-none text-slate-500">
+                            Image
+                          </p>
+                        </th>
+                        <th className="p-4 border-b border-slate-200 bg-slate-50">
+                          <p className="text-sm font-normal leading-none text-slate-500">
+                            Username
+                          </p>
+                        </th>
+                        <th className="p-4 border-b border-slate-200 bg-slate-50">
+                          <p className="text-sm font-normal leading-none text-slate-500">
+                            Full Name
+                          </p>
+                        </th>
+                        <th className="p-4 border-b border-slate-200 bg-slate-50">
+                          <p className="text-sm font-normal leading-none text-slate-500">
+                            Action
+                          </p>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {users.map((user) => {
                         return (
                           <OrganizationUsersTable user={user} key={user.id} />
                         );
                       })}
-                  </tbody>
-                </table>
+                    </tbody>
+                  </table>
+                )) || (
+                  <div>
+                    <div role="alert" className="alert">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        className="stroke-info h-6 w-6 shrink-0"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        ></path>
+                      </svg>
+                      <span>No users available in organization.</span>
+                    </div>
+                  </div>
+                )}
                 {/* Pagination */}
                 <div className="join m-5 flex justify-end">
                   <a

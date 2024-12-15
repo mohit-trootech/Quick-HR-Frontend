@@ -1,6 +1,8 @@
 /**Exception Handling Toast*/
 import { toast } from "react-toastify";
-
+import { redirectPageLazy } from "./utils";
+import { PreloadContext } from "../context/Contexts";
+import { useContext } from "react";
 const UpdateToast = (id, message, type) => {
   toast.update(id, {
     render: message,
@@ -33,4 +35,5 @@ export const ErrorToast = (id, message) => {
 
 export const SuccessToast = (id, message, successUrl) => {
   UpdateToast(id, message, "success");
+  successUrl && redirectPageLazy(successUrl);
 };

@@ -85,10 +85,16 @@ const Login = () => {
                     </Link>
                   </div>
                 </div>
-                <div>
+                <div className="flex flex-col items-center gap-y-3 justify-center">
                   <button type="submit" className="w-full btn btn-primary">
                     Login
                   </button>
+                  <Link
+                    to={"/organization/accounts/"}
+                    className="w-full btn btn-secondary"
+                  >
+                    Organization Login
+                  </Link>
                 </div>
                 <p className="flex gap-x-2 items-center justify-center mt-10 text-center text-md text-zinc-500">
                   <span>Doesn't have have an account?</span>

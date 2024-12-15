@@ -1,6 +1,12 @@
 /**Organization Login Card */
 
-const OrganizationLoginCard = ({ handleSubmit, login, setLogin }) => {
+const OrganizationLoginCard = ({
+  handleSubmit,
+  login,
+  setLogin,
+  toggle,
+  setToggle,
+}) => {
   return (
     <>
       <div className="max-w-md w-full space-y-8">
@@ -36,9 +42,9 @@ const OrganizationLoginCard = ({ handleSubmit, login, setLogin }) => {
               </span>
             </div>
             <input
-              type="password"
               placeholder="Password"
               name="password"
+              type={toggle ? "text" : "password"}
               className="input bg-white text-zinc-900 input-bordered input-primary w-full"
             />
             <div className="label">
@@ -47,6 +53,20 @@ const OrganizationLoginCard = ({ handleSubmit, login, setLogin }) => {
               </span>
             </div>
           </label>
+          <div className="flex items-center justify-between text-sm">
+            <div className="flex flex-start items-center space-x-2">
+              <input
+                type="checkbox"
+                className="toggle toggle toggle-primary"
+                onChange={() => {
+                  setToggle(!toggle);
+                }}
+                id="show-password"
+                name="show-password"
+              />
+              <span className="text text-zinc-500">Show password</span>
+            </div>
+          </div>
           <div className="join grid grid-cols-2">
             <button
               className="join-item btn btn-secondary"

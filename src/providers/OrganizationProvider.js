@@ -1,18 +1,24 @@
 /**Organization Provider */
 
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { OrganizationContext } from "../context/Contexts";
 import { GetRequest, PostRequest, PatchRequest } from "../utils/AxiosRequest";
 import { getBearerToken } from "../utils/utils";
 import { BaseUrlPath } from "../utils/contants";
 import { isOrganizationHead } from "../utils/utils";
 import { toast } from "react-toastify";
-import { updateCustomizationSuccess } from "../utils/handleResponses";
+import {
+  updateCustomizationSuccess,
+  createOrganizationSuccess,
+} from "../utils/handleResponses";
+import { PreloadContext } from "../context/Contexts";
+
 const OrganizationProvider = ({ children }) => {
   /**Logged In User Data */
-
+  const { updatePreloader } = useContext(PreloadContext);
   const [userData, setUserData] = useState(null);
   const [organizations, setOrganizations] = useState(null);
+  const [customization, setCustomizations] = useState(null);
   const [users, setUsers] = useState(null);
   const [previous, setPrevious] = useState(null);
   const [next, setNext] = useState(null);
@@ -31,29 +37,39 @@ const OrganizationProvider = ({ children }) => {
   const getOrganizations = async (query_params) => {
     if (userData) {
       const response = await GetRequest(
-        `${BaseUrlPath}/api/orgnizations/${userData.username}/${query_params}`,
-        getBearerToken
+        `${BaseUrlPath}/api/organizations/${userData.username}/${query_params}`,
+        getBearerToken,
+        null,
+        null,
+        updatePreloader
       );
       response && setOrganizations(response.data);
+      response && setCustomizations(response.data.customization);
     }
   };
   /**Create a New Organization */
   const postOrganization = async (data) => {
-    let response = await PostRequest(
-      BaseUrlPath + "/api/organizations/",
-      data,
-      getBearerToken,
-      null,
-      null
-    );
-    console.log(response);
-    // response && setOrganizations([response.data]);
+    if (userData) {
+      let id = toast.loading("Please Wait, Creating Organization...");
+      let response = await PostRequest(
+        `${BaseUrlPath}/api/organizations/${userData.username}/`,
+        data,
+        getBearerToken,
+        createOrganizationSuccess,
+        id,
+        updatePreloader
+      );
+      response && setOrganizations(response.data);
+    }
   };
   /**Organization Users */
   const getOrganizationUsers = async (query_params) => {
     const response = await GetRequest(
       `${BaseUrlPath}/api/organization-users/${query_params}`,
-      getBearerToken
+      getBearerToken,
+      null,
+      null,
+      updatePreloader
     );
     response && setUsers(response.data.results);
     response && setPrevious(response.data.previous);
@@ -70,7 +86,7 @@ const OrganizationProvider = ({ children }) => {
       id
     );
 
-    response && console.log(response);
+    response && setCustomizations(response.data);
   };
 
   const data = {
@@ -79,6 +95,7 @@ const OrganizationProvider = ({ children }) => {
     getOrganizations,
     organizations,
     postOrganization,
+    customization,
     updateCustomization,
     getOrganizationUsers,
     users,

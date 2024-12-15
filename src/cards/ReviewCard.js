@@ -53,18 +53,21 @@ const ReviewCard = ({ review }) => {
         </div>
         <div className="divider my-0 py-0"></div>
         <div className="flex justify-between items-center w-full">
-          <div className="capitalize flex items-start gap-x-2">
-            {/* Image Else Icon */}
-            {review.reviewer.image ? (
-              <img
-                src={review.reviewer.image}
-                alt="profile"
-                className="rounded-full avtar w-5 h-5"
-              />
-            ) : (
-              <HiMiniUser />
+          <div>
+            {review.reviewer && (
+              <div className="capitalize flex items-start gap-x-2">
+                {review.reviewer.image ? (
+                  <img
+                    src={review.reviewer.image}
+                    alt="profile"
+                    className="rounded-full avtar w-5 h-5"
+                  />
+                ) : (
+                  <HiMiniUser />
+                )}
+                {review.reviewer.username}
+              </div>
             )}
-            {review.reviewer.username}
           </div>
           <button
             className="btn glass bg-base-200 btn-sm text-sm text-zinc-500"

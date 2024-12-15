@@ -4,6 +4,8 @@ import { GetRequest, PostRequest } from "../utils/AxiosRequest";
 import { getBearerToken } from "../utils/utils";
 import { BaseUrlPath } from "../utils/contants";
 import { ReviewContext } from "../context/Contexts";
+import { postReviewSuccess } from "../utils/handleResponses";
+import { toast } from "react-toastify";
 const ReviewProvider = ({ children }) => {
   const [users, setUsers] = useState();
   const [reviews, setReviews] = useState();
@@ -13,16 +15,18 @@ const ReviewProvider = ({ children }) => {
       BaseUrlPath + "/accounts/user-list/" + query_params,
       getBearerToken
     );
-  response && setUsers(response.data.results);
+    response && setUsers(response.data.results);
   };
   /*Post Review */
   const postReview = async (data) => {
-    const response = await PostRequest(
+    let id = toast.loading("Please Wait, Creating Review...");
+    await PostRequest(
       BaseUrlPath + "/api/reviews/",
       data,
-      getBearerToken
+      getBearerToken,
+      postReviewSuccess,
+      id
     );
-  response && console.log(response.data);
   };
 
   /**Get All Reviews */

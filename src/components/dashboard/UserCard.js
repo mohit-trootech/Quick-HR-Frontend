@@ -1,6 +1,8 @@
 /**Dashboard UserCard Coponent */
+import { Link } from "react-router-dom";
 import profile from "../../static/img/no-profile.webp";
 import { FaArrowDown } from "react-icons/fa";
+import { LogOut } from "../../utils/LogOut";
 const UserCard = ({ user }) => {
   return (
     <>
@@ -25,10 +27,10 @@ const UserCard = ({ user }) => {
                 className="dropdown-content menu bg-base-100 rounded-box z-[999] w-40 p-2 shadow border"
               >
                 <li>
-                  <p>Item 1</p>
+                  <Link to="/profile">Profile</Link>
                 </li>
                 <li>
-                  <p>Item 2</p>
+                  <p onClick={LogOut}>Logout</p>
                 </li>
               </ul>
             </div>

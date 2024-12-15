@@ -14,6 +14,7 @@ const OrganizationCustomization = () => {
     getOrganizations,
     organizations,
     updateCustomization,
+    customization,
   } = useContext(OrganizationContext);
   const { preload, updatePreloader } = useContext(PreloadContext);
 
@@ -68,17 +69,13 @@ const OrganizationCustomization = () => {
               <form method="POST" name="customization" onSubmit={handleSubmit}>
                 <div className="p-5 mt-5 mx-auto max-w-md border rounded-xl hover:shadow-xl hover:shadow-indigo-500/50 transition-all duration-500">
                   {/* Attendence */}
-                  <input
-                    name="id"
-                    hidden
-                    defaultValue={organizations.customization.id}
-                  />
+                  <input name="id" hidden defaultValue={customization.id} />
                   <div className="form-control hover:bg-base-200 border-b px-1 px-2 rounded-t-lg">
                     <label className="label cursor-pointer">
                       <span className="label-text text-lg">Attendence</span>
                       <input
                         type="checkbox"
-                        defaultChecked={organizations.customization.attendence}
+                        defaultChecked={customization.attendence}
                         name="attendence"
                         className="checkbox checkbox-primary"
                       />
@@ -107,7 +104,7 @@ const OrganizationCustomization = () => {
                       <input
                         type="checkbox"
                         name="overtime"
-                        defaultChecked={organizations.customization.overtime}
+                        defaultChecked={customization.overtime}
                         className="checkbox checkbox-primary"
                       />
                     </label>
@@ -118,7 +115,7 @@ const OrganizationCustomization = () => {
                       <span className="label-text text-lg">Project</span>
                       <input
                         type="checkbox"
-                        defaultChecked={organizations.customization.project}
+                        defaultChecked={customization.project}
                         name="project"
                         className="checkbox checkbox-primary"
                       />
@@ -144,7 +141,7 @@ const OrganizationCustomization = () => {
                       <span className="label-text text-lg">Salary</span>
                       <input
                         type="checkbox"
-                        defaultChecked={organizations.customization.salary}
+                        defaultChecked={customization.salary}
                         name="salary"
                         className="checkbox checkbox-primary"
                       />
@@ -156,7 +153,7 @@ const OrganizationCustomization = () => {
                       <span className="label-text text-lg">Device</span>
                       <input
                         type="checkbox"
-                        defaultChecked={organizations.customization.device}
+                        defaultChecked={customization.device}
                         name="device"
                         className="checkbox checkbox-primary"
                       />

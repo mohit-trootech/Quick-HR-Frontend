@@ -10,6 +10,7 @@ import "../../static/css/accounts.css";
 const OrganizationLogin = () => {
   /**Desgined With Daisy UI and Tailwind CSS */
   const [login, setLogin] = useState(true);
+  const { toggle, setToggle } = useContext(UserContext);
   const { organizationLoginRequest, organizationRegisterRequest } =
     useContext(UserContext);
   const handleSubmit = (event) => {
@@ -27,12 +28,16 @@ const OrganizationLogin = () => {
               handleSubmit={handleSubmit}
               setLogin={setLogin}
               login={login}
+              toggle={toggle}
+              setToggle={setToggle}
             />
           ) : (
             <OrganizationRegisterCard
               handleSubmit={handleSubmit}
               setLogin={setLogin}
               login={login}
+              toggle={toggle}
+              setToggle={setToggle}
             />
           )}
         </div>
