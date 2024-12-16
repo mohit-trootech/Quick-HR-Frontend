@@ -7,7 +7,5 @@ export const LogOut = async () => {
   removeLocalStorage("access");
   removeLocalStorage("refresh");
   SuccessToast("Logged Out Successfully");
-  setTimeout(() => {
-    window.location.href = "/login";
-  }, 4000);
+  window.location.href = "/login";
 };

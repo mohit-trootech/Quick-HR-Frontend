@@ -30,7 +30,7 @@ const OrganizationProvider = ({ children }) => {
   const { auth, getAuthenticatedUser } = useContext(AuthContext);
   const { updatePreloader } = useContext(PreloadContext);
   const { setPrevious, setNext, setCount } = useContext(PaginationContext);
-  const [organizations, setOrganizations] = useState(null);
+  const [organization, setOrganization] = useState(null);
   const [customization, setCustomizations] = useState(null);
   const [users, setUsers] = useState(null);
   /**Fetch Authenticated User Data if Not Available */
@@ -39,16 +39,16 @@ const OrganizationProvider = ({ children }) => {
     return () => {};
   }, []);
   /**Fetch Authenticated User Organization */
-  const getOrganizations = async (query_params) => {
+  const getOrganization = async (query_params) => {
     if (auth) {
       const response = await GetRequest(
-        `${BaseUrlPath}/api/organizations/${auth.username}/${query_params}`,
+        `${BaseUrlPath}/api/organizations/${auth.organization}/${query_params}`,
         getBearerToken,
         null,
         null,
         updatePreloader
       );
-      response && setOrganizations(response.data);
+      response && setOrganization(response.data);
       response && setCustomizations(response.data.customization);
     }
   };
@@ -57,14 +57,14 @@ const OrganizationProvider = ({ children }) => {
     if (auth) {
       let id = toast.loading("Please Wait, Creating Organization...");
       let response = await PostRequest(
-        `${BaseUrlPath}/api/organizations/${auth.username}/`,
+        `${BaseUrlPath}/api/organizations/`,
         data,
         getBearerToken,
         createOrganizationSuccess,
         id,
         updatePreloader
       );
-      response && setOrganizations(response.data);
+      response && setOrganization(response.data);
     }
   };
   /**Organization Users */
@@ -92,9 +92,11 @@ const OrganizationProvider = ({ children }) => {
       id,
       null
     );
-    users
-      ? response && setUsers([response.data, ...users])
-      : setUsers([response.data]);
+    if (response) {
+      users
+        ? response && setUsers([response.data, ...users])
+        : setUsers([response.data]);
+    }
   };
   /**Remove Organization User */
   const removeOrganizationUser = async (id) => {
@@ -112,7 +114,7 @@ const OrganizationProvider = ({ children }) => {
   const updateCustomization = async (data) => {
     let id = toast.loading("Please Wait, Updating Customization...");
     let response = await PatchRequest(
-      `${BaseUrlPath}/api/customization/${organizations.customization.id}/`,
+      `${BaseUrlPath}/api/customization/${organization.customization.id}/`,
       data,
       getBearerToken,
       updateCustomizationSuccess,
@@ -123,9 +125,9 @@ const OrganizationProvider = ({ children }) => {
 
   const data = {
     customization,
-    organizations,
+    organization,
     users,
-    getOrganizations,
+    getOrganization,
     postOrganization,
     updateCustomization,
     getOrganizationUsers,

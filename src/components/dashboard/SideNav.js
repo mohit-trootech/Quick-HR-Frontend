@@ -4,11 +4,11 @@ import { MdDashboard } from "react-icons/md";
 import { TbBodyScan } from "react-icons/tb";
 import { SlCalender } from "react-icons/sl";
 import { Link, NavLink } from "react-router-dom";
-import { FaList, FaMoneyCheck, FaUserTag } from "react-icons/fa";
+import { FaList, FaMoneyCheck, FaUserTag, FaMobile } from "react-icons/fa";
 import { VscPreview } from "react-icons/vsc";
 import { MdOutlineMoreTime } from "react-icons/md";
-import { FaTowerBroadcast } from "react-icons/fa6";
-const SideNav = () => {
+import { FaBookJournalWhills, FaTowerBroadcast } from "react-icons/fa6";
+const SideNav = ({ customization }) => {
   return (
     <>
       <ul className="menu rounded-box w-full p-0 m-0 gap-y-1">
@@ -21,100 +21,105 @@ const SideNav = () => {
             <MdDashboard /> Dashboard
           </NavLink>
         </li>
-        {/* <li>
-          <NavLink
-            role="button"
-            to="/attendence"
-            className="flex flex-row justify-start gap-2 items-center"
-          >
-            <TbBodyScan /> Attendence
-          </NavLink>
-        </li> */}
-        <li>
-          <NavLink
-            role="button"
-            to="/leaves"
-            className="flex flex-row justify-start gap-2 items-center"
-          >
-            <SlCalender /> Leave
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/holidays"
-            role="button"
-            className="flex flex-row justify-start gap-2 items-center"
-          >
-            <FaList /> Holiday
-          </NavLink>
-        </li>
-        {/* <li>
-          <NavLink
-            role="button"
-            to="/salary"
-            className="flex flex-row justify-start gap-2 items-center"
-          >
-            <FaMoneyCheck /> Salary
-          </NavLink>
-        </li> */}
-        <li>
-          <NavLink
-            role="button"
-            to="/review"
-            className="flex flex-row justify-start gap-2 items-center"
-          >
-            <VscPreview /> Review
-          </NavLink>
-        </li>
-        {/* <li>
-          <NavLink
-            role="button"
-            to="/overtime"
-            className="flex flex-row justify-start gap-2 items-center"
-          >
-            <MdOutlineMoreTime /> Overtime
-          </NavLink>
-        </li> */}
-        {/* <li>
-          <NavLink
-            role="button"
-            to="/users"
-            className="flex flex-row justify-start gap-2 items-center"
-          >
-            <FaUserTag /> User Request
-          </NavLink>
-        </li> */}
-        <li>
-          <NavLink
-            role="button"
-            to="/broadcast"
-            className="flex flex-row justify-start gap-2 items-center"
-          >
-            <FaTowerBroadcast /> Broadcast
-          </NavLink>
-        </li>
+        {customization && customization.leave && (
+          <li>
+            <NavLink
+              role="button"
+              to="/leaves"
+              className="flex flex-row justify-start gap-2 items-center"
+            >
+              <SlCalender /> Leave
+            </NavLink>
+          </li>
+        )}
+        {customization && customization.holiday && (
+          <li>
+            <NavLink
+              to="/holidays"
+              role="button"
+              className="flex flex-row justify-start gap-2 items-center"
+            >
+              <FaList /> Holiday
+            </NavLink>
+          </li>
+        )}
+        {customization && customization.salary && (
+          <li>
+            <NavLink
+              role="button"
+              to="/salary"
+              className="flex flex-row justify-start gap-2 items-center"
+            >
+              <FaMoneyCheck /> Salary
+            </NavLink>
+          </li>
+        )}
+        {customization && customization.attendence && (
+          <li>
+            <NavLink
+              role="button"
+              to="/salary"
+              className="flex flex-row justify-start gap-2 items-center"
+            >
+              <TbBodyScan /> Attendence
+            </NavLink>
+          </li>
+        )}
+        {customization && customization.review && (
+          <li>
+            <NavLink
+              role="button"
+              to="/review"
+              className="flex flex-row justify-start gap-2 items-center"
+            >
+              <VscPreview /> Review
+            </NavLink>
+          </li>
+        )}
+        {customization && customization.overtime && (
+          <li>
+            <NavLink
+              role="button"
+              to="/overtime"
+              className="flex flex-row justify-start gap-2 items-center"
+            >
+              <MdOutlineMoreTime /> Overtime
+            </NavLink>
+          </li>
+        )}
+        {customization && customization.device && (
+          <li>
+            <NavLink
+              role="button"
+              to="/overtime"
+              className="flex flex-row justify-start gap-2 items-center"
+            >
+              <FaMobile /> Mobile
+            </NavLink>
+          </li>
+        )}
+
         <li>
           <details close="true">
-            <summary>Parent</summary>
+            <summary>Other</summary>
             <ul>
               <li>
-                <Link>Submenu 1</Link>
+                <NavLink
+                  role="button"
+                  to="/broadcast"
+                  className="flex flex-row justify-start gap-2 items-center"
+                >
+                  <FaTowerBroadcast /> Broadcast
+                </NavLink>
               </li>
               <li>
-                <Link>Submenu 2</Link>
-              </li>
-              <li>
-                <details close="true">
-                  <summary>Parent</summary>
-                  <ul>
-                    <li>
-                      <Link>Submenu 1</Link>
-                    </li>
-                    <li>
-                      <Link>Submenu 2</Link>
-                    </li>
-                  </ul>
-                </details>
+                <NavLink
+                  role="button"
+                  to="/broadcast"
+                  className="flex flex-row justify-start gap-2 items-center"
+                >
+                  <TbBodyScan /> User Request
+                </NavLink>
               </li>
             </ul>
           </details>

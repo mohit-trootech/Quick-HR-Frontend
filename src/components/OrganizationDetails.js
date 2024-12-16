@@ -1,18 +1,18 @@
 /**Organization Details */
 import emptyImg from "../static/img/empty.png";
 import { TbUsersGroup, TbTrophy } from "react-icons/tb";
-const OrganizationDetails = ({ organizations }) => {
+const OrganizationDetails = ({ organization }) => {
   return (
     <>
       <div className="card static hover:shadow-xl transition-all duration-300">
         <div className="card-content static border p-4 rounded-xl">
           <div className="flex justify-start items-center gap-x-3">
             <img
-              src={organizations.logo || emptyImg}
+              src={organization.logo || emptyImg}
               alt="logo"
               className="avtar w-10 h-10"
             />
-            <p>{organizations.name}</p>
+            <p>{organization.name}</p>
           </div>
           <div className="divider"></div>
           <div className="relative group flex items-center justify-center overflow-hidden">
@@ -28,7 +28,7 @@ const OrganizationDetails = ({ organizations }) => {
                   <div className="flex items-center gap-2">
                     <TbUsersGroup className="text-xl text-secondary" />
                     <p className="text-white opacity-0 delay-200 duration-700 ease-in-out group-hover:opacity-100">
-                      {organizations.count || "No"} Users
+                      {organization.count || "No"} Users
                     </p>
                   </div>
                   <p>
@@ -50,7 +50,7 @@ const OrganizationDetails = ({ organizations }) => {
                     <input
                       type="checkbox"
                       className="checkbox checkbox-sm checkbox-success "
-                      defaultChecked={organizations.customization.attendence}
+                      defaultChecked={organization.customization.attendence}
                       disabled={true}
                     />
                     <div className="stat-title">Attendence</div>
@@ -62,7 +62,7 @@ const OrganizationDetails = ({ organizations }) => {
                     <input
                       type="checkbox"
                       className="checkbox checkbox-sm checkbox-success "
-                      defaultChecked={organizations.customization.device}
+                      defaultChecked={organization.customization.device}
                       disabled={true}
                     />
                     <div className="stat-title">Device</div>
@@ -74,7 +74,7 @@ const OrganizationDetails = ({ organizations }) => {
                     <input
                       type="checkbox"
                       className="checkbox checkbox-sm checkbox-success "
-                      defaultChecked={organizations.customization.leave}
+                      defaultChecked={organization.customization.leave}
                       disabled={true}
                     />
                     <div className="stat-title">Leave</div>
@@ -86,7 +86,7 @@ const OrganizationDetails = ({ organizations }) => {
                     <input
                       type="checkbox"
                       className="checkbox checkbox-sm checkbox-success "
-                      defaultChecked={organizations.customization.overtime}
+                      defaultChecked={organization.customization.overtime}
                       disabled={true}
                     />
                     <div className="stat-title">Overtime</div>
@@ -98,7 +98,7 @@ const OrganizationDetails = ({ organizations }) => {
                     <input
                       type="checkbox"
                       className="checkbox checkbox-sm checkbox-success "
-                      defaultChecked={organizations.customization.project}
+                      defaultChecked={organization.customization.project}
                       disabled={true}
                     />
                     <div className="stat-title">Project</div>
@@ -110,7 +110,7 @@ const OrganizationDetails = ({ organizations }) => {
                     <input
                       type="checkbox"
                       className="checkbox checkbox-sm checkbox-success"
-                      defaultChecked={organizations.customization.review}
+                      defaultChecked={organization.customization.review}
                       disabled={true}
                     />
                     <div className="stat-title">Salary</div>
@@ -122,7 +122,7 @@ const OrganizationDetails = ({ organizations }) => {
                     <input
                       type="checkbox"
                       className="checkbox checkbox-sm checkbox-success "
-                      defaultChecked={organizations.customization.salary}
+                      defaultChecked={organization.customization.salary}
                       disabled={true}
                     />
                     <div className="stat-title">Leave</div>
@@ -134,7 +134,7 @@ const OrganizationDetails = ({ organizations }) => {
                     <input
                       type="checkbox"
                       className="checkbox checkbox-sm checkbox-success "
-                      defaultChecked={organizations.customization.holiday}
+                      defaultChecked={organization.customization.holiday}
                       disabled={true}
                     />
                     <div className="stat-title">Holidays</div>

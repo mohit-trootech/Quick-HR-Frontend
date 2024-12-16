@@ -16,18 +16,18 @@ import Preloader from "../../components/Preloader";
 
 const OrganizationDashboard = () => {
   /**Organization Dashboard Component daisyUI & Tailwind CSS */
-  const { getOrganizations, organizations, postOrganization } =
+  const { getOrganization, organization, postOrganization } =
     useContext(OrganizationContext);
   const { auth } = useContext(AuthContext);
   const { preload, updatePreloader } = useContext(PreloadContext);
 
   useEffect(() => {
-    organizations || getOrganizations("");
-  }, [auth, organizations]);
+    organization || getOrganization("");
+  }, [auth, organization]);
 
   useEffect(() => {
-    auth && organizations && updatePreloader();
-  }, [organizations, preload]);
+    auth && organization && updatePreloader();
+  }, [organization, preload]);
 
   return (
     <>
@@ -36,7 +36,7 @@ const OrganizationDashboard = () => {
       ) : (
         <div className="grid grid-cols-9 gap-2">
           <div className="hidden lg:block lg:col-span-2">
-            <OrganizationSidebar user={auth} />
+            <OrganizationSidebar user={auth} organization={organization} />
           </div>
           <div className="col-span-9 lg:col-span-7 mx-3">
             <div className="px-3 py-1 border shadow-md my-2 rounded-lg flex items-center justify-between">
@@ -52,8 +52,8 @@ const OrganizationDashboard = () => {
               </div>
             </div>
             <div className="p-5">
-              {organizations ? (
-                <OrganizationDetails organizations={organizations} />
+              {organization ? (
+                <OrganizationDetails organization={organization} />
               ) : (
                 <div className="hero bg-base-200 min-h-screen">
                   <div className="hero-content text-center">

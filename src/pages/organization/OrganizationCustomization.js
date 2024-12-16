@@ -13,12 +13,8 @@ import { Link } from "react-router-dom";
 import Preloader from "../../components/Preloader";
 const OrganizationCustomization = () => {
   const { auth, getAuthenticatedUser } = useContext(AuthContext);
-  const {
-    getOrganizations,
-    organizations,
-    updateCustomization,
-    customization,
-  } = useContext(OrganizationContext);
+  const { getOrganization, organization, updateCustomization, customization } =
+    useContext(OrganizationContext);
   const { preload, updatePreloader } = useContext(PreloadContext);
 
   useEffect(() => {
@@ -26,12 +22,12 @@ const OrganizationCustomization = () => {
   }, []);
 
   useEffect(() => {
-    organizations || getOrganizations("");
+    organization || getOrganization("");
   }, [auth]);
 
   useEffect(() => {
-    organizations && updatePreloader();
-  }, [organizations, preload]);
+    organization && updatePreloader();
+  }, [organization, preload]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -43,7 +39,7 @@ const OrganizationCustomization = () => {
       {(preload && <Preloader />) || (
         <div className="grid grid-cols-9 gap-2">
           <div className="hidden lg:block lg:col-span-2">
-            <OrganizationSidebar user={auth} />
+            <OrganizationSidebar user={auth} organization={organization} />
           </div>
           <div className="col-span-9 lg:col-span-7 mx-3">
             <div className="px-3 py-1 border shadow-md my-2 rounded-lg flex items-center justify-between">
@@ -68,11 +64,19 @@ const OrganizationCustomization = () => {
                 Please edit the items below for your Organization Portal.
               </h1>
             </div>
-            {(organizations && (
+            {(organization && (
               <form method="POST" name="customization" onSubmit={handleSubmit}>
                 <div className="p-5 mt-5 mx-auto max-w-md border rounded-xl hover:shadow-xl hover:shadow-indigo-500/50 transition-all duration-500">
                   {/* Attendence */}
-                  <input name="id" hidden defaultValue={customization.id} />
+                  <input
+                    name="id"
+                    hidden
+                    defaultValue={
+                      (organization && organization.id) ||
+                      (customization && customization.id) ||
+                      null
+                    }
+                  />
                   <div className="form-control hover:bg-base-200 border-b px-1 px-2 rounded-t-lg">
                     <label className="label cursor-pointer">
                       <span className="label-text text-lg">Attendence</span>

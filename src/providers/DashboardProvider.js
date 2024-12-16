@@ -5,9 +5,10 @@ import { GetRequest } from "../utils/AxiosRequest";
 import { getBearerToken } from "../utils/utils";
 import { BaseUrlPath } from "../utils/contants";
 const DashboardProvider = ({ children }) => {
-  /**Dashboard Provider Context */
-
+  /**Dashboard States */
   const [availableLeave, setAvailableLeave] = useState(null);
+  const [broadCastMessages, setBroadCastMessages] = useState(null);
+  const [projects, setProjects] = useState(null);
   /**Available Leaves GET Request */
   const getAvailableLeaves = async () => {
     const response = await GetRequest(
@@ -17,7 +18,6 @@ const DashboardProvider = ({ children }) => {
     response && setAvailableLeave(response.data);
   };
   /**BroadCast Messages */
-  const [broadCastMessages, setBroadCastMessages] = useState(null);
   const getBroadCastMessages = async () => {
     const response = await GetRequest(
       BaseUrlPath + "/api/broadcasts/",
@@ -26,7 +26,6 @@ const DashboardProvider = ({ children }) => {
     response && setBroadCastMessages(response.data);
   };
   /**Project Select */
-  const [projects, setProjects] = useState(null);
   const getProjects = async (url) => {
     const response = await GetRequest(
       BaseUrlPath + "/api/projects/project/" + url,

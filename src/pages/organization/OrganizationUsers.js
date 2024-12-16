@@ -17,6 +17,7 @@ import OrganizationCreateUserModal from "../../modals/OrganizationCreateUserModa
 const OrganizationUsers = () => {
   const {
     users,
+    organization,
     getOrganizationUsers,
     createOrganizationUser,
     removeOrganizationUser,
@@ -60,7 +61,7 @@ const OrganizationUsers = () => {
       ) : (
         <div className="grid grid-cols-9 gap-2">
           <div className="hidden lg:block lg:col-span-2">
-            <OrganizationSidebar user={auth} />
+            <OrganizationSidebar user={auth} organization={organization} />
           </div>
           <div className="col-span-9 lg:col-span-7 mx-3">
             <div className="px-3 py-1 border shadow-md my-2 rounded-lg flex items-center justify-between">
