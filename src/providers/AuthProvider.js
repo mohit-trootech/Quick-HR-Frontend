@@ -1,7 +1,7 @@
 /**Authenticated User Provider */
 
 import React, { useState } from "react";
-import { getBearerToken } from "../utils/utils";
+import { getBearerToken, isUserInOrganization } from "../utils/utils";
 import { AuthContext } from "../context/Contexts";
 import { BaseUrlPath, IGNORE_URL_PATHS } from "../utils/contants";
 import { GetRequest } from "../utils/AxiosRequest";
@@ -16,6 +16,7 @@ const AuthProvider = ({ children }) => {
         null,
         null
       );
+      response && isUserInOrganization(response.data);
       response && setAuth(response.data);
     }
   };

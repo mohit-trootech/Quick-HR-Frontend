@@ -33,6 +33,11 @@ export const isOrganizationHead = async (user) => {
   !user.organization_head && redirectPage("/unauthorized");
 };
 
+export const isUserInOrganization = async (user) => {
+  /**Checks Whether User Belongs to any Organization */
+  !user.organization && redirectPage("/unauthorized");
+};
+
 /**Formatted Date time Object */
 export const getFormattedDate = (date) => {
   return new Date(date).toString().slice(4, 15);

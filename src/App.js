@@ -1,9 +1,10 @@
 /**React JS Imports */
+/**React Hooks */
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NoPage from "./components/NoPage";
 import { ToastContainer } from "react-toastify";
-import Home from "./Home";
+/**Components */
+import NoPage from "./components/NoPage";
 import Login from "./apps/accounts/Login";
 import ForgotPassword from "./apps/accounts/ForgotPassword";
 import Leaves from "./pages/Leaves";
@@ -11,11 +12,12 @@ import Attendence from "./pages/Attendence";
 import Holiday from "./pages/Holiday";
 import Review from "./pages/Review";
 import Unauthorized from "./components/Unauthorized";
-/**Organization Pages */
+/**Pages */
 import OrganizationLogin from "./pages/organization/OrganizationLogin";
 import OrganizationDashboard from "./pages/organization/OrganizationDashboard";
 import OrganizationCustomization from "./pages/organization/OrganizationCustomization";
 import OrganizationUsers from "./pages/organization/OrganizationUsers";
+import Dashboard from "./pages/dashboard/Dashboard";
 /**Providers */
 import PaginationProvider from "./providers/PagniationProvider";
 import AuthProvider from "./providers/AuthProvider";
@@ -47,7 +49,7 @@ function App() {
                         stacked
                       />
                       <Routes>
-                        <Route path="/" element={<Home />} />
+                        <Route path="/" element={<Dashboard />} />
                         <Route path="/login" element={<Login />} />
                         <Route
                           path="/organization/accounts"

@@ -28,12 +28,11 @@ const AxiosRequest = async (
     if (callBack) {
       callBack(response.data, id);
     }
+    updatePreloader && updatePreloader();
     return response;
   } catch (error) {
-    if (updatePreloader) {
-      updatePreloader();
-    }
     console.error(error);
+    updatePreloader && updatePreloader();
     if (error.response && error.response.status === 401) {
       LogOut();
     } else {

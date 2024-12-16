@@ -1,35 +1,49 @@
 /**Leaves Provider */
-
-import React, { useState } from "react";
-import { LeavesContext } from "../context/Contexts";
-import { GetRequest, PostRequest } from "../utils/AxiosRequest";
+/**React Hooks */
+import React, { useState, useContext } from "react";
+import { toast } from "react-toastify";
+/**Contexts */
+import {
+  LeavesContext,
+  PreloadContext,
+  PaginationContext,
+} from "../context/Contexts";
+/**Utils Functions & Constants */
 import { getBearerToken } from "../utils/utils";
 import { BaseUrlPath } from "../utils/contants";
-import { toast } from "react-toastify";
 import { newLeaveCreated } from "../utils/handleResponses";
+import { GetRequest, PostRequest } from "../utils/AxiosRequest";
+
 const LeavesProvider = ({ children }) => {
   /**Leaves Provider Context */
   const [leaves, setLeaves] = useState(null);
   const [availableLeave, setAvailableLeave] = useState(null);
-  const [previous, setPrevious] = useState(null);
-  const [next, setNext] = useState(null);
+  const { setPrevious, setNext, setCount } = useContext(PaginationContext);
+  const { updatePreloader } = useContext(PreloadContext);
   /**Get Available Leaves */
   const getAvailableLeave = async (url) => {
     const response = await GetRequest(
       BaseUrlPath + "/api/leaves/available/" + url,
-      getBearerToken
+      getBearerToken,
+      null,
+      null,
+      updatePreloader
     );
-   response && setAvailableLeave(response.data);
+    response && setAvailableLeave(response.data);
   };
   /**Get Leave Details */
   const getLeaves = async (url) => {
     const response = await GetRequest(
       BaseUrlPath + "/api/leaves/list/" + url,
-      getBearerToken
+      getBearerToken,
+      null,
+      null,
+      updatePreloader
     );
-   response && setLeaves(response.data.results);
-  response && setPrevious(response.data.previous);
-   response && setNext(response.data.next);
+    response && setLeaves(response.data.results);
+    response && setPrevious(response.data.previous);
+    response && setNext(response.data.next);
+    response && setCount(response.data.count);
   };
   /**Create New Leave */
   const createLeave = async (data) => {
@@ -41,19 +55,15 @@ const LeavesProvider = ({ children }) => {
       newLeaveCreated,
       id
     );
-    if (response && response.status === 201) {
-      setLeaves([response.data, ...leaves]);
-    }
+    response && setLeaves([response.data, ...leaves]);
   };
 
   const data = {
     leaves,
-    getLeaves,
-    getAvailableLeave,
     availableLeave,
+    getLeaves,
     createLeave,
-    previous,
-    next,
+    getAvailableLeave,
   };
   return (
     <LeavesContext.Provider value={data}>{children}</LeavesContext.Provider>

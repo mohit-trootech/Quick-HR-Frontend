@@ -45,6 +45,8 @@ export const IGNORE_URL_PATHS = [
   "/register/",
   "/organization/accounts",
   "/organization/accounts/",
+  "/unauthorized",
+  "/unauthorized/",
 ];
 
 export const BaseUrlPath = "http://127.0.0.1:8000";
