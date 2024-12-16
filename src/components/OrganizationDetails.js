@@ -4,7 +4,7 @@ import { TbUsersGroup, TbTrophy } from "react-icons/tb";
 const OrganizationDetails = ({ organizations }) => {
   return (
     <>
-      <div className="card hover:shadow-xl transition-all duration-300">
+      <div className="card static hover:shadow-xl transition-all duration-300">
         <div className="card-content static border p-4 rounded-xl">
           <div className="flex justify-start items-center gap-x-3">
             <img

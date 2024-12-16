@@ -1,7 +1,7 @@
 /**Tables - Organization Users Table */
 import profile from "../static/img/no-profile.webp";
 
-const OrganizationUsers = ({ user }) => {
+const OrganizationUsers = ({ user, handleClick }) => {
   /**User Table DaisyUI Component */
   return (
     <>
@@ -37,12 +37,17 @@ const OrganizationUsers = ({ user }) => {
           </p>
         </td>
         <td className="p-4 py-5">
-          <p className="text-sm text-slate-500">
+          <div className="text-sm text-slate-500">
             <p className="join">
-              <button className="btn join-item btn-sm btn-primary">Edit</button>
-              <button className="btn join-item btn-sm btn-error">Remove</button>
+              <button
+                onClick={handleClick}
+                data-user={user.id}
+                className="btn join-item btn-sm btn-error"
+              >
+                Remove
+              </button>
             </p>
-          </p>
+          </div>
         </td>
       </tr>
     </>

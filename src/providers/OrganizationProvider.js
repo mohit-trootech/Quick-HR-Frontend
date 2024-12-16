@@ -2,7 +2,12 @@
 
 import React, { useState, useContext } from "react";
 import { OrganizationContext } from "../context/Contexts";
-import { GetRequest, PostRequest, PatchRequest } from "../utils/AxiosRequest";
+import {
+  GetRequest,
+  PostRequest,
+  PatchRequest,
+  DeleteRequest,
+} from "../utils/AxiosRequest";
 import { getBearerToken } from "../utils/utils";
 import { BaseUrlPath } from "../utils/contants";
 import { isOrganizationHead } from "../utils/utils";
@@ -10,6 +15,8 @@ import { toast } from "react-toastify";
 import {
   updateCustomizationSuccess,
   createOrganizationSuccess,
+  createOrganizationUserSuccess,
+  removeUserSuccess,
 } from "../utils/handleResponses";
 import { PreloadContext } from "../context/Contexts";
 
@@ -71,9 +78,35 @@ const OrganizationProvider = ({ children }) => {
       null,
       updatePreloader
     );
-    response && setUsers(response.data.results);
-    response && setPrevious(response.data.previous);
-    response && setNext(response.data.next);
+    response && response.data.count && setUsers(response.data.results);
+    response && response.data.count && setPrevious(response.data.previous);
+    response && response.data.count && setNext(response.data.next);
+  };
+
+  const createOrganizationUser = async (data) => {
+    let id = toast.loading("Please Wait, Creating Organization User...");
+    let response = await PostRequest(
+      `${BaseUrlPath}/api/organization-users/`,
+      data,
+      getBearerToken,
+      createOrganizationUserSuccess,
+      id,
+      null
+    );
+    users
+      ? response && setUsers([response.data, ...users])
+      : setUsers([response.data]);
+  };
+  const removeUser = async (id) => {
+    let toast_id = toast.loading("Please Wait, Removing Organization User...");
+    let response = await DeleteRequest(
+      `${BaseUrlPath}/accounts/profile/${id}/`,
+      getBearerToken,
+      removeUserSuccess,
+      toast_id,
+      null
+    );
+    response && setUsers(users.filter((user) => user.id !== id));
   };
   /**Customize Organization */
   const updateCustomization = async (data) => {
@@ -98,6 +131,8 @@ const OrganizationProvider = ({ children }) => {
     customization,
     updateCustomization,
     getOrganizationUsers,
+    createOrganizationUser,
+    removeUser,
     users,
     previous,
     next,

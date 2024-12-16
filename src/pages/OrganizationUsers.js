@@ -10,8 +10,16 @@ import OrganizationUsersTable from "../tables/OrganizationUsersTable";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import OrganizationCreateUserModal from "../modals/OrganizationCreateUserModal";
 const OrganizationUsers = () => {
-  const { getUserData, userData, getOrganizationUsers, users, previous, next } =
-    useContext(OrganizationContext);
+  const {
+    getUserData,
+    userData,
+    getOrganizationUsers,
+    users,
+    previous,
+    next,
+    createOrganizationUser,
+    removeUser,
+  } = useContext(OrganizationContext);
   const { preload, updatePreloader } = useContext(PreloadContext);
 
   useEffect(() => {
@@ -33,6 +41,15 @@ const OrganizationUsers = () => {
         ? "page=1"
         : event.target.href.split("?")[1];
     getOrganizationUsers("?" + url);
+  };
+  const handleRemoveClick = (event) => {
+    event.preventDefault();
+    removeUser(event.target.getAttribute("data-user"));
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    createOrganizationUser(new FormData(form));
   };
   return (
     <>
@@ -77,91 +94,93 @@ const OrganizationUsers = () => {
               >
                 Create User
               </button>
-              <OrganizationCreateUserModal />
+              <OrganizationCreateUserModal handleSubmit={handleSubmit} />
             </div>
             <div className="p-5">
-              <div className="overflow-x-auto">
-                <table className="w-full text-left table-auto min-w-max rounded-xl">
-                  <thead className="capitalize">
-                    <tr>
-                      <th className="p-4 border-b border-slate-200 bg-slate-50">
-                        <p className="text-sm font-normal leading-none text-slate-500">
-                          ID
-                        </p>
-                      </th>
-                      <th className="p-4 border-b border-slate-200 bg-slate-50">
-                        <p className="text-sm font-normal leading-none text-slate-500">
-                          Image
-                        </p>
-                      </th>
-                      <th className="p-4 border-b border-slate-200 bg-slate-50">
-                        <p className="text-sm font-normal leading-none text-slate-500">
-                          Username
-                        </p>
-                      </th>
-                      <th className="p-4 border-b border-slate-200 bg-slate-50">
-                        <p className="text-sm font-normal leading-none text-slate-500">
-                          Full Name
-                        </p>
-                      </th>
-                      <th className="p-4 border-b border-slate-200 bg-slate-50">
-                        <p className="text-sm font-normal leading-none text-slate-500">
-                          Action
-                        </p>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {users &&
-                      users.map((user) => {
+              {(users && (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left table-auto min-w-max rounded-xl">
+                    <thead className="capitalize">
+                      <tr>
+                        <th className="p-4 border-b border-slate-200 bg-slate-50">
+                          <p className="text-sm font-normal leading-none text-slate-500">
+                            ID
+                          </p>
+                        </th>
+                        <th className="p-4 border-b border-slate-200 bg-slate-50">
+                          <p className="text-sm font-normal leading-none text-slate-500">
+                            Image
+                          </p>
+                        </th>
+                        <th className="p-4 border-b border-slate-200 bg-slate-50">
+                          <p className="text-sm font-normal leading-none text-slate-500">
+                            Username
+                          </p>
+                        </th>
+                        <th className="p-4 border-b border-slate-200 bg-slate-50">
+                          <p className="text-sm font-normal leading-none text-slate-500">
+                            Full Name
+                          </p>
+                        </th>
+                        <th className="p-4 border-b border-slate-200 bg-slate-50">
+                          <p className="text-sm font-normal leading-none text-slate-500">
+                            Action
+                          </p>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {users.map((user) => {
                         return (
-                          <OrganizationUsersTable user={user} key={user.id} />
+                          <OrganizationUsersTable
+                            user={user}
+                            key={user.id}
+                            handleClick={handleRemoveClick}
+                          />
                         );
                       })}
                     </tbody>
                   </table>
-                )) || (
-                  <div>
-                    <div role="alert" className="alert">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        className="stroke-info h-6 w-6 shrink-0"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                        ></path>
-                      </svg>
-                      <span>No users available in organization.</span>
-                    </div>
+                  {/* Pagination */}
+                  <div className="join m-5 flex justify-end">
+                    <a
+                      role="button"
+                      onClick={handleClick}
+                      href={previous}
+                      disabled={!previous}
+                      className="btn btn-info join-item"
+                    >
+                      Previous
+                    </a>
+                    <a
+                      role="button"
+                      onClick={handleClick}
+                      disabled={!next}
+                      href={next}
+                      className="btn btn-primary join-item"
+                    >
+                      Next
+                    </a>
                   </div>
-                )}
-                {/* Pagination */}
-                <div className="join m-5 flex justify-end">
-                  <a
-                    role="button"
-                    onClick={handleClick}
-                    href={previous}
-                    disabled={!previous}
-                    className="btn btn-info join-item"
-                  >
-                    Previous
-                  </a>
-                  <a
-                    role="button"
-                    onClick={handleClick}
-                    disabled={!next}
-                    href={next}
-                    className="btn btn-primary join-item"
-                  >
-                    Next
-                  </a>
                 </div>
-              </div>
+              )) || (
+                <div role="alert" className="alert">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    className="stroke-info h-6 w-6 shrink-0"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  <span>No users available in organization.</span>
+                </div>
+              )}
             </div>
           </div>
         </div>

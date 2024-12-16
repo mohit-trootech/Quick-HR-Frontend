@@ -49,3 +49,11 @@ export const postReviewSuccess = (response, id) => {
   /**Handle Post Review Success Response */
   SuccessToast(id, "Review Posted Successfully");
 };
+export const createOrganizationUserSuccess = (response, id) => {
+  /**Handle Create Organization User Success Response */
+  SuccessToast(id, "User Created Successfully");
+};
+export const removeUserSuccess = (response, id) => {
+  /**Handle Remove User Success Response */
+  SuccessToast(id, "User Removed Successfully");
+};
