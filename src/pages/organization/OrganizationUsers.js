@@ -1,35 +1,37 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /**Organization Users */
 import { useContext, useEffect } from "react";
-import OrganizationSidebar from "../components/OrganizationSidebar";
-import { OrganizationContext, PreloadContext } from "../context/Contexts";
-import Preloader from "../components/Preloader";
+import OrganizationSidebar from "../../components/OrganizationSidebar";
+import {
+  AuthContext,
+  OrganizationContext,
+  PaginationContext,
+  PreloadContext,
+} from "../../context/Contexts";
+import Preloader from "../../components/Preloader";
 import { BiHomeAlt } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import OrganizationUsersTable from "../tables/OrganizationUsersTable";
+import OrganizationUsersTable from "../../tables/OrganizationUsersTable";
 import { FaMagnifyingGlass } from "react-icons/fa6";
-import OrganizationCreateUserModal from "../modals/OrganizationCreateUserModal";
+import OrganizationCreateUserModal from "../../modals/OrganizationCreateUserModal";
 const OrganizationUsers = () => {
   const {
-    getUserData,
-    userData,
-    getOrganizationUsers,
     users,
-    previous,
-    next,
+    getOrganizationUsers,
     createOrganizationUser,
-    removeUser,
+    removeOrganizationUser,
   } = useContext(OrganizationContext);
   const { preload, updatePreloader } = useContext(PreloadContext);
-
+  const { previous, next } = useContext(PaginationContext);
+  const { auth, getAuthorizedUser } = useContext(AuthContext);
   useEffect(() => {
-    userData || getUserData();
+    auth || getAuthorizedUser();
     users || getOrganizationUsers("");
-  }, [userData, users]);
+  }, [auth, users]);
 
   useEffect(() => {
     updatePreloader(false);
-  }, [users, preload, userData]);
+  }, [users, preload, auth]);
 
   const handleChange = (event) => {
     getOrganizationUsers(`?search=${event.target.value}`);
@@ -44,7 +46,7 @@ const OrganizationUsers = () => {
   };
   const handleRemoveClick = (event) => {
     event.preventDefault();
-    removeUser(event.target.getAttribute("data-user"));
+    removeOrganizationUser(event.target.getAttribute("data-user"));
   };
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -58,7 +60,7 @@ const OrganizationUsers = () => {
       ) : (
         <div className="grid grid-cols-9 gap-2">
           <div className="hidden lg:block lg:col-span-2">
-            <OrganizationSidebar user={userData} />
+            <OrganizationSidebar user={auth} />
           </div>
           <div className="col-span-9 lg:col-span-7 mx-3">
             <div className="px-3 py-1 border shadow-md my-2 rounded-lg flex items-center justify-between">
@@ -164,7 +166,7 @@ const OrganizationUsers = () => {
                   </div>
                 </div>
               )) || (
-                <div role="alert" className="alert">
+                <div role="alert" className="alert mt-5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

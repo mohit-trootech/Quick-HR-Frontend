@@ -6,7 +6,7 @@ import {
   urlForgotPassword,
   urlForgotPasswordOtpSubmit,
 } from "../utils/contants";
-import { PostRequest } from "../utils/AxiosRequest";
+import { PostRequest, GetRequest } from "../utils/AxiosRequest";
 import { toast } from "react-toastify";
 import {
   handleLogin,
@@ -15,6 +15,7 @@ import {
   organizationLoginSuccess,
 } from "../utils/handleResponses";
 import { BaseUrlPath } from "../utils/contants";
+import { getBearerToken } from "../utils/utils";
 
 const UserProvider = ({ children }) => {
   /**User App States */
@@ -65,6 +66,17 @@ const UserProvider = ({ children }) => {
       id
     );
   };
+  const [userData, setUserData] = useState(null);
+  /**Get User Data */
+  const getUserData = async () => {
+    const response = await GetRequest(
+      BaseUrlPath + "/accounts/logged-in-user/",
+      getBearerToken,
+      null,
+      null
+    );
+    response && setUserData(response.data);
+  };
   const data = {
     loginRequest,
     forgotPassword,
@@ -73,6 +85,8 @@ const UserProvider = ({ children }) => {
     setToggle,
     organizationLoginRequest,
     organizationRegisterRequest,
+    userData,
+    getUserData,
   };
   return <UserContext.Provider value={data}>{children}</UserContext.Provider>;
 };

@@ -6,6 +6,7 @@ import { getBearerToken } from "../utils/utils";
 import { BaseUrlPath } from "../utils/contants";
 const DashboardProvider = ({ children }) => {
   /**Dashboard Provider Context */
+
   const [availableLeave, setAvailableLeave] = useState(null);
   /**Available Leaves GET Request */
   const getAvailableLeaves = async () => {
@@ -22,7 +23,7 @@ const DashboardProvider = ({ children }) => {
       BaseUrlPath + "/api/broadcasts/",
       getBearerToken
     );
-   response && setBroadCastMessages(response.data);
+    response && setBroadCastMessages(response.data);
   };
   /**Project Select */
   const [projects, setProjects] = useState(null);
@@ -40,7 +41,7 @@ const DashboardProvider = ({ children }) => {
       BaseUrlPath + "/api/projects/project/" + url,
       getBearerToken
     );
-   response && setTasks(response.data);
+    response && setTasks(response.data);
   };
   const data = {
     availableLeave,

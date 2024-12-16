@@ -4,18 +4,20 @@ import { getLocalStorage } from "../utils/utils";
 
 export const ThemeContext = createContext(getLocalStorage("theme") || "light");
 
-export const UserContext = createContext(getLocalStorage("access"));
+export const AuthContext = createContext();
 
-export const DashboardContext = createContext(null);
-
-export const LeavesContext = createContext(null);
-
-export const ProjectsContext = createContext(null);
-
-export const TasksContext = createContext(null);
-
-export const ReviewContext = createContext(null);
-
-export const OrganizationContext = createContext(null);
+export const PaginationContext = createContext();
 
 export const PreloadContext = createContext(true);
+
+export const OrganizationContext = createContext();
+
+export const UserContext = createContext(getLocalStorage("access"));
+
+export const DashboardContext = createContext();
+
+export const LeavesContext = createContext();
+
+export const ReviewContext = createContext();
+
+export const ProjectsContext = createContext();

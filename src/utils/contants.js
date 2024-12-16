@@ -35,6 +35,18 @@ export const themes = [
   "nord",
   "sunset",
 ];
+
+export const IGNORE_URL_PATHS = [
+  "/login",
+  "/login/",
+  "/forgot-password",
+  "/forgot-password/",
+  "/register",
+  "/register/",
+  "/organization/accounts",
+  "/organization/accounts/",
+];
+
 export const BaseUrlPath = "http://127.0.0.1:8000";
 export const urlLogin = "http://127.0.0.1:8000/accounts/login/";
 export const urlForgotPassword =

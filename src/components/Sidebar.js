@@ -2,9 +2,15 @@
 import UserCard from "../components/dashboard/UserCard";
 import Stats from "../components/dashboard/Stats";
 import SideNav from "../components/dashboard/SideNav";
+import { useContext, useEffect } from "react";
+import { UserContext } from "../context/Contexts";
 // import logo from "../static/img/logo.png";
 const Sidebar = () => {
   /**Sidebar Component */
+  const { userData, getUserData } = useContext(UserContext);
+  useEffect(() => {
+    getUserData();
+  }, []);
   return (
     <>
       <div className="min-h-screen sticky top-0 p-2 my-2 mr-2 rounded-lg shadow-xl">
@@ -15,13 +21,13 @@ const Sidebar = () => {
         <div className="divider mr-3"></div> */}
         <div className="pl-3">
           {/* Card */}
-          <UserCard />
+          <UserCard user={userData} />
           <div className="divider mr-3"></div>
           {/* Stats */}
           <Stats />
           <div className="divider mr-3"></div>
           {/* SideNav */}
-          <SideNav />
+          <SideNav userData={userData} />
         </div>
       </div>
     </>

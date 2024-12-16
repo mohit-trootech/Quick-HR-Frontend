@@ -1,7 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /**Organization Provider */
 
-import React, { useState, useContext } from "react";
-import { OrganizationContext } from "../context/Contexts";
+import React, { useState, useContext, useEffect } from "react";
+import {
+  AuthContext,
+  OrganizationContext,
+  PaginationContext,
+  PreloadContext,
+} from "../context/Contexts";
 import {
   GetRequest,
   PostRequest,
@@ -10,41 +16,33 @@ import {
 } from "../utils/AxiosRequest";
 import { getBearerToken } from "../utils/utils";
 import { BaseUrlPath } from "../utils/contants";
-import { isOrganizationHead } from "../utils/utils";
 import { toast } from "react-toastify";
+
 import {
   updateCustomizationSuccess,
   createOrganizationSuccess,
   createOrganizationUserSuccess,
   removeUserSuccess,
 } from "../utils/handleResponses";
-import { PreloadContext } from "../context/Contexts";
 
 const OrganizationProvider = ({ children }) => {
-  /**Logged In User Data */
+  /**Organization Provider States */
+  const { auth, getAuthenticatedUser } = useContext(AuthContext);
   const { updatePreloader } = useContext(PreloadContext);
-  const [userData, setUserData] = useState(null);
+  const { setPrevious, setNext, setCount } = useContext(PaginationContext);
   const [organizations, setOrganizations] = useState(null);
   const [customization, setCustomizations] = useState(null);
   const [users, setUsers] = useState(null);
-  const [previous, setPrevious] = useState(null);
-  const [next, setNext] = useState(null);
-  /**Get User Data */
-  const getUserData = async () => {
-    const response = await GetRequest(
-      BaseUrlPath + "/accounts/logged-in-user/",
-      getBearerToken,
-      null,
-      null
-    );
-    response && setUserData(response.data);
-    response && isOrganizationHead(response.data);
-  };
-  /**Retreive User Organization */
+  /**Fetch Authenticated User Data if Not Available */
+  useEffect(() => {
+    getAuthenticatedUser();
+    return () => {};
+  }, []);
+  /**Fetch Authenticated User Organization */
   const getOrganizations = async (query_params) => {
-    if (userData) {
+    if (auth) {
       const response = await GetRequest(
-        `${BaseUrlPath}/api/organizations/${userData.username}/${query_params}`,
+        `${BaseUrlPath}/api/organizations/${auth.username}/${query_params}`,
         getBearerToken,
         null,
         null,
@@ -56,10 +54,10 @@ const OrganizationProvider = ({ children }) => {
   };
   /**Create a New Organization */
   const postOrganization = async (data) => {
-    if (userData) {
+    if (auth) {
       let id = toast.loading("Please Wait, Creating Organization...");
       let response = await PostRequest(
-        `${BaseUrlPath}/api/organizations/${userData.username}/`,
+        `${BaseUrlPath}/api/organizations/${auth.username}/`,
         data,
         getBearerToken,
         createOrganizationSuccess,
@@ -81,8 +79,9 @@ const OrganizationProvider = ({ children }) => {
     response && response.data.count && setUsers(response.data.results);
     response && response.data.count && setPrevious(response.data.previous);
     response && response.data.count && setNext(response.data.next);
+    response && response.data.count && setCount(response.data.count);
   };
-
+  /**Create Organization User */
   const createOrganizationUser = async (data) => {
     let id = toast.loading("Please Wait, Creating Organization User...");
     let response = await PostRequest(
@@ -97,7 +96,8 @@ const OrganizationProvider = ({ children }) => {
       ? response && setUsers([response.data, ...users])
       : setUsers([response.data]);
   };
-  const removeUser = async (id) => {
+  /**Remove Organization User */
+  const removeOrganizationUser = async (id) => {
     let toast_id = toast.loading("Please Wait, Removing Organization User...");
     let response = await DeleteRequest(
       `${BaseUrlPath}/accounts/profile/${id}/`,
@@ -118,24 +118,19 @@ const OrganizationProvider = ({ children }) => {
       updateCustomizationSuccess,
       id
     );
-
     response && setCustomizations(response.data);
   };
 
   const data = {
-    getUserData,
-    userData,
-    getOrganizations,
-    organizations,
-    postOrganization,
     customization,
+    organizations,
+    users,
+    getOrganizations,
+    postOrganization,
     updateCustomization,
     getOrganizationUsers,
     createOrganizationUser,
-    removeUser,
-    users,
-    previous,
-    next,
+    removeOrganizationUser,
   };
   return (
     <OrganizationContext.Provider value={data}>

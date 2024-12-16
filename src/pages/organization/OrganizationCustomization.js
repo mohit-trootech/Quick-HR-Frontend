@@ -2,15 +2,18 @@
 /* eslint-disable no-unused-vars */
 /**Organization Customization Page */
 import { useContext, useEffect } from "react";
-import OrganizationSidebar from "../components/OrganizationSidebar";
+import OrganizationSidebar from "../../components/OrganizationSidebar";
 import { BiHomeAlt, BiInfoCircle, BiPencil } from "react-icons/bi";
-import { OrganizationContext, PreloadContext } from "../context/Contexts";
+import {
+  AuthContext,
+  OrganizationContext,
+  PreloadContext,
+} from "../../context/Contexts";
 import { Link } from "react-router-dom";
-import Preloader from "../components/Preloader";
+import Preloader from "../../components/Preloader";
 const OrganizationCustomization = () => {
+  const { auth, getAuthenticatedUser } = useContext(AuthContext);
   const {
-    getUserData,
-    userData,
     getOrganizations,
     organizations,
     updateCustomization,
@@ -19,13 +22,16 @@ const OrganizationCustomization = () => {
   const { preload, updatePreloader } = useContext(PreloadContext);
 
   useEffect(() => {
-    userData || getUserData();
-    organizations || getOrganizations("");
-  }, [userData, organizations]);
+    auth && getAuthenticatedUser();
+  }, []);
 
   useEffect(() => {
-    userData && organizations && updatePreloader();
-  }, [userData, organizations, preload]);
+    organizations || getOrganizations("");
+  }, [auth]);
+
+  useEffect(() => {
+    organizations && updatePreloader();
+  }, [organizations, preload]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -37,7 +43,7 @@ const OrganizationCustomization = () => {
       {(preload && <Preloader />) || (
         <div className="grid grid-cols-9 gap-2">
           <div className="hidden lg:block lg:col-span-2">
-            <OrganizationSidebar user={userData} />
+            <OrganizationSidebar user={auth} />
           </div>
           <div className="col-span-9 lg:col-span-7 mx-3">
             <div className="px-3 py-1 border shadow-md my-2 rounded-lg flex items-center justify-between">
@@ -61,9 +67,6 @@ const OrganizationCustomization = () => {
               <h1 className="text-xl font-semibold">
                 Please edit the items below for your Organization Portal.
               </h1>
-              <p className="text-zinc-500">
-                - Must add at least 4 customizations
-              </p>
             </div>
             {(organizations && (
               <form method="POST" name="customization" onSubmit={handleSubmit}>
@@ -179,7 +182,7 @@ const OrganizationCustomization = () => {
                 </div>
               </form>
             )) || (
-              <div>
+              <div className="mt-5">
                 <div role="alert" className="alert cursor-help">
                   <BiInfoCircle className="stroke-info h-6 w-6 shrink-0" />
                   <span>

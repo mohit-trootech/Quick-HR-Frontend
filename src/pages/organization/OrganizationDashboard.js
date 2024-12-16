@@ -2,33 +2,32 @@
 /**Organization Dashboard */
 
 import { useContext, useEffect } from "react";
-import OrganizationSidebar from "../components/OrganizationSidebar";
+import OrganizationSidebar from "../../components/OrganizationSidebar";
 import { BiHomeAlt } from "react-icons/bi";
-import { OrganizationContext, PreloadContext } from "../context/Contexts";
-import CreateOrganization from "../modals/CreateOrganization";
-import OrganizationDetails from "../components/OrganizationDetails"; // Fixed typo in import
-import image_4o4 from "../static/img/404.gif";
-import Preloader from "../components/Preloader";
+import {
+  AuthContext,
+  OrganizationContext,
+  PreloadContext,
+} from "../../context/Contexts";
+import CreateOrganization from "../../modals/CreateOrganization";
+import OrganizationDetails from "../../components/OrganizationDetails"; // Fixed typo in import
+import image_4o4 from "../../static/img/404.gif";
+import Preloader from "../../components/Preloader";
 
 const OrganizationDashboard = () => {
   /**Organization Dashboard Component daisyUI & Tailwind CSS */
-  const {
-    getUserData,
-    userData,
-    getOrganizations,
-    organizations,
-    postOrganization,
-  } = useContext(OrganizationContext);
+  const { getOrganizations, organizations, postOrganization } =
+    useContext(OrganizationContext);
+  const { auth } = useContext(AuthContext);
   const { preload, updatePreloader } = useContext(PreloadContext);
 
   useEffect(() => {
-    userData || getUserData();
     organizations || getOrganizations("");
-  }, [userData, organizations]);
+  }, [auth, organizations]);
 
   useEffect(() => {
-    userData && organizations && updatePreloader();
-  }, [userData, organizations, preload]);
+    auth && organizations && updatePreloader();
+  }, [organizations, preload]);
 
   return (
     <>
@@ -37,7 +36,7 @@ const OrganizationDashboard = () => {
       ) : (
         <div className="grid grid-cols-9 gap-2">
           <div className="hidden lg:block lg:col-span-2">
-            <OrganizationSidebar user={userData} />
+            <OrganizationSidebar user={auth} />
           </div>
           <div className="col-span-9 lg:col-span-7 mx-3">
             <div className="px-3 py-1 border shadow-md my-2 rounded-lg flex items-center justify-between">
