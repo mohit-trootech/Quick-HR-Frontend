@@ -21,6 +21,7 @@ import { GetRequest } from "../utils/AxiosRequest";
 import { BaseUrlPath } from "../utils/contants";
 import { getBearerToken } from "../utils/utils";
 import { FaInfoCircle } from "react-icons/fa";
+import SidenavDrawer from "../components/SidenavDrawer";
 
 const Holiday = () => {
   const [holidays, setHolidays] = useState(null);
@@ -65,8 +66,11 @@ const Holiday = () => {
           </div>
           <div className="col-span-9 lg:col-span-7 mx-3">
             <div className="px-3 py-1 border shadow-md my-2 rounded-lg flex items-center justify-between">
-              <span className="text-xl font-semibold">Holidays</span>
-              <div className="breadcrumbs text-sm">
+              <span className="text-xl font-semibold hidden lg:block">
+                Holidays
+              </span>
+              <div className="breadcrumbs text-sm flex flex-row items-center justify-start gap-2">
+                <SidenavDrawer />
                 <ul>
                   <li>
                     <Link to="/">
@@ -74,7 +78,8 @@ const Holiday = () => {
                     </Link>
                   </li>
                   <li>
-                    <BiCalendar /> Holidays
+                    <BiCalendar />
+                    Holidays
                   </li>
                 </ul>
               </div>

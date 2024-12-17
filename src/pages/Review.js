@@ -7,6 +7,8 @@ import ReviewModal from "../modals/ReviewModal";
 import { useContext, useEffect } from "react";
 import { ReviewContext } from "../context/Contexts";
 import ReviewCard from "../cards/ReviewCard";
+import SidenavDrawer from "../components/SidenavDrawer";
+import { VscPreview } from "react-icons/vsc";
 const Review = () => {
   /**Review Component daisyUI & Tailwind CSS */
   const { getAllReviews, reviews } = useContext(ReviewContext);
@@ -16,21 +18,27 @@ const Review = () => {
   return (
     <>
       <div className="grid grid-cols-9 gap-2">
-        <div className="col-span-2">
+        <div className="hidden lg:block lg:col-span-2">
           <Sidebar />
         </div>
-        <div className="col-span-7 mr-5">
+        <div className="col-span-9 lg:col-span-7 mx-3">
           {/* Breadcrump */}
           <div className="px-3 py-1 border shadow-md my-2 rounded-lg flex items-center justify-between">
-            <span className="text-xl font-semibold">Review</span>
-            <div className="breadcrumbs text-sm">
+            <span className="text-xl font-semibold hidden lg:block ">
+              Review
+            </span>
+            <div className="breadcrumbs text-sm flex flex-row items-center justify-start gap-2">
+              <SidenavDrawer />
               <ul>
                 <li>
                   <Link to="/">
                     <BiHomeAlt /> Dashboard
                   </Link>
                 </li>
-                <li>Review</li>
+                <li>
+                  <VscPreview />
+                  Review
+                </li>
               </ul>
             </div>
           </div>

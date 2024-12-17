@@ -1,12 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /**Dashboard Sidebar */
+/**React Hooks */
+import { useContext, useEffect } from "react";
+
+/**Contexts */
+import { OrganizationContext, AuthContext } from "../context/Contexts";
+
+/**Components */
 import UserCard from "../components/dashboard/UserCard";
 import Stats from "../components/dashboard/Stats";
 import SideNav from "../components/dashboard/SideNav";
-import { useContext, useEffect } from "react";
-import { OrganizationContext, AuthContext } from "../context/Contexts";
 import logo from "../static/img/empty.png";
-// import logo from "../static/img/logo.png";
 const Sidebar = () => {
   /**Sidebar Component */
   const { auth } = useContext(AuthContext);
@@ -17,7 +21,7 @@ const Sidebar = () => {
   }, [auth]);
   return (
     <>
-      <div className="min-h-screen sticky top-0 p-2 my-2 mr-2 rounded-lg shadow-xl">
+      <div className="min-h-screen sticky top-0 p-2 lg:my-2 lg:mr-2 lg:rounded-lg lg:shadow-xl">
         {organization && (
           <div>
             <div className="flex flex-row justify-start gap-x-2 items-center">

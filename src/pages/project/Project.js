@@ -19,6 +19,8 @@ import Sidebar from "../../components/Sidebar";
 import Preloader from "../../components/Preloader";
 import ProjectsTable from "../../tables/ProjectsTable";
 import ProjectDetail from "../../modals/ProjectDetail";
+import SidenavDrawer from "../../components/SidenavDrawer";
+
 const Project = () => {
   const [current, setCurrent] = useState(null);
   const { preload } = useContext(PreloadContext);
@@ -45,8 +47,11 @@ const Project = () => {
           <div className="col-span-9 lg:col-span-7 mx-3">
             {/* Breadcrumb */}
             <div className="px-3 py-1 border shadow-md my-2 rounded-lg flex items-center justify-between">
-              <span className="text-xl font-semibold">Leaves Management</span>
-              <div className="breadcrumbs text-sm">
+              <span className="text-xl font-semibold hidden lg:block">
+                Leaves Management
+              </span>
+              <div className="breadcrumbs text-sm flex flex-row items-center justify-start gap-2">
+                <SidenavDrawer />
                 <ul>
                   <li>
                     <Link to="/">

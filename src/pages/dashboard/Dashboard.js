@@ -10,6 +10,8 @@ import Preloader from "../../components/Preloader";
 import { useContext, useEffect } from "react";
 /**Dashboard Contexts */
 import { DashboardContext, PreloadContext } from "../../context/Contexts";
+import SidenavDrawer from "../../components/SidenavDrawer";
+import { BiHomeAlt } from "react-icons/bi";
 
 const Dashboard = () => {
   const {
@@ -32,6 +34,20 @@ const Dashboard = () => {
             <Sidebar />
           </div>
           <div className="col-span-9 lg:col-span-7 mx-3">
+            {/* Breadcrumb */}
+            <div className="px-3 py-1 border shadow-md my-2 rounded-lg flex items-center justify-between">
+              <span className="text-xl font-semibold hidden lg:block">
+                Leaves Management
+              </span>
+              <div className="breadcrumbs text-sm flex flex-row items-center justify-start gap-2">
+                <SidenavDrawer />
+                <ul>
+                  <li>
+                    <BiHomeAlt /> Dashboard
+                  </li>
+                </ul>
+              </div>
+            </div>
             <div className="py-5 grid grid-cols-3 gap-4">
               <div className="flex flex-col gap-2">
                 <AvailableLeave />
