@@ -24,9 +24,8 @@ const OrganizationUsers = () => {
   } = useContext(OrganizationContext);
   const { preload, updatePreloader } = useContext(PreloadContext);
   const { previous, next } = useContext(PaginationContext);
-  const { auth, getAuthorizedUser } = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
   useEffect(() => {
-    auth || getAuthorizedUser();
     users || getOrganizationUsers("");
   }, [auth, users]);
 

@@ -12,14 +12,10 @@ import {
 import { Link } from "react-router-dom";
 import Preloader from "../../components/Preloader";
 const OrganizationCustomization = () => {
-  const { auth, getAuthenticatedUser } = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
   const { getOrganization, organization, updateCustomization, customization } =
     useContext(OrganizationContext);
   const { preload, updatePreloader } = useContext(PreloadContext);
-
-  useEffect(() => {
-    auth && getAuthenticatedUser();
-  }, []);
 
   useEffect(() => {
     organization || getOrganization("");

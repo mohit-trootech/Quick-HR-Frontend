@@ -14,7 +14,7 @@ const OrganizationDetails = ({ organization }) => {
             />
             <p>{organization.name}</p>
           </div>
-          <div className="divider"></div>
+          <div className="divider mr-3 my-0"></div>
           <div className="relative group flex items-center justify-center overflow-hidden">
             <div className="group relative mx-auto w-8/12 h-72">
               <div className="relative leading-7 -left-9 top-0 z-10 w-full h-full rounded-xl bg-[#3d348b] px-5 py-3 text-base font-semibold transition-all duration-700 group-hover:-left-14">

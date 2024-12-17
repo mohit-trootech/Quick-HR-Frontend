@@ -30,16 +30,16 @@ const Sidebar = () => {
                 {organization.name}
               </p>
             </div>
-            <div className="divider"></div>
+            <div className="divider mr-3 my-0"></div>
           </div>
         )}
         <div className="pl-3">
           {/* Card */}
           <UserCard user={auth} />
-          <div className="divider mr-3"></div>
+          <div className="divider mr-3 my-0"></div>
           {/* Stats */}
           <Stats />
-          <div className="divider mr-3"></div>
+          <div className="divider mr-3 my-0"></div>
           {/* SideNav */}
           <SideNav customization={customization} />
         </div>

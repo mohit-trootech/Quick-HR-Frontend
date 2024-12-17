@@ -20,12 +20,12 @@ const OrganizationSidebar = ({ user, organization }) => {
                   {organization.name}
                 </p>
               </div>
-              <div className="divider"></div>
+              <div className="divider mr-3 my-0"></div>
             </div>
           )}
           {/* Profile */}
           <UserCard user={user} />
-          <div className="divider mr-3"></div>
+          <div className="divider mr-3 my-0"></div>
 
           {/* Organization SideNav */}
           <OrganizationSidenav />

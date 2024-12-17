@@ -56,7 +56,7 @@ const ReviewDetailsModal = ({ review }) => {
                 })}, ${new Date(review.created).getFullYear()}`}
               </p>
             </div>
-            <div className="divider"></div>
+            <div className="divider mr-3 my-0"></div>
             <div className="flex flex-col gap-y-3">
               <div>
                 <div className="flex justify-between items-center">
@@ -93,7 +93,7 @@ const ReviewDetailsModal = ({ review }) => {
                 </p>
               </div>
             </div>
-            <div className="divider"></div>
+            <div className="divider mr-3 my-0"></div>
             <div className="flex justify-center items-center">
               <div role="tablist" className="tabs tabs-boxed w-full">
                 <input

@@ -51,7 +51,7 @@ const ReviewCard = ({ review }) => {
             </span>
           </div>
         </div>
-        <div className="divider my-0 py-0"></div>
+        <div className="divider mr-3 my-0 py-0"></div>
         <div className="flex justify-between items-center w-full">
           <div>
             {review.reviewer && (

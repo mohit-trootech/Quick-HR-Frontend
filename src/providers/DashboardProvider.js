@@ -5,6 +5,7 @@ import {
   DashboardContext,
   PreloadContext,
   PaginationContext,
+  AuthContext,
 } from "../context/Contexts";
 /**Utils Functions & Constants */
 import { GetRequest } from "../utils/AxiosRequest";
@@ -12,6 +13,7 @@ import { getBearerToken } from "../utils/utils";
 import { BaseUrlPath } from "../utils/contants";
 const DashboardProvider = ({ children }) => {
   /**Dashboard States */
+  const { auth } = useContext(AuthContext);
   const { updatePreloader } = useContext(PreloadContext);
   const { setPrevious, setNext, setCount } = useContext(PaginationContext);
   const [availableLeave, setAvailableLeave] = useState(null);
@@ -20,16 +22,13 @@ const DashboardProvider = ({ children }) => {
   /**Available Leaves GET Request */
   const getAvailableLeaves = async () => {
     const response = await GetRequest(
-      BaseUrlPath + "/api/leaves/available/",
+      `${BaseUrlPath}/api/leaves/available-leave/`,
       getBearerToken,
       null,
       null,
       updatePreloader
     );
     response && setAvailableLeave(response.data);
-    response && setPrevious(response.data.previous);
-    response && setNext(response.data.next);
-    response && setCount(response.data.count);
   };
   /**BroadCast Messages */
   const getBroadCastMessages = async () => {

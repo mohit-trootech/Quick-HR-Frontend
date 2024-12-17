@@ -58,15 +58,48 @@ const ReviewModal = ({ review }) => {
               <div className="label">
                 <span className="label-text">Performance</span>
               </div>
-              <input
-                type="range"
-                min={0}
-                max="5"
-                step="0.5"
-                list="tickmarks"
-                className="range mb-3"
-                name="performance_rating"
-              />
+              <div class="flex w-full flex-col mb-3">
+                <input
+                  type="range"
+                  min={1}
+                  max="5"
+                  step="1"
+                  className="range"
+                  name="performace_rating"
+                />
+                <div class="flex items-center justify-between px-2 text-center">
+                  <span
+                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    aria-hidden="true"
+                  >
+                    |
+                  </span>
+                  <span
+                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    aria-hidden="true"
+                  >
+                    |
+                  </span>
+                  <span
+                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    aria-hidden="true"
+                  >
+                    |
+                  </span>
+                  <span
+                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    aria-hidden="true"
+                  >
+                    |
+                  </span>
+                  <span
+                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    aria-hidden="true"
+                  >
+                    |
+                  </span>
+                </div>
+              </div>
               <textarea
                 className="textarea textarea-bordered h-24"
                 placeholder="Performance Review"
@@ -77,15 +110,48 @@ const ReviewModal = ({ review }) => {
               <div className="label">
                 <span className="label-text">Project Delivery</span>
               </div>
-              <input
-                type="range"
-                min={0}
-                max="5"
-                step="0.5"
-                list="tickmarks"
-                className="range mb-3"
-                name="delivery_rating"
-              />
+              <div class="flex w-full flex-col mb-3">
+                <input
+                  type="range"
+                  min={1}
+                  max="5"
+                  step="1"
+                  className="range"
+                  name="delivery_rating"
+                />
+                <div class="flex items-center justify-between px-2 text-center">
+                  <span
+                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    aria-hidden="true"
+                  >
+                    |
+                  </span>
+                  <span
+                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    aria-hidden="true"
+                  >
+                    |
+                  </span>
+                  <span
+                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    aria-hidden="true"
+                  >
+                    |
+                  </span>
+                  <span
+                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    aria-hidden="true"
+                  >
+                    |
+                  </span>
+                  <span
+                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    aria-hidden="true"
+                  >
+                    |
+                  </span>
+                </div>
+              </div>
               <textarea
                 className="textarea textarea-bordered h-24"
                 placeholder="Project Delivery Review"
@@ -96,15 +162,48 @@ const ReviewModal = ({ review }) => {
               <div className="label">
                 <span className="label-text">Social Life</span>
               </div>
-              <input
-                type="range"
-                min={0}
-                max="5"
-                step="0.5"
-                list="tickmarks"
-                className="range mb-3"
-                name="socialization_rating"
-              />
+              <div class="flex w-full flex-col mb-3">
+                <input
+                  type="range"
+                  min={1}
+                  max="5"
+                  step="1"
+                  className="range"
+                  name="socialization_rating"
+                />
+                <div class="flex items-center justify-between px-2 text-center">
+                  <span
+                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    aria-hidden="true"
+                  >
+                    |
+                  </span>
+                  <span
+                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    aria-hidden="true"
+                  >
+                    |
+                  </span>
+                  <span
+                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    aria-hidden="true"
+                  >
+                    |
+                  </span>
+                  <span
+                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    aria-hidden="true"
+                  >
+                    |
+                  </span>
+                  <span
+                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    aria-hidden="true"
+                  >
+                    |
+                  </span>
+                </div>
+              </div>
               <textarea
                 className="textarea textarea-bordered h-24"
                 placeholder="Social Life Review"
@@ -114,12 +213,6 @@ const ReviewModal = ({ review }) => {
             <div className="modal-action">
               <button className="btn btn-sm">Add Review</button>
             </div>
-            <datalist id="tickmarks">
-              <option value="1"></option>
-              <option value="2"></option>
-              <option value="3"></option>
-              <option value="4"></option>
-            </datalist>
           </form>
         </div>
       </dialog>
