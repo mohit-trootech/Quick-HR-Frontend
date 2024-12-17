@@ -57,3 +57,12 @@ export const removeUserSuccess = (response, id) => {
   /**Handle Remove User Success Response */
   SuccessToast(id, "User Removed Successfully");
 };
+export const createTaskSuccess = (response, id) => {
+  /**Handle Create Task Success Response */
+  SuccessToast(id, "Task Created Successfully");
+};
+
+export const createTimeSheetEntrySuccess = (response, id) => {
+  /**Handle Create TimeSheet Entry Success Response */
+  SuccessToast(id, "TimeSheet Entry Created Successfully");
+};

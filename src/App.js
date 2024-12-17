@@ -18,6 +18,7 @@ import OrganizationDashboard from "./pages/organization/OrganizationDashboard";
 import OrganizationCustomization from "./pages/organization/OrganizationCustomization";
 import OrganizationUsers from "./pages/organization/OrganizationUsers";
 import Dashboard from "./pages/dashboard/Dashboard";
+import Project from "./pages/project/Project";
 /**Providers */
 import PaginationProvider from "./providers/PagniationProvider";
 import AuthProvider from "./providers/AuthProvider";
@@ -27,6 +28,7 @@ import DashboardProvider from "./providers/DashboardProvider";
 import ReviewProvider from "./providers/ReviewProvider";
 import OrganizationProvider from "./providers/OrganizationProvider";
 import PreloadProvider from "./providers/PreloadProvider";
+import ProjectProvider from "./providers/ProjectProvider";
 function App() {
   // const { theme } = useContext(ThemeContext);
   // useEffect(() => {
@@ -39,51 +41,54 @@ function App() {
           <UserProvider>
             <AuthProvider>
               <DashboardProvider>
-                <OrganizationProvider>
-                  <LeavesProvider>
-                    <ReviewProvider>
-                      <ToastContainer
-                        draggablePercent={60}
-                        draggable
-                        className={"capitalize"}
-                        stacked
-                      />
-                      <Routes>
-                        <Route path="/" element={<Dashboard />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route
-                          path="/organization/accounts"
-                          element={<OrganizationLogin />}
+                <ProjectProvider>
+                  <OrganizationProvider>
+                    <LeavesProvider>
+                      <ReviewProvider>
+                        <ToastContainer
+                          draggablePercent={60}
+                          draggable
+                          className={"capitalize"}
+                          stacked
                         />
-                        <Route
-                          path="/forgot-password"
-                          element={<ForgotPassword />}
-                        />
-                        <Route
-                          path="/organization"
-                          element={<OrganizationDashboard />}
-                        />
-                        <Route
-                          path="/organization/customization"
-                          element={<OrganizationCustomization />}
-                        />
-                        <Route
-                          path="/organization/users"
-                          element={<OrganizationUsers />}
-                        />
-                        <Route path="/leaves" element={<Leaves />} />
-                        <Route path="/attendence" element={<Attendence />} />
-                        <Route path="/holidays" element={<Holiday />} />
-                        <Route path="/review" element={<Review />} />
-                        <Route path="*" element={<NoPage />} />
-                        <Route
-                          path="/unauthorized"
-                          element={<Unauthorized />}
-                        />
-                      </Routes>
-                    </ReviewProvider>
-                  </LeavesProvider>
-                </OrganizationProvider>
+                        <Routes>
+                          <Route path="/" element={<Dashboard />} />
+                          <Route path="/project" element={<Project />} />
+                          <Route path="/login" element={<Login />} />
+                          <Route
+                            path="/organization/accounts"
+                            element={<OrganizationLogin />}
+                          />
+                          <Route
+                            path="/forgot-password"
+                            element={<ForgotPassword />}
+                          />
+                          <Route
+                            path="/organization"
+                            element={<OrganizationDashboard />}
+                          />
+                          <Route
+                            path="/organization/customization"
+                            element={<OrganizationCustomization />}
+                          />
+                          <Route
+                            path="/organization/users"
+                            element={<OrganizationUsers />}
+                          />
+                          <Route path="/leaves" element={<Leaves />} />
+                          <Route path="/attendence" element={<Attendence />} />
+                          <Route path="/holidays" element={<Holiday />} />
+                          <Route path="/review" element={<Review />} />
+                          <Route path="*" element={<NoPage />} />
+                          <Route
+                            path="/unauthorized"
+                            element={<Unauthorized />}
+                          />
+                        </Routes>
+                      </ReviewProvider>
+                    </LeavesProvider>
+                  </OrganizationProvider>
+                </ProjectProvider>
               </DashboardProvider>
             </AuthProvider>
           </UserProvider>

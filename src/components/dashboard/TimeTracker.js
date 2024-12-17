@@ -1,68 +1,130 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /**Dashboard User Devices */
-import { useContext } from "react";
-import { DashboardContext } from "../../context/Contexts";
+/**React Hooks */
+import { useContext, useEffect, useState } from "react";
+/**Components */
+import ProjectDataList from "../../datalists/ProjectDataList";
+import TaskDataList from "../../datalists/TaskDataList";
+import CreateNewTask from "../../modals/CreateNewTask";
+/**Icons */
 import { BsArrowDownLeftCircleFill } from "react-icons/bs";
 import { IoMdCloseCircle, IoMdPlayCircle } from "react-icons/io";
 import { MdOutlineFreeBreakfast } from "react-icons/md";
 import { AiOutlineProduct } from "react-icons/ai";
-import ProjectDataList from "../../datalists/ProjectDataList";
-import TaskDataList from "../../datalists/TaskDataList";
+/**Contexts */
+import { ProjectsContext, AuthContext } from "../../context/Contexts";
+
 const TimeTracker = () => {
   /**User Occupied Devices Component using DaisyUI and Tailwind CSS */
-  const { getProjects, projects, getTasks, tasks } =
-    useContext(DashboardContext);
-  const handleChange = (event) => {
+  const [disabled, setDisabled] = useState(true);
+  const [btnDisabled, setBtnDisabled] = useState(true);
+  const { auth } = useContext(AuthContext);
+  const {
+    getProjects,
+    projects,
+    getTasks,
+    tasks,
+    createTimeSheetEntry,
+    userTaskProgress,
+  } = useContext(ProjectsContext);
+  useEffect(() => {
+    auth && userTaskProgress();
+  }, [auth]);
+  useEffect(() => {
+    projects || getProjects("");
+    tasks || getTasks("");
+  }, []);
+
+  const handleSubmit = (event) => {
+    /**Handle Task Create Form Submit */
     event.preventDefault();
-    if (event.target.name === "project") {
-      getProjects(`?search=${event.target.value}`);
-    } else if (event.target.name === "task")
-      getTasks(`?search=${event.target.value}`);
+    createTimeSheetEntry(new FormData(event.target));
   };
+
+  // const handleChange = (event) => {
+  //   event.preventDefault();
+  //   if (event.target.name === "project") {
+  //     getProjects(`?search=${event.target.value}`);
+  //   } else if (event.target.name === "task")
+  //     getTasks(`?search=${event.target.value}`);
+  // };
   return (
     <>
       <div className="col-span-2">
         <div className="card static bg-base-100 shadow-md transition duration-250 hover:shadow-xl w-full">
           <div className="card-body z-[99] gap-y-5">
             {/* Cards Header */}
-            <div className="flex flex-row justify-start gap-x-2 items-center">
-              <h2 className="card-title capitalize">Task Management</h2>
-              <span>
-                <BsArrowDownLeftCircleFill className="hover:text-primary hover:rotate-180 transition duration-200" />
-              </span>
+            <div className="flex justify-between items-center">
+              <div className="flex justify-start gap-x-2 items-center">
+                <h2 className="card-title capitalize">Task Management</h2>
+                <span>
+                  <BsArrowDownLeftCircleFill className="hover:text-primary hover:rotate-180 transition duration-200" />
+                </span>
+              </div>
+              <button
+                onClick={() =>
+                  document.getElementById("create_new_task").showModal()
+                }
+                className="btn btn-xs btn-primary"
+              >
+                Start Task
+              </button>
+              <CreateNewTask />
             </div>
             {/* Cards Input Boxes */}
-            <div className="grid grid-cols-2 gap-2">
-              <label className="form-control w-full">
-                <div className="label">
-                  <span className="label-text">Choose a Project</span>
-                </div>
-                <input
-                  type="text"
-                  autoComplete="off"
-                  list="project_datalist"
-                  name="project"
-                  placeholder="Choose Project to Continue"
-                  onChange={handleChange}
-                  className="input input-bordered w-full input-sm outline-none"
-                />
-                <ProjectDataList data={projects} />
-              </label>
-              <label className="form-control w-full">
-                <div className="label">
-                  <span className="label-text">Choose a Task</span>
-                </div>
-                <input
-                  type="text"
-                  autoComplete="off"
-                  list="task_datalist"
-                  name="task"
-                  onChange={handleChange}
-                  placeholder="Choose Task to Continue"
-                  className="input input-bordered w-full input-sm outline-none"
-                />
-                <TaskDataList data={tasks} />
-              </label>
-            </div>
+            <form
+              method="POST"
+              onSubmit={handleSubmit}
+              className="flex flex-col gap-y-4"
+            >
+              <div className="flex gap-x-4 justify-around items-center">
+                <label className="form-control w-full">
+                  <div className="label">
+                    <span className="label-text">Choose a Project</span>
+                  </div>
+
+                  <select
+                    name="project"
+                    required
+                    defaultValue={"DEFAULT"}
+                    onChange={() => setDisabled(false)}
+                    className="input input-bordered w-full input-sm outline-none"
+                  >
+                    <option disabled value={"DEFAULT"}>
+                      Choose Project to Continue
+                    </option>
+                    <ProjectDataList data={projects} />
+                  </select>
+                </label>
+                <label className="form-control w-full">
+                  <div className="label">
+                    <span className="label-text">Choose a Task</span>
+                  </div>
+                  <select
+                    name="task"
+                    required
+                    disabled={disabled}
+                    defaultValue={"DEFAULT"}
+                    onChange={() => setBtnDisabled(false)}
+                    className="input input-bordered w-full input-sm outline-none"
+                  >
+                    <option disabled value={"DEFAULT"}>
+                      Choose Task to Continue
+                    </option>
+                    <TaskDataList data={tasks} />
+                  </select>
+                </label>
+              </div>
+              <div className={"flex justify-end"}>
+                <button
+                  type="submit"
+                  className="btn btn-sm btn-primary"
+                  disabled={btnDisabled}
+                >
+                  Start Task
+                </button>
+              </div>
+            </form>
             <div className="flex flex-col justify-center gap-2 items-center border rounded-md bg-base-200 px-3 py-5">
               {/* Today's Date */}
               <div>

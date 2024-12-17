@@ -1,5 +1,4 @@
 /**Logout & Update Token Handling */
-import { toast } from "react-toastify";
 import { removeLocalStorage } from "./utils";
 import { SuccessToast } from "./ToastMessage";
 export const LogOut = async () => {

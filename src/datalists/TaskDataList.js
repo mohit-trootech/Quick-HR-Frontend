@@ -1,15 +1,13 @@
 const TaskDataList = ({ data }) => {
-  /**Project Datalist */
-
+  /**Task Datalist */
   return (
     <>
-      <datalist id="task_datalist">
-        {data &&
-          data.count > 0 &&
-          data.results.map((project) => (
-            <option key={project.id} value={project.title}></option>
-          ))}
-      </datalist>
+      {data &&
+        data.map((task) => (
+          <option key={task.id} value={task.id}>
+            {task.title}
+          </option>
+        ))}
     </>
   );
 };

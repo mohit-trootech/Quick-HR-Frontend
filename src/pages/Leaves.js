@@ -20,7 +20,6 @@ import {
 import { MdSurfing, MdEmergency, MdOutlinePending } from "react-icons/md";
 import { GiCash, GiMagnifyingGlass } from "react-icons/gi";
 import { BiHomeAlt, BiCalendar } from "react-icons/bi";
-import { preload } from "react-dom";
 import Preloader from "../components/Preloader";
 /**Utils Functions & Constants */
 

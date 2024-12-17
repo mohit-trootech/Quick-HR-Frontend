@@ -1,8 +1,6 @@
 /**Exception Handling Toast*/
 import { toast } from "react-toastify";
 import { redirectPageLazy } from "./utils";
-import { PreloadContext } from "../context/Contexts";
-import { useContext } from "react";
 const UpdateToast = (id, message, type) => {
   toast.update(id, {
     render: message,

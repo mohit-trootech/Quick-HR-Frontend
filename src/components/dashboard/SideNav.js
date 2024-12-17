@@ -7,7 +7,8 @@ import { Link, NavLink } from "react-router-dom";
 import { FaList, FaMoneyCheck, FaUserTag, FaMobile } from "react-icons/fa";
 import { VscPreview } from "react-icons/vsc";
 import { MdOutlineMoreTime } from "react-icons/md";
-import { FaBookJournalWhills, FaTowerBroadcast } from "react-icons/fa6";
+import { FaTowerBroadcast } from "react-icons/fa6";
+import { AiOutlineProject } from "react-icons/ai";
 const SideNav = ({ customization }) => {
   return (
     <>
@@ -17,6 +18,7 @@ const SideNav = ({ customization }) => {
             role="button"
             to="/"
             className="flex flex-row justify-start gap-2 items-center"
+            end
           >
             <MdDashboard /> Dashboard
           </NavLink>
@@ -25,8 +27,9 @@ const SideNav = ({ customization }) => {
           <li>
             <NavLink
               role="button"
-              to="/leaves"
+              to="/leaves/"
               className="flex flex-row justify-start gap-2 items-center"
+              end
             >
               <SlCalender /> Leave
             </NavLink>
@@ -35,9 +38,10 @@ const SideNav = ({ customization }) => {
         {customization && customization.holiday && (
           <li>
             <NavLink
-              to="/holidays"
+              to="/holidays/"
               role="button"
               className="flex flex-row justify-start gap-2 items-center"
+              end
             >
               <FaList /> Holiday
             </NavLink>
@@ -47,8 +51,9 @@ const SideNav = ({ customization }) => {
           <li>
             <NavLink
               role="button"
-              to="/salary"
+              to="/salary/"
               className="flex flex-row justify-start gap-2 items-center"
+              end
             >
               <FaMoneyCheck /> Salary
             </NavLink>
@@ -58,8 +63,9 @@ const SideNav = ({ customization }) => {
           <li>
             <NavLink
               role="button"
-              to="/salary"
+              to="/salary/"
               className="flex flex-row justify-start gap-2 items-center"
+              end
             >
               <TbBodyScan /> Attendence
             </NavLink>
@@ -69,8 +75,9 @@ const SideNav = ({ customization }) => {
           <li>
             <NavLink
               role="button"
-              to="/review"
+              to="/review/"
               className="flex flex-row justify-start gap-2 items-center"
+              end
             >
               <VscPreview /> Review
             </NavLink>
@@ -80,8 +87,9 @@ const SideNav = ({ customization }) => {
           <li>
             <NavLink
               role="button"
-              to="/overtime"
+              to="/overtime/"
               className="flex flex-row justify-start gap-2 items-center"
+              end
             >
               <MdOutlineMoreTime /> Overtime
             </NavLink>
@@ -91,14 +99,26 @@ const SideNav = ({ customization }) => {
           <li>
             <NavLink
               role="button"
-              to="/overtime"
+              to="/overtime/"
               className="flex flex-row justify-start gap-2 items-center"
+              end
             >
               <FaMobile /> Mobile
             </NavLink>
           </li>
         )}
-
+        {customization && customization.project && (
+          <li>
+            <NavLink
+              role="button"
+              to="/project/"
+              className="flex flex-row justify-start gap-2 items-center"
+              end
+            >
+              <AiOutlineProject /> Project
+            </NavLink>
+          </li>
+        )}
         <li>
           <details close="true">
             <summary>Other</summary>
@@ -108,6 +128,7 @@ const SideNav = ({ customization }) => {
                   role="button"
                   to="/broadcast"
                   className="flex flex-row justify-start gap-2 items-center"
+                  end
                 >
                   <FaTowerBroadcast /> Broadcast
                 </NavLink>
@@ -117,6 +138,7 @@ const SideNav = ({ customization }) => {
                   role="button"
                   to="/broadcast"
                   className="flex flex-row justify-start gap-2 items-center"
+                  end
                 >
                   <TbBodyScan /> User Request
                 </NavLink>
