@@ -48,7 +48,7 @@ const Dashboard = () => {
                 </ul>
               </div>
             </div>
-            <div className="py-5 grid grid-cols-3 gap-4">
+            <div className="py-5 flex flex-col md:flex-row gap-4">
               <div className="flex flex-col gap-2">
                 <AvailableLeave />
                 <Broadcast />

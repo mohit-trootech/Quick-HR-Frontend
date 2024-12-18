@@ -22,7 +22,7 @@ const SidenavDrawer = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="bg-base-200 text-base-content min-h-full w-80">
+          <ul className="bg-base-200 text-base-content min-h-full w-80 z-[99999]">
             <Sidebar />
           </ul>
         </div>

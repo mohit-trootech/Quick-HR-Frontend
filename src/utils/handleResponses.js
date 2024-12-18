@@ -62,7 +62,7 @@ export const createTaskSuccess = (response, id) => {
   SuccessToast(id, "Task Created Successfully");
 };
 
-export const createTimeSheetEntrySuccess = (response, id) => {
-  /**Handle Create TimeSheet Entry Success Response */
-  SuccessToast(id, "TimeSheet Entry Created Successfully");
+export const createActivitySuccess = (response, id) => {
+  /**Handle Create Activity Success Response */
+  SuccessToast(id, "Activity Created Successfully");
 };

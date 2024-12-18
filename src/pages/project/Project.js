@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /**Project Home Page */
 /**React */
 import { useContext, useEffect, useState } from "react";
@@ -7,6 +8,7 @@ import {
   ProjectsContext,
   PreloadContext,
   PaginationContext,
+  AuthContext,
 } from "../../context/Contexts";
 /**Icons */
 import { BiHomeAlt } from "react-icons/bi";
@@ -22,6 +24,7 @@ import ProjectDetail from "../../modals/ProjectDetail";
 import SidenavDrawer from "../../components/SidenavDrawer";
 
 const Project = () => {
+  const { auth } = useContext(AuthContext);
   const [current, setCurrent] = useState(null);
   const { preload } = useContext(PreloadContext);
   const { projects, getProjects } = useContext(ProjectsContext);
@@ -36,7 +39,7 @@ const Project = () => {
   };
   useEffect(() => {
     projects || getProjects("");
-  }, []);
+  }, [auth]);
   return (
     <>
       {(preload && <Preloader />) || (
@@ -48,7 +51,7 @@ const Project = () => {
             {/* Breadcrumb */}
             <div className="px-3 py-1 border shadow-md my-2 rounded-lg flex items-center justify-between">
               <span className="text-xl font-semibold hidden lg:block">
-                Projects
+                Leaves Management
               </span>
               <div className="breadcrumbs text-sm flex flex-row items-center justify-start gap-2">
                 <SidenavDrawer />

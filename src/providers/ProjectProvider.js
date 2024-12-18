@@ -14,14 +14,16 @@ import { getBearerToken } from "../utils/utils";
 import { BaseUrlPath } from "../utils/contants";
 import {
   createTaskSuccess,
-  createTimeSheetEntrySuccess,
+  createActivitySuccess,
 } from "../utils/handleResponses";
-import { GetRequest, PostRequest } from "../utils/AxiosRequest";
+import { GetRequest, PatchRequest, PostRequest } from "../utils/AxiosRequest";
 
 const ProjectProvider = ({ children }) => {
   const { auth } = useContext(AuthContext);
   const [projects, setProjects] = useState(null);
   const [tasks, setTasks] = useState(null);
+  const [activity, setActivity] = useState(null);
+  const [duration, setDuration] = useState(0);
   const { updatePreloader } = useContext(PreloadContext);
   const { setPrevious, setNext, setCount } = useContext(PaginationContext);
 
@@ -70,41 +72,62 @@ const ProjectProvider = ({ children }) => {
     response && setTasks([...tasks, response.data]);
   };
 
-  const createTimeSheetEntry = async (data) => {
-    /**Create Time Sheet Entry API Call */
-    let id = toast.loading("Please Wait, Creating TimeSheet Entry...");
+  const getLastUserActivity = async () => {
+    /**Get Last User Activity API Call */
+    const response = await GetRequest(
+      `${BaseUrlPath}/api/projects/activity/last_user_activity/`,
+      getBearerToken,
+      null,
+      null,
+      updatePreloader
+    );
+    response && response.data && setActivity(response.data);
+    response && setDuration(response.data.duration);
+  };
+  const createActivity = async (data) => {
+    /**Create Activity API Call */
+    let id = toast.loading("Please Wait, Creating Activity...");
     const response = await PostRequest(
-      BaseUrlPath + "/api/projects/timesheet/",
+      BaseUrlPath + "/api/projects/activity/",
       data,
       getBearerToken,
-      createTimeSheetEntrySuccess,
+      createActivitySuccess,
       id,
       updatePreloader
     );
-    response && console.log(response);
+    response && setActivity(response.data);
+    response && setDuration(response.data.duration);
   };
 
-  const userTaskProgress = () => {
-    /**Get User Task Progress API Call */
-    if (auth) {
-      const response = GetRequest(
-        `${BaseUrlPath}/api/projects/timesheet/${auth.id}/`,
-        getBearerToken,
-        null,
-        null,
-        updatePreloader
-      );
-      response && console.log(response);
+  const updateActivity = async (url, activity_type) => {
+    /**Update Activity API Call */
+    const response = await PatchRequest(
+      `${BaseUrlPath}/api/projects/activity/${url}`,
+      { activity_type, duration },
+      getBearerToken,
+      null,
+      null,
+      updatePreloader
+    );
+    if (url.includes("stop")) {
+      setActivity(null);
+    } else {
+      response && setActivity(response.data);
+      response && setDuration(response.data.duration);
     }
   };
   const data = {
-    projects,
-    getProjects,
     tasks,
+    projects,
+    activity,
     getTasks,
     createTask,
-    createTimeSheetEntry,
-    userTaskProgress,
+    getProjects,
+    createActivity,
+    updateActivity,
+    getLastUserActivity,
+    duration,
+    setDuration,
   };
   return (
     <ProjectsContext.Provider value={data}>{children}</ProjectsContext.Provider>

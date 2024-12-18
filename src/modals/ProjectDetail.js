@@ -116,6 +116,7 @@ const ProjectDetail = ({ project }) => {
                       <div className="">
                         <h1 className="text-xl font-bold">Project Activity</h1>
                         <ul className="timeline timeline-snap-icon timeline-compact timeline-vertical">
+                          <li></li>
                           <li>
                             <hr className="bg-secondary" />
                             <div className="timeline-middle">
