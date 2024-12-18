@@ -48,7 +48,7 @@ const Project = () => {
             {/* Breadcrumb */}
             <div className="px-3 py-1 border shadow-md my-2 rounded-lg flex items-center justify-between">
               <span className="text-xl font-semibold hidden lg:block">
-                Leaves Management
+                Projects
               </span>
               <div className="breadcrumbs text-sm flex flex-row items-center justify-start gap-2">
                 <SidenavDrawer />
@@ -116,7 +116,7 @@ const Project = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {projects &&
+                        {(projects &&
                           projects.map((project) => {
                             return (
                               <ProjectsTable
@@ -125,7 +125,16 @@ const Project = () => {
                                 setCurrent={setCurrent}
                               />
                             );
-                          })}
+                          })) || (
+                          // No Project Available
+                          <tr className="border-b border-slate-100">
+                            <td className="p-4 whitespace-nowrap">
+                              <p className="text-sm font-medium leading-none text-slate-800">
+                                No Projects Available
+                              </p>
+                            </td>
+                          </tr>
+                        )}
                       </tbody>
                     </table>
                     {/* Pagination */}

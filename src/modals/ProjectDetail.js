@@ -1,5 +1,5 @@
 /**Project Detail Modal */
-import profile from "../static/img/profile.jpg";
+import profile from "../static/img/no-profile.webp";
 const ProjectDetail = ({ project }) => {
   return (
     <>
@@ -115,8 +115,9 @@ const ProjectDetail = ({ project }) => {
                     <div className="card-content p-3 h-96 overflow-y-auto">
                       <div className="">
                         <h1 className="text-xl font-bold">Project Activity</h1>
-                        <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
+                        <ul className="timeline timeline-snap-icon timeline-compact timeline-vertical">
                           <li>
+                            <hr className="bg-secondary" />
                             <div className="timeline-middle">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -285,7 +286,6 @@ const ProjectDetail = ({ project }) => {
                               2022, the iPhone accounts for 15.6% of global
                               smartphone market share
                             </div>
-                            <hr className="bg-secondary" />
                           </li>
                         </ul>
                       </div>

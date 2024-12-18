@@ -32,8 +32,7 @@ const TimeTracker = () => {
   }, [auth]);
   useEffect(() => {
     projects || getProjects("");
-    tasks || getTasks("");
-  }, []);
+  }, [auth]);
 
   const handleSubmit = (event) => {
     /**Handle Task Create Form Submit */
@@ -41,13 +40,10 @@ const TimeTracker = () => {
     createTimeSheetEntry(new FormData(event.target));
   };
 
-  // const handleChange = (event) => {
-  //   event.preventDefault();
-  //   if (event.target.name === "project") {
-  //     getProjects(`?search=${event.target.value}`);
-  //   } else if (event.target.name === "task")
-  //     getTasks(`?search=${event.target.value}`);
-  // };
+  const handleChange = (event) => {
+    event.preventDefault();
+    getTasks(`&project=${event.target.value}`);
+  };
   return (
     <>
       <div className="col-span-2">
@@ -65,9 +61,11 @@ const TimeTracker = () => {
                 onClick={() =>
                   document.getElementById("create_new_task").showModal()
                 }
+                disabled={disabled}
+                data-tip="Please select a Project first."
                 className="btn btn-xs btn-primary"
               >
-                Start Task
+                Create Task
               </button>
               <CreateNewTask />
             </div>
@@ -82,18 +80,26 @@ const TimeTracker = () => {
                   <div className="label">
                     <span className="label-text">Choose a Project</span>
                   </div>
-
                   <select
                     name="project"
                     required
                     defaultValue={"DEFAULT"}
-                    onChange={() => setDisabled(false)}
+                    onChange={(event) => {
+                      handleChange(event);
+                      projects && projects.length && setDisabled(false);
+                    }}
                     className="input input-bordered w-full input-sm outline-none"
                   >
                     <option disabled value={"DEFAULT"}>
                       Choose Project to Continue
                     </option>
-                    <ProjectDataList data={projects} />
+                    {(projects && projects.length && (
+                      <ProjectDataList data={projects} />
+                    )) || (
+                      <option title="Please contact organization admin to add you in a Project.">
+                        No Projects Available
+                      </option>
+                    )}
                   </select>
                 </label>
                 <label className="form-control w-full">
@@ -105,13 +111,21 @@ const TimeTracker = () => {
                     required
                     disabled={disabled}
                     defaultValue={"DEFAULT"}
-                    onChange={() => setBtnDisabled(false)}
+                    onChange={() =>
+                      tasks && tasks.length && setBtnDisabled(false)
+                    }
                     className="input input-bordered w-full input-sm outline-none"
                   >
                     <option disabled value={"DEFAULT"}>
                       Choose Task to Continue
                     </option>
-                    <TaskDataList data={tasks} />
+                    {(tasks && tasks.length && (
+                      <TaskDataList data={tasks} />
+                    )) || (
+                      <option title="Please create some tasks first.">
+                        No Tasks Available
+                      </option>
+                    )}
                   </select>
                 </label>
               </div>

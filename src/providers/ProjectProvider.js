@@ -27,22 +27,24 @@ const ProjectProvider = ({ children }) => {
 
   const getProjects = async (query_params) => {
     /**Get Projects API Call */
-    const response = await GetRequest(
-      BaseUrlPath + "/api/projects/project/" + query_params,
-      getBearerToken,
-      null,
-      null,
-      updatePreloader
-    );
-    response && setProjects(response.data.results);
-    response && setPrevious(response.data.previous);
-    response && setNext(response.data.next);
-    response && setCount(response.data.count);
+    if (auth) {
+      const response = await GetRequest(
+        `${BaseUrlPath}/api/projects/project/?user=${auth.id}${query_params}`,
+        getBearerToken,
+        null,
+        null,
+        updatePreloader
+      );
+      response && setProjects(response.data.results);
+      response && setPrevious(response.data.previous);
+      response && setNext(response.data.next);
+      response && setCount(response.data.count);
+    }
   };
   const getTasks = async (query_params) => {
     /**Get Tasks API Call */
     const response = await GetRequest(
-      BaseUrlPath + "/api/projects/task/" + query_params,
+      `${BaseUrlPath}/api/projects/task/?${query_params}`,
       getBearerToken,
       null,
       null,
