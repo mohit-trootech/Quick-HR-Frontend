@@ -23,6 +23,7 @@ const ProjectProvider = ({ children }) => {
   const [projects, setProjects] = useState(null);
   const [tasks, setTasks] = useState(null);
   const [activity, setActivity] = useState(null);
+  const [activities, setActivities] = useState(null);
   const [duration, setDuration] = useState(0);
   const { updatePreloader } = useContext(PreloadContext);
   const { setPrevious, setNext, setCount } = useContext(PaginationContext);
@@ -72,6 +73,20 @@ const ProjectProvider = ({ children }) => {
     response && setTasks([...tasks, response.data]);
   };
 
+  const getActivities = async (query_params) => {
+    /**Get Activities API Call */
+    const response = await GetRequest(
+      `${BaseUrlPath}/api/projects/activity/?${query_params || ""}`,
+      getBearerToken,
+      null,
+      null,
+      updatePreloader
+    );
+    response && setActivities(response.data.results);
+    response && setPrevious(response.data.previous);
+    response && setNext(response.data.next);
+    response && setCount(response.data.count);
+  };
   const getLastUserActivity = async () => {
     /**Get Last User Activity API Call */
     const response = await GetRequest(
@@ -109,9 +124,11 @@ const ProjectProvider = ({ children }) => {
       null,
       updatePreloader
     );
-    if (url.includes("stop")) {
-      setActivity(null);
+    if (activity_type === "stop") {
+      console.log("STOP");
+      response && setActivity(null);
     } else {
+      alert();
       response && setActivity(response.data);
       response && setDuration(response.data.duration);
     }
@@ -128,6 +145,8 @@ const ProjectProvider = ({ children }) => {
     getLastUserActivity,
     duration,
     setDuration,
+    activities,
+    getActivities,
   };
   return (
     <ProjectsContext.Provider value={data}>{children}</ProjectsContext.Provider>

@@ -84,7 +84,7 @@ const TimeTracker = () => {
   };
   return (
     <>
-      <div className="w-full">
+      <div className="w-full md:col-span-2">
         <div className="card static bg-base-100 shadow-md transition duration-250 hover:shadow-xl w-full">
           <div className="card-body z-[99] gap-y-5">
             {/* Cards Header */}
@@ -132,7 +132,12 @@ const TimeTracker = () => {
                     className="input input-bordered w-full input-sm outline-none"
                   >
                     {(projects && projects.length && (
-                      <ProjectDataList data={projects} />
+                      <>
+                        <option disabled value={"DEFAULT"}>
+                          Choose Project to Continue
+                        </option>
+                        <ProjectDataList data={projects} />
+                      </>
                     )) || (
                       <option title="Please create some projects first.">
                         No Projects Available
@@ -147,7 +152,7 @@ const TimeTracker = () => {
                   <select
                     name="task"
                     required
-                    disabled={disabled}
+                    disabled={(activity && true) || disabled}
                     defaultValue={(activity && activity.task.id) || "DEFAULT"}
                     onChange={() =>
                       tasks && tasks.length && setBtnDisabled(false)
@@ -177,7 +182,7 @@ const TimeTracker = () => {
                 <button
                   type="submit"
                   className="btn btn-sm btn-primary"
-                  disabled={btnDisabled}
+                  disabled={(activity && true) || btnDisabled}
                 >
                   Start Task
                 </button>

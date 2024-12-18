@@ -37,7 +37,7 @@ const ProjectsTable = ({ project, setCurrent }) => {
           </p>
         </td>
         <td className="p-4 py-5">
-          <p className="text-sm text-slate-500 flex gap-2 items-center justify-start border p-2 rounded-lg bg-base-100 w-fit hover:shadow-lg">
+          <div className="text-sm text-slate-500 flex gap-2 items-center justify-start border p-2 rounded-lg bg-base-100 w-fit hover:shadow-lg">
             {
               <img
                 src={project.project_manager.image || profile}
@@ -48,7 +48,7 @@ const ProjectsTable = ({ project, setCurrent }) => {
             <span className="capitalize">
               {project.project_manager.username}
             </span>
-          </p>
+          </div>
         </td>
         <td className="p-4 py-5">
           <p className="text-sm text-slate-500">

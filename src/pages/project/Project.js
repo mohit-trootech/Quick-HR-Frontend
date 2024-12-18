@@ -39,7 +39,7 @@ const Project = () => {
   };
   useEffect(() => {
     projects || getProjects("");
-  }, [auth]);
+  }, [auth, projects]);
   return (
     <>
       {(preload && <Preloader />) || (

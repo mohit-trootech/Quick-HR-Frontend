@@ -22,61 +22,57 @@ const AvailableLeave = () => {
                 <BsArrowDownLeftCircleFill className="hover:text-primary hover:rotate-180 transition duration-200" />
               </Link>
             </div>
-            <div className="flex flex-col gap-2">
-              <div className="flex lg:flex-row flex-col justify-between items-center gap-2">
-                <div className="flex gap-2">
-                  <div className="stat-figure">
-                    <div className="p-2 border rounded-full hover:border-secondary duration-200 hover:shadow-inner static">
-                      <GiWaveSurfer />
-                    </div>
-                  </div>
-                  <div className="flex flex-col stat-desc">
-                    <div className="text-black">
-                      {availableLeave.casual_leaves || 0}
-                    </div>
-                    <div className="text-zinc-500">Casual</div>
+            <div className="lg:grid lg:grid-cols-2 flex flex-col gap-2">
+              <div className="flex gap-2">
+                <div className="stat-figure">
+                  <div className="p-2 border rounded-full hover:border-secondary duration-200 hover:shadow-inner static">
+                    <GiWaveSurfer />
                   </div>
                 </div>
-                <div className="flex gap-2">
-                  <div className="stat-figure">
-                    <div className="p-2 border rounded-full hover:border-secondary duration-200 hover:shadow-inner static">
-                      <MdEmergency />
-                    </div>
+                <div className="flex flex-col stat-desc">
+                  <div className="text-black">
+                    {availableLeave.casual_leaves || 0}
                   </div>
-                  <div className="flex flex-col stat-desc">
-                    <div className="text-black">
-                      {availableLeave.emergency_leaves || 0}
-                    </div>
-                    <div className="text-zinc-500">Emergency</div>
-                  </div>
+                  <div className="text-zinc-500">Casual</div>
                 </div>
               </div>
-              <div className="flex lg:flex-row flex-col justify-between items-center gap-2">
-                <div className="flex gap-2">
-                  <div className="stat-figure">
-                    <div className="p-2 border rounded-full hover:border-secondary duration-200 hover:shadow-inner static">
-                      <FaCashRegister />
-                    </div>
-                  </div>
-                  <div className="flex flex-col stat-desc">
-                    <div className="text-black">
-                      {availableLeave.encashment_leaves || 0}
-                    </div>
-                    <div className="text-zinc-500">Encashment</div>
+              <div className="flex gap-2">
+                <div className="stat-figure">
+                  <div className="p-2 border rounded-full hover:border-secondary duration-200 hover:shadow-inner static">
+                    <MdEmergency />
                   </div>
                 </div>
-                <div className="flex gap-2">
-                  <div className="stat-figure">
-                    <div className="p-2 border rounded-full hover:border-secondary duration-200 hover:shadow-inner static">
-                      <GiEmptyHourglass />
-                    </div>
+                <div className="flex flex-col stat-desc">
+                  <div className="text-black">
+                    {availableLeave.emergency_leaves || 0}
                   </div>
-                  <div className="flex flex-col stat-desc">
-                    <div className="text-black">
-                      {availableLeave.pending_leaves || 0}
-                    </div>
-                    <div className="text-zinc-500">Pending</div>
+                  <div className="text-zinc-500">Emergency</div>
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <div className="stat-figure">
+                  <div className="p-2 border rounded-full hover:border-secondary duration-200 hover:shadow-inner static">
+                    <FaCashRegister />
                   </div>
+                </div>
+                <div className="flex flex-col stat-desc">
+                  <div className="text-black">
+                    {availableLeave.encashment_leaves || 0}
+                  </div>
+                  <div className="text-zinc-500">Encashment</div>
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <div className="stat-figure">
+                  <div className="p-2 border rounded-full hover:border-secondary duration-200 hover:shadow-inner static">
+                    <GiEmptyHourglass />
+                  </div>
+                </div>
+                <div className="flex flex-col stat-desc">
+                  <div className="text-black">
+                    {availableLeave.pending_leaves || 0}
+                  </div>
+                  <div className="text-zinc-500">Pending</div>
                 </div>
               </div>
             </div>
