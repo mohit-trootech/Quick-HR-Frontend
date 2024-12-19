@@ -58,7 +58,7 @@ const ReviewModal = ({ review }) => {
               <div className="label">
                 <span className="label-text">Performance</span>
               </div>
-              <div class="flex w-full flex-col mb-3">
+              <div className="flex w-full flex-col mb-3">
                 <input
                   type="range"
                   min={1}
@@ -67,33 +67,33 @@ const ReviewModal = ({ review }) => {
                   className="range"
                   name="performace_rating"
                 />
-                <div class="flex items-center justify-between px-2 text-center">
+                <div className="flex items-center justify-between px-2 text-center">
                   <span
-                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    className="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
                     aria-hidden="true"
                   >
                     |
                   </span>
                   <span
-                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    className="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
                     aria-hidden="true"
                   >
                     |
                   </span>
                   <span
-                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    className="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
                     aria-hidden="true"
                   >
                     |
                   </span>
                   <span
-                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    className="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
                     aria-hidden="true"
                   >
                     |
                   </span>
                   <span
-                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    className="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
                     aria-hidden="true"
                   >
                     |
@@ -110,7 +110,7 @@ const ReviewModal = ({ review }) => {
               <div className="label">
                 <span className="label-text">Project Delivery</span>
               </div>
-              <div class="flex w-full flex-col mb-3">
+              <div className="flex w-full flex-col mb-3">
                 <input
                   type="range"
                   min={1}
@@ -119,33 +119,33 @@ const ReviewModal = ({ review }) => {
                   className="range"
                   name="delivery_rating"
                 />
-                <div class="flex items-center justify-between px-2 text-center">
+                <div className="flex items-center justify-between px-2 text-center">
                   <span
-                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    className="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
                     aria-hidden="true"
                   >
                     |
                   </span>
                   <span
-                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    className="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
                     aria-hidden="true"
                   >
                     |
                   </span>
                   <span
-                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    className="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
                     aria-hidden="true"
                   >
                     |
                   </span>
                   <span
-                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    className="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
                     aria-hidden="true"
                   >
                     |
                   </span>
                   <span
-                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    className="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
                     aria-hidden="true"
                   >
                     |
@@ -162,7 +162,7 @@ const ReviewModal = ({ review }) => {
               <div className="label">
                 <span className="label-text">Social Life</span>
               </div>
-              <div class="flex w-full flex-col mb-3">
+              <div className="flex w-full flex-col mb-3">
                 <input
                   type="range"
                   min={1}
@@ -171,33 +171,33 @@ const ReviewModal = ({ review }) => {
                   className="range"
                   name="socialization_rating"
                 />
-                <div class="flex items-center justify-between px-2 text-center">
+                <div className="flex items-center justify-between px-2 text-center">
                   <span
-                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    className="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
                     aria-hidden="true"
                   >
                     |
                   </span>
                   <span
-                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    className="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
                     aria-hidden="true"
                   >
                     |
                   </span>
                   <span
-                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    className="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
                     aria-hidden="true"
                   >
                     |
                   </span>
                   <span
-                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    className="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
                     aria-hidden="true"
                   >
                     |
                   </span>
                   <span
-                    class="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
+                    className="text-[6px] font-bold opacity-50 even:hidden md:even:inline-block"
                     aria-hidden="true"
                   >
                     |

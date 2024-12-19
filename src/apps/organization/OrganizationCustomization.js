@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 /**Organization Customization Page */
 import { useContext, useEffect } from "react";
-import OrganizationSidebar from "../../components/OrganizationSidebar";
+import OrganizationSidebar from "../../components/organization/OrganizationSidebar";
 import { BiHomeAlt, BiInfoCircle, BiPencil } from "react-icons/bi";
 import {
   AuthContext,

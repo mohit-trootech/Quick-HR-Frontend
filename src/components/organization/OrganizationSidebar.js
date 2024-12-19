@@ -1,7 +1,7 @@
 /**Organization Sidebar */
-import UserCard from "../components/dashboard/UserCard";
-import OrganizationSidenav from "../components/dashboard/OrganizationSidenav";
-import logo from "../static/img/logo.png";
+import UserCard from "../dashboard/UserCard";
+import OrganizationSidenav from "./OrganizationSidenav";
+import logo from "../../static/img/empty.png";
 const OrganizationSidebar = ({ user, organization }) => {
   /**Sidebar Component */
   return (

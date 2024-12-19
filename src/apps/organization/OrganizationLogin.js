@@ -2,8 +2,8 @@
 /**Context Import */
 import { useContext, useState } from "react";
 import { UserContext } from "../../context/Contexts";
-import OrganizationLoginCard from "../../cards/OrganizationLoginCard";
-import OrganizationRegisterCard from "../../cards/OrganizationRegisterCard";
+import OrganizationLoginCard from "../../cards/organization/OrganizationLoginCard";
+import OrganizationRegisterCard from "../../cards/organization/OrganizationRegisterCard";
 /**Custom Static Files */
 import "../../static/css/accounts.css";
 // import logo from "../../static/img/logo.png";

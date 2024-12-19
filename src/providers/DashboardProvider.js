@@ -36,7 +36,7 @@ const DashboardProvider = ({ children }) => {
       null,
       updatePreloader
     );
-    response && setBroadCastMessages(response.data);
+    response && setBroadCastMessages(response.data.results);
     response && setPrevious(response.data.previous);
     response && setNext(response.data.next);
     response && setCount(response.data.count);

@@ -4,21 +4,21 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 /**Components */
-import NoPage from "./components/NoPage";
+import NoPage from "./pages/NoPage";
 import Login from "./apps/accounts/Login";
 import ForgotPassword from "./apps/accounts/ForgotPassword";
-import Leaves from "./pages/Leaves";
-import Attendence from "./pages/Attendence";
-import Holiday from "./pages/Holiday";
-import Review from "./pages/Review";
-import Unauthorized from "./components/Unauthorized";
-/**Pages */
-import OrganizationLogin from "./pages/organization/OrganizationLogin";
-import OrganizationDashboard from "./pages/organization/OrganizationDashboard";
-import OrganizationCustomization from "./pages/organization/OrganizationCustomization";
-import OrganizationUsers from "./pages/organization/OrganizationUsers";
-import Dashboard from "./pages/dashboard/Dashboard";
-import Project from "./pages/project/Project";
+import Review from "./apps/review/Review";
+import Unauthorized from "./pages/Unauthorized";
+/**Apps */
+import OrganizationLogin from "./apps/organization/OrganizationLogin";
+import OrganizationDashboard from "./apps/organization/OrganizationDashboard";
+import OrganizationCustomization from "./apps/organization/OrganizationCustomization";
+import OrganizationUsers from "./apps/organization/OrganizationUsers";
+import Dashboard from "./apps/dashboard/Dashboard";
+import Project from "./apps/project/Project";
+import Attendence from "./apps/attendence/Attendence";
+import Holiday from "./apps/holiday/Holiday";
+import Leaves from "./apps/leave/Leaves";
 /**Providers */
 import PaginationProvider from "./providers/PagniationProvider";
 import AuthProvider from "./providers/AuthProvider";

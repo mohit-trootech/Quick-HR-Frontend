@@ -1,5 +1,5 @@
 /**Organization Details */
-import emptyImg from "../static/img/empty.png";
+import emptyImg from "../../static/img/empty.png";
 import { TbUsersGroup, TbTrophy } from "react-icons/tb";
 const OrganizationDetails = ({ organization }) => {
   return (

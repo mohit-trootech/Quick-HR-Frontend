@@ -1,5 +1,5 @@
 /**Leave Card Component */
-import LeaveCalenderView from "../modals/LeaveCalenderView";
+import LeaveCalenderView from "../../modals/LeaveCalenderView";
 const LeaveCard = ({ leave }) => {
   /**Leave Card DaisyUI & Tailwind CSS */
 

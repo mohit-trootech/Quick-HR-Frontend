@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /**Dashboard Page */
 /**Dasboard Components */
-import AvailableLeave from "../../components/dashboard/AvailableLeaves";
+import AvailableLeaves from "../../cards/dashboard/AvailableLeaves";
 import TimeTracker from "../../components/dashboard/TimeTracker";
-import Broadcast from "../../components/dashboard/Broadcast";
+import Broadcast from "../../cards/dashboard/Broadcast";
 import Sidebar from "../../components/Sidebar";
 import Preloader from "../../components/Preloader";
 /**Dashboard Hooks */
@@ -50,7 +50,7 @@ const Dashboard = () => {
             </div>
             <div className="py-5 md:grid md:grid-cols-3 gap-4 flex flex-col">
               <div className="flex flex-col gap-2">
-                <AvailableLeave />
+                <AvailableLeaves />
                 <Broadcast />
               </div>
               <TimeTracker />

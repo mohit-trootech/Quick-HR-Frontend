@@ -1,10 +1,10 @@
 /**Attendence Page */
 
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../../components/Sidebar";
 import { BiHomeAlt } from "react-icons/bi";
 import { TbBodyScan } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import SidenavDrawer from "../components/SidenavDrawer";
+import SidenavDrawer from "../../components/SidenavDrawer";
 const Attendence = () => {
   /**Attendence Component daisyUI & Tailwind CSS */
   return (

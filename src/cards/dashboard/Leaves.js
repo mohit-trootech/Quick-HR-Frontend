@@ -5,22 +5,22 @@ import { Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
 
 /**Components */
-import Sidebar from "../components/Sidebar";
-import AddLeaveForm from "../modals/AddLeaveForm";
-import LeaveCard from "../cards/LeaveCard";
+import Sidebar from "../../../components/Sidebar";
+import AddLeaveForm from "../../../modals/AddLeaveForm";
+import LeaveCard from "../leave/LeaveCard";
 
 /**Contexts */
 import {
   LeavesContext,
   PaginationContext,
   PreloadContext,
-} from "../context/Contexts";
+} from "../../../context/Contexts";
 
 /**Icons */
 import { MdSurfing, MdEmergency, MdOutlinePending } from "react-icons/md";
 import { GiCash, GiMagnifyingGlass } from "react-icons/gi";
 import { BiHomeAlt, BiCalendar } from "react-icons/bi";
-import Preloader from "../components/Preloader";
+import Preloader from "../../../components/Preloader";
 /**Utils Functions & Constants */
 
 const Leaves = () => {

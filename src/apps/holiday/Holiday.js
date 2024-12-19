@@ -1,40 +1,49 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/**Organization Users */
-import { useContext, useEffect } from "react";
-import OrganizationSidebar from "../../components/OrganizationSidebar";
-import {
-  AuthContext,
-  OrganizationContext,
-  PaginationContext,
-  PreloadContext,
-} from "../../context/Contexts";
-import Preloader from "../../components/Preloader";
-import { BiHomeAlt } from "react-icons/bi";
+/**Holiday Component */
+/**React Hooks */
 import { Link } from "react-router-dom";
-import OrganizationUsersTable from "../../tables/OrganizationUsersTable";
+import { useEffect, useState, useContext } from "react";
+
+/**Contexts */
+import { PaginationContext, PreloadContext } from "../../context/Contexts";
+
+/**Components */
+import Sidebar from "../../components/Sidebar";
+import HolidayTable from "../../tables/HolidayTable";
+import HolidayCalenderView from "../../components/holiday/HolidayCalenderView";
+import Preloader from "../../components/Preloader";
+/**Icons */
+import { BiHomeAlt, BiCalendar } from "react-icons/bi";
 import { FaMagnifyingGlass } from "react-icons/fa6";
-import OrganizationCreateUserModal from "../../modals/OrganizationCreateUserModal";
-const OrganizationUsers = () => {
-  const {
-    users,
-    organization,
-    getOrganizationUsers,
-    createOrganizationUser,
-    removeOrganizationUser,
-  } = useContext(OrganizationContext);
+
+/**Utility Functions & Constants */
+import { GetRequest } from "../../utils/AxiosRequest";
+import { BaseUrlPath } from "../../utils/contants";
+import { getBearerToken } from "../../utils/utils";
+import { FaInfoCircle } from "react-icons/fa";
+import SidenavDrawer from "../../components/SidenavDrawer";
+
+const Holiday = () => {
+  const [holidays, setHolidays] = useState(null);
+  const { previous, setPrevious, next, setNext, count, setCount } =
+    useContext(PaginationContext);
   const { preload, updatePreloader } = useContext(PreloadContext);
-  const { previous, next } = useContext(PaginationContext);
-  const { auth } = useContext(AuthContext);
-  useEffect(() => {
-    users || getOrganizationUsers("");
-  }, [auth, users]);
-
-  useEffect(() => {
-    updatePreloader(false);
-  }, [users, preload, auth]);
-
+  const getHolidays = async (url) => {
+    let response = await GetRequest(
+      BaseUrlPath + "/api/holidays/" + url,
+      getBearerToken,
+      null,
+      null,
+      updatePreloader
+    );
+    response && setPrevious(response.data.previous);
+    response && setNext(response.data.next);
+    response && setCount(response.data.count);
+    response && setHolidays(response.data.results);
+  };
   const handleChange = (event) => {
-    getOrganizationUsers(`?search=${event.target.value}`);
+    event.preventDefault();
+    getHolidays("?search=" + event.target.value);
   };
   const handleClick = (event) => {
     event.preventDefault();
@@ -42,39 +51,36 @@ const OrganizationUsers = () => {
       event.target.href.split("?")[1] === undefined
         ? "page=1"
         : event.target.href.split("?")[1];
-    getOrganizationUsers("?" + url);
+    getHolidays("?" + url);
   };
-  const handleRemoveClick = (event) => {
-    event.preventDefault();
-    removeOrganizationUser(event.target.getAttribute("data-user"));
-  };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    createOrganizationUser(new FormData(form));
-  };
+  useEffect(() => {
+    holidays || getHolidays("");
+    return () => {};
+  }, []);
   return (
     <>
-      {preload ? (
-        <Preloader />
-      ) : (
+      {(preload && <Preloader />) || (
         <div className="grid grid-cols-9 gap-2">
           <div className="hidden lg:block lg:col-span-2">
-            <OrganizationSidebar user={auth} organization={organization} />
+            <Sidebar />
           </div>
           <div className="col-span-9 lg:col-span-7 mx-3">
             <div className="px-3 py-1 border shadow-md my-2 rounded-lg flex items-center justify-between">
               <span className="text-xl font-semibold hidden lg:block">
-                Organization Users
+                Holidays
               </span>
-              <div className="breadcrumbs text-sm">
+              <div className="breadcrumbs text-sm flex flex-row items-center justify-start gap-2">
+                <SidenavDrawer />
                 <ul>
                   <li>
-                    <Link to="/dashboard">
+                    <Link to="/">
                       <BiHomeAlt /> Dashboard
                     </Link>
                   </li>
-                  <li>Organization Users</li>
+                  <li>
+                    <BiCalendar />
+                    Holidays
+                  </li>
                 </ul>
               </div>
             </div>
@@ -88,23 +94,22 @@ const OrganizationUsers = () => {
                 />
                 <FaMagnifyingGlass className="h-4 w-4 opacity-70" />
               </label>
-              <button
-                onClick={() => {
-                  document
-                    .getElementById("create_organization_user")
-                    .showModal();
-                }}
-                className="btn btn-sm  bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:bg-gradient-to-l transition-all duration-300"
-              >
-                Create User
-              </button>
-              <OrganizationCreateUserModal handleSubmit={handleSubmit} />
+              {holidays && count && (
+                <button
+                  className="btn btn-sm  bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:bg-gradient-to-l transition-all duration-300"
+                  onClick={() =>
+                    document.getElementById("holiday_calender_view").showModal()
+                  }
+                >
+                  Holiday Calender View
+                </button>
+              )}
             </div>
             <div className="p-5">
-              {(users && (
+              {(holidays && count && (
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left table-auto min-w-max rounded-xl">
-                    <thead className="capitalize">
+                  <table className="w-full text-left table-auto min-w-max">
+                    <thead>
                       <tr>
                         <th className="p-4 border-b border-slate-200 bg-slate-50">
                           <p className="text-sm font-normal leading-none text-slate-500">
@@ -113,36 +118,33 @@ const OrganizationUsers = () => {
                         </th>
                         <th className="p-4 border-b border-slate-200 bg-slate-50">
                           <p className="text-sm font-normal leading-none text-slate-500">
-                            Image
+                            Title
                           </p>
                         </th>
                         <th className="p-4 border-b border-slate-200 bg-slate-50">
                           <p className="text-sm font-normal leading-none text-slate-500">
-                            Username
+                            Starts From
                           </p>
                         </th>
                         <th className="p-4 border-b border-slate-200 bg-slate-50">
                           <p className="text-sm font-normal leading-none text-slate-500">
-                            Full Name
+                            Ends On
                           </p>
                         </th>
                         <th className="p-4 border-b border-slate-200 bg-slate-50">
                           <p className="text-sm font-normal leading-none text-slate-500">
-                            Action
+                            No of Days
                           </p>
                         </th>
                       </tr>
                     </thead>
                     <tbody>
-                      {users.map((user) => {
-                        return (
-                          <OrganizationUsersTable
-                            user={user}
-                            key={user.id}
-                            handleClick={handleRemoveClick}
-                          />
-                        );
-                      })}
+                      {holidays &&
+                        holidays.map((holiday) => {
+                          return (
+                            <HolidayTable holiday={holiday} key={holiday.id} />
+                          );
+                        })}
                     </tbody>
                   </table>
                   {/* Pagination */}
@@ -166,24 +168,16 @@ const OrganizationUsers = () => {
                       Next
                     </a>
                   </div>
+                  {/* Calender View */}
+                  <HolidayCalenderView holidays={holidays} />
                 </div>
               )) || (
-                <div role="alert" className="alert mt-5">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    className="stroke-info h-6 w-6 shrink-0"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    ></path>
-                  </svg>
-                  <span>No users available in organization.</span>
-                </div>
+                <>
+                  <div className="alert alert-warning shadow-lg">
+                    <FaInfoCircle className="h-6 w-6 mr-2" />
+                    <span>No Holidays Found</span>
+                  </div>
+                </>
               )}
             </div>
           </div>
@@ -192,5 +186,4 @@ const OrganizationUsers = () => {
     </>
   );
 };
-
-export default OrganizationUsers;
+export default Holiday;

@@ -2,7 +2,7 @@
 /**Organization Dashboard */
 
 import { useContext, useEffect } from "react";
-import OrganizationSidebar from "../../components/OrganizationSidebar";
+import OrganizationSidebar from "../../components/organization/OrganizationSidebar";
 import { BiHomeAlt } from "react-icons/bi";
 import {
   AuthContext,
@@ -10,7 +10,7 @@ import {
   PreloadContext,
 } from "../../context/Contexts";
 import CreateOrganization from "../../modals/CreateOrganization";
-import OrganizationDetails from "../../components/OrganizationDetails"; // Fixed typo in import
+import OrganizationDetails from "../../components/organization/OrganizationDetails"; // Fixed typo in import
 import image_4o4 from "../../static/img/404.gif";
 import Preloader from "../../components/Preloader";
 

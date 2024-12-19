@@ -1,9 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /**Project Detail Modal */
-import profile from "../static/img/no-profile.webp";
-import ProjectTimeLine from "../components/ProjectTimeLine";
-import { ProjectsContext } from "../context/Contexts";
+/**React Hooks */
 import { useContext, useEffect } from "react";
-
+/** Contexts */
+import { ProjectsContext } from "../context/Contexts";
+/**Components */
+import ProjectTimeLine from "../components/project/ProjectTimeLine";
+import ProjectInfoCard from "../cards/project/ProjectInfoCard";
 const ProjectDetail = ({ project }) => {
   const { activities, getActivities } = useContext(ProjectsContext);
   useEffect(() => {
@@ -22,102 +25,7 @@ const ProjectDetail = ({ project }) => {
           {(project && (
             <div className="py-4">
               <div className="flex flex-col gap-4 lg:grid lg:grid-cols-3">
-                <div className="flex flex-col gap-4">
-                  <div className="card static bg-base-100 hover:shadow-xl shadow-sm transition-all duration-250 border">
-                    <div className="flex flex-col gap-2 p-3">
-                      <h2 className="card-title">{project.title}</h2>
-                      <p>{project.description || ""}</p>
-                      <ul className="menu bg-base-100 rounded-box">
-                        <li>
-                          <p className="flex flex-row justify-between items-center">
-                            <span>Team Leader</span>
-                            <button className="btn btn-sm btn-ghost capitalize">
-                              {project.team_lead.username}
-                              <img
-                                src={project.team_lead.image || profile}
-                                className="w-6 h-6 rounded-full"
-                                alt=""
-                              />
-                            </button>
-                          </p>
-                        </li>
-                        <li>
-                          <p className="flex flex-row justify-between items-center">
-                            <span>Project Manager</span>
-                            <button className="btn btn-sm btn-ghost capitalize">
-                              {project.project_manager.username}
-                              <img
-                                src={project.project_manager.image || profile}
-                                className="w-6 h-6 rounded-full"
-                                alt=""
-                              />
-                            </button>
-                          </p>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="menu bg-base-100 rounded-box hover:shadow-xl shadow-sm transition-all duration-250 border">
-                    <li>
-                      <div className="flex flex-row items-center justify-between">
-                        Assigned Users
-                        <div className="avatar-group -space-x-5 rtl:space-x-reverse">
-                          {project.assigned_users &&
-                            project.assigned_users.slice(0, 3).map((user) => {
-                              return (
-                                <div className="avatar" key={user.id}>
-                                  <div className="w-7">
-                                    <img src={user.image || profile} alt="" />
-                                  </div>
-                                </div>
-                              );
-                            })}
-                          <div className="avatar placeholder">
-                            <div className="bg-neutral text-neutral-content w-7">
-                              <span className="text-xs">
-                                {project.assigned_users.length - 3}+
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <p className="flex flex-row items-center justify-between">
-                        Created
-                        <span className="btn btn-xs btn-ghost border border-zinc-900">
-                          {new Date(project.created).toLocaleDateString()}
-                        </span>
-                      </p>
-                    </li>
-                    <li>
-                      <p className="flex flex-row items-center justify-between">
-                        Updated
-                        <span className="btn btn-xs btn-ghost border border-zinc-900">
-                          {new Date(project.updated).toLocaleDateString()}
-                        </span>
-                      </p>
-                    </li>
-                    <li>
-                      <p className="flex flex-row items-center justify-between">
-                        Deadline
-                        <span className="btn btn-xs btn-ghost border border-zinc-900">
-                          {(project.deadline &&
-                            new Date(project.deadline).toLocaleDateString()) ||
-                            "No Deadline"}
-                        </span>
-                      </p>
-                    </li>
-                    <li>
-                      <p className="flex flex-row items-center justify-between">
-                        Status
-                        <span className="btn btn-xs btn-ghost border border-zinc-900">
-                          {(project.status && "Active") || "Inactive"}
-                        </span>
-                      </p>
-                    </li>
-                  </div>
-                </div>
+                <ProjectInfoCard project={project} />
                 <div className="flex flex-col gap-4 lg:col-span-2">
                   <div className="card static shadow-sm hover:shadow-lg transition-all duration-250 border">
                     <div className="card-content p-3 h-96 overflow-y-auto">
@@ -125,7 +33,39 @@ const ProjectDetail = ({ project }) => {
                         <h1 className="text-xl font-bold">Project Activity</h1>
                         {(activities && (
                           <ul className="timeline timeline-snap-icon timeline-compact timeline-vertical">
-                            <ProjectTimeLine activities={activities} />
+                            <ProjectTimeLine
+                              project={project}
+                              activities={activities}
+                            />
+                            {project && (
+                              <li>
+                                <hr />
+                                <div className="timeline-middle">
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                    className="h-5 w-5"
+                                  >
+                                    <path
+                                      fillRule="evenodd"
+                                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                                      clipRule="evenodd"
+                                    />
+                                  </svg>
+                                </div>
+                                <div className="timeline-end mb-10 w-full">
+                                  <time className="font-mono italic">
+                                    {project.created_ago} Ago
+                                  </time>
+                                  <div className="text-lg font-black">
+                                    <p>{project.title}</p>
+                                  </div>
+                                  <p>Project Started</p>
+                                </div>
+                                <hr />
+                              </li>
+                            )}
                           </ul>
                         )) || <p className="text-center">No Activity Found</p>}
                       </div>

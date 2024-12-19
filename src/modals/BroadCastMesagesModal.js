@@ -1,6 +1,6 @@
 /**Broad Cast Messages */
 
-const BroadCastMessages = ({ message }) => {
+const BroadCastMessagesModal = ({ message }) => {
   /**BroadCast Messages Component DaisyUI & Tailwind CSS */
   return (
     <>
@@ -30,4 +30,4 @@ const BroadCastMessages = ({ message }) => {
   );
 };
 
-export default BroadCastMessages;
+export default BroadCastMessagesModal;

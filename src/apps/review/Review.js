@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /**Review Component */
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../../components/Sidebar";
 import { BiHomeAlt } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import ReviewModal from "../modals/ReviewModal";
+import ReviewModal from "../../modals/ReviewModal";
 import { useContext, useEffect } from "react";
-import { ReviewContext } from "../context/Contexts";
-import ReviewCard from "../cards/ReviewCard";
-import SidenavDrawer from "../components/SidenavDrawer";
+import { ReviewContext } from "../../context/Contexts";
+import ReviewCard from "../../cards/review/ReviewCard";
+import SidenavDrawer from "../../components/SidenavDrawer";
 import { VscPreview } from "react-icons/vsc";
 const Review = () => {
   /**Review Component daisyUI & Tailwind CSS */
