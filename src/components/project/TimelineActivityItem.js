@@ -4,7 +4,7 @@ import profile from "../../static/img/no-profile.webp";
 const TimelineActivityItem = ({ activity }) => {
   return (
     <>
-      <li>
+      <li key={activity.id}>
         <hr
           className={
             activity.activity_type === "start"
@@ -28,7 +28,7 @@ const TimelineActivityItem = ({ activity }) => {
             />
           </svg>
         </div>
-        <div className="timeline-end mb-10 w-full">
+        <div className="timeline-end mb-3 w-full">
           <time className="font-mono italic">{activity.created_ago} Ago</time>
           <div className="text-lg font-black flex justify-between items-center">
             <p>{activity.task.title}</p>
@@ -44,11 +44,6 @@ const TimelineActivityItem = ({ activity }) => {
               </button>
             </div>
           </div>
-          <p>
-            {activity.task.description && activity.task.description.length > 100
-              ? activity.task.description.slice(0, 100) + "..."
-              : activity.task.description}
-          </p>
           {/* Badge */}
           <div className="flex flex-row gap-x-2 justify-start">
             {/* Activity Status */}
@@ -72,6 +67,11 @@ const TimelineActivityItem = ({ activity }) => {
               {activity.duration &&
                 new Date(activity.duration * 1000).toISOString().slice(11, 19)}
             </span>
+          </div>
+          <div className="prose">
+            <div
+              dangerouslySetInnerHTML={{ __html: activity.task.description }}
+            />
           </div>
         </div>
         <hr

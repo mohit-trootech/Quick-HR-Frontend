@@ -70,7 +70,8 @@ const ProjectProvider = ({ children }) => {
       id,
       updatePreloader
     );
-    response && setTasks([...tasks, response.data]);
+    (response && tasks && setTasks([...tasks, response.data])) ||
+      (response && setTasks([response.data]));
   };
 
   const getActivities = async (query_params) => {
@@ -110,7 +111,6 @@ const ProjectProvider = ({ children }) => {
       id,
       updatePreloader
     );
-    response && setActivity(response.data);
     response && setDuration(response.data.duration);
   };
 

@@ -4,7 +4,7 @@ import { themes } from "./src/utils/contants";
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {},
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"), require("@tailwindcss/typography")],
   daisyui: {
     themes: themes,
   },

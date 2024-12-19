@@ -7,6 +7,7 @@ import { ProjectsContext } from "../context/Contexts";
 /**Components */
 import ProjectTimeLine from "../components/project/ProjectTimeLine";
 import ProjectInfoCard from "../cards/project/ProjectInfoCard";
+import CreateNewTaskTimeline from "../components/project/CreateNewTaskTimeline";
 const ProjectDetail = ({ project }) => {
   const { activities, getActivities } = useContext(ProjectsContext);
   useEffect(() => {
@@ -31,11 +32,14 @@ const ProjectDetail = ({ project }) => {
                     <div className="card-content p-3 h-96 overflow-y-auto">
                       <div className="">
                         <h1 className="text-xl font-bold">Project Activity</h1>
+                        <CreateNewTaskTimeline project={project} />
+                        <div className="divider my-5 mx-2"></div>
                         {(activities && (
                           <ul className="timeline timeline-snap-icon timeline-compact timeline-vertical">
                             <ProjectTimeLine
                               project={project}
                               activities={activities}
+                              key={project.id}
                             />
                             {project && (
                               <li>

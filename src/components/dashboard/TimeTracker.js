@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from "react";
 /**Components */
 import ProjectDataList from "../../datalists/ProjectDataList";
 import TaskDataList from "../../datalists/TaskDataList";
-import CreateNewTask from "../../modals/CreateNewTask";
+import CreateNewTask from "../../components/project/CreateNewTask";
 /**Icons */
 import { BsArrowDownLeftCircleFill } from "react-icons/bs";
 import { IoMdCloseCircle, IoMdPause, IoMdPlayCircle } from "react-icons/io";

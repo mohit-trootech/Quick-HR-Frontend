@@ -3,13 +3,9 @@ import TimelineActivityItem from "../../components/project/TimelineActivityItem"
 const ProjectTimeLine = ({ activities }) => {
   return (
     <>
-      {activities.map((activity) => {
-        return (
-          <>
-            <TimelineActivityItem activity={activity} key={activity.id} />
-          </>
-        );
-      })}
+      {activities.map((activity) => (
+        <TimelineActivityItem key={activity.id} activity={activity} />
+      ))}
     </>
   );
 };

@@ -1,7 +1,6 @@
 /**Create New Task Modal */
 import { useContext } from "react";
-import { ProjectsContext } from "../context/Contexts";
-
+import { ProjectsContext } from "../../context/Contexts";
 const CreateNewTask = () => {
   const { projects, createTask } = useContext(ProjectsContext);
   const handleSubmit = (event) => {
