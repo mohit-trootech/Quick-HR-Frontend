@@ -118,7 +118,7 @@ const ProjectProvider = ({ children }) => {
     /**Update Activity API Call */
     const response = await PatchRequest(
       `${BaseUrlPath}/api/projects/activity/${url}`,
-      { activity_type, duration },
+      { activity_type },
       getBearerToken,
       null,
       null,

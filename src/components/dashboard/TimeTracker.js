@@ -39,7 +39,7 @@ const TimeTracker = () => {
       setSeconds(Math.floor(duration % 60));
       setMinutes(Math.floor((duration / 60) % 60));
       setHours(Math.floor(duration / 3600));
-      if (activity && activity.activity_type === "start") {
+      if (activity && activity.activity_type === "progress") {
         setDuration(duration + 1);
         setSeconds((seconds) => seconds + 1);
         if (seconds === 59) {

@@ -49,14 +49,14 @@ const TimelineActivityItem = ({ activity }) => {
             {/* Activity Status */}
             <span
               className={
-                activity.activity_type === "start"
+                activity.activity_type === "progress"
                   ? "badge badge-secondary"
                   : activity.activity_type === "pause"
                   ? "badge badge-warning"
                   : "badge badge-success"
               }
             >
-              {activity.activity_type === "start"
+              {activity.activity_type === "progress"
                 ? "In Progress"
                 : activity.activity_type === "pause"
                 ? "Paused"
@@ -76,7 +76,7 @@ const TimelineActivityItem = ({ activity }) => {
         </div>
         <hr
           className={
-            activity.activity_type === "start"
+            activity.activity_type === "progress"
               ? "bg-secondary"
               : activity.activity_type === "pause"
               ? "bg-warning"
