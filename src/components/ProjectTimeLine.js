@@ -36,7 +36,7 @@ const ProjectTimeLine = ({ activities }) => {
               <div className="text-lg font-black flex justify-between items-center">
                 <p>{activity.task.title}</p>
                 <div className="flex items-center gap-x-2">
-                  <p className="text-sm italic">Assigned</p>
+                  <p className="text-sm italic">By</p>
                   <button class="btn btn-sm capitalize">
                     {activity.user.username}
                     <img

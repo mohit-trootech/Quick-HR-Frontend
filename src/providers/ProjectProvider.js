@@ -125,10 +125,8 @@ const ProjectProvider = ({ children }) => {
       updatePreloader
     );
     if (activity_type === "stop") {
-      console.log("STOP");
       response && setActivity(null);
     } else {
-      alert();
       response && setActivity(response.data);
       response && setDuration(response.data.duration);
     }

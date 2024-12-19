@@ -16,7 +16,7 @@ const ProjectsTable = ({ project, setCurrent }) => {
           </p>
         </td>
         <td className="p-4 py-5">
-          <p className="text-sm text-slate-500">{project.created_at} Ago</p>
+          <p className="text-sm text-slate-500">{project.created_ago} Ago</p>
         </td>
         <td className="p-4 py-5">
           <p className="text-sm text-slate-500">
