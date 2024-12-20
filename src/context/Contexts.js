@@ -21,3 +21,5 @@ export const LeavesContext = createContext();
 export const ReviewContext = createContext();
 
 export const ProjectsContext = createContext();
+
+export const ResignationContext = createContext();

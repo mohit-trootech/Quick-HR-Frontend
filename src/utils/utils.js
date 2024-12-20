@@ -6,9 +6,7 @@ export const redirectPage = (url) => {
 };
 export const redirectPageLazy = (url) => {
   /**Redirect Page Lazy */
-  setInterval(() => {
-    window.location.href = url;
-  }, 3000);
+  window.location.href = url;
 };
 export const updateLocalStorage = (key, value) => {
   /**Update Browser's LocalStorage Value */

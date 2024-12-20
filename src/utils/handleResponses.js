@@ -66,3 +66,8 @@ export const createActivitySuccess = (response, id) => {
   /**Handle Create Activity Success Response */
   SuccessToast(id, "Activity Created Successfully");
 };
+
+export const newResignationCreated = (response, id) => {
+  /**Handle New Resignation Create Success Response */
+  SuccessToast(id, "Resignation Request Created Successfully..");
+};

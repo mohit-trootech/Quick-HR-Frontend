@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /**Dashboard Menu */
 import { MdDashboard } from "react-icons/md";
-import { TbBodyScan } from "react-icons/tb";
+import { TbBodyScan, TbFileAlert } from "react-icons/tb";
 import { SlCalender } from "react-icons/sl";
 import { NavLink } from "react-router-dom";
 import { FaList, FaMoneyCheck, FaMobile } from "react-icons/fa";
@@ -131,6 +131,16 @@ const SideNav = ({ customization }) => {
                   end
                 >
                   <FaTowerBroadcast /> Broadcast
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  role="button"
+                  to="/resignation"
+                  className="flex flex-row justify-start gap-2 items-center"
+                  end
+                >
+                  <TbFileAlert /> Resignation
                 </NavLink>
               </li>
               <li>
