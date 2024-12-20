@@ -213,7 +213,7 @@ const TimeTracker = () => {
               <div className="flex flex-row join justify-center items-center w-full">
                 {activity && activity.activity_type === "pause" ? (
                   <button
-                    id="start"
+                    id="progress"
                     onClick={handleClick}
                     disabled={activity ? false : true}
                     data-activity={activity && activity.id}

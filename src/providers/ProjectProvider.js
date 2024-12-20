@@ -97,6 +97,7 @@ const ProjectProvider = ({ children }) => {
       null,
       updatePreloader
     );
+    console.log(response);
     response && response.data && setActivity(response.data);
     response && setDuration(response.data.duration);
   };
@@ -111,6 +112,7 @@ const ProjectProvider = ({ children }) => {
       id,
       updatePreloader
     );
+    response && setActivity(response.data);
     response && setDuration(response.data.duration);
   };
 
@@ -118,7 +120,7 @@ const ProjectProvider = ({ children }) => {
     /**Update Activity API Call */
     const response = await PatchRequest(
       `${BaseUrlPath}/api/projects/activity/${url}`,
-      { activity_type },
+      { activity_type, duration },
       getBearerToken,
       null,
       null,
