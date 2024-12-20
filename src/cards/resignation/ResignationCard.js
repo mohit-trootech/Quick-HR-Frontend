@@ -3,7 +3,7 @@ import profile from "../../static/img/profile.jpg";
 import ResignationDetailDrawer from "../../components/resgination/ResginationDetailDrawer";
 const ResginationCard = ({ resignation }) => {
   return (
-    <div className="flex flex-col md:grid md:grid-cols-4 justify-between items-center border px-3 py-2 rounded-lg shadow-md mb-3">
+    <div className="flex flex-col md:grid md:grid-cols-4 justify-around lg:items-center items-start gap-4 border px-3 py-2 rounded-lg shadow-md mb-3">
       <div className="flex flex-col md:flex-row gap-3">
         <div className="flex gap-1 justify-start items-center">
           <img
