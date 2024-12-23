@@ -55,3 +55,20 @@ export const urlForgotPassword =
   "http://127.0.0.1:8000/accounts/forgot-password/";
 export const urlForgotPasswordOtpSubmit =
   "http://127.0.0.1:8000/accounts/otp-verification/";
+
+export const MANAGER = "manager";
+
+export const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];

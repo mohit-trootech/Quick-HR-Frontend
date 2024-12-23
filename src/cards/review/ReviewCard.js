@@ -1,7 +1,7 @@
 /**Review Card */
 import React from "react";
 import Rating from "../../components/review/Rating";
-import ReviewDetailsModal from "../../modals/ReviewDetailsModal";
+import ReviewDetailsModal from "../../modals/review/ReviewDetailsModal";
 import { HiMiniUser } from "react-icons/hi2";
 const ReviewCard = ({ review }) => {
   return (

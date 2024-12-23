@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /**Review Modal View */
 import { useContext, useEffect } from "react";
-import { ReviewContext } from "../context/Contexts";
-const ReviewModal = ({ review }) => {
+import { ReviewContext } from "../../context/Contexts";
+const ReviewModal = () => {
   const { users, getUsers, postReview } = useContext(ReviewContext);
   useEffect(() => {
     getUsers("");
@@ -65,7 +65,7 @@ const ReviewModal = ({ review }) => {
                   max="5"
                   step="1"
                   className="range"
-                  name="performace_rating"
+                  name="performance_rating"
                 />
                 <div className="flex items-center justify-between px-2 text-center">
                   <span

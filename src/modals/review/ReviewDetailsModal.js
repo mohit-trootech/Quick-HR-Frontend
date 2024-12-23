@@ -2,7 +2,7 @@
 /**Review Detail Modal */
 import Chart from "chart.js/auto";
 import { HiUser } from "react-icons/hi2";
-import Rating from "../components/review/Rating";
+import Rating from "../../components/review/Rating";
 import { PolarArea, Bar } from "react-chartjs-2";
 
 const ReviewDetailsModal = ({ review }) => {

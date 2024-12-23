@@ -1,21 +1,28 @@
 /**Review Provider */
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { GetRequest, PostRequest } from "../utils/AxiosRequest";
 import { getBearerToken } from "../utils/utils";
 import { BaseUrlPath } from "../utils/contants";
-import { ReviewContext } from "../context/Contexts";
+import {
+  ReviewContext,
+  PreloadContext,
+  PaginationContext,
+} from "../context/Contexts";
 import { postReviewSuccess } from "../utils/handleResponses";
 import { toast } from "react-toastify";
 const ReviewProvider = ({ children }) => {
-  const [users, setUsers] = useState();
-  const [reviews, setReviews] = useState();
+  const { updatePreloader } = useContext(PreloadContext);
+  const { setPrevious, setNext, setCount } = useContext(PaginationContext);
+  const [users, setUsers] = useState(null);
+  const [reviews, setReviews] = useState(null);
+  const [recentReview, setRecentReview] = useState(null);
   // Get Users
   const getUsers = async (query_params) => {
     const response = await GetRequest(
       BaseUrlPath + "/accounts/user-list/" + query_params,
       getBearerToken
     );
-    response && setUsers(response.data.results);
+    response && response.data.count && setUsers(response.data.results);
   };
   /*Post Review */
   const postReview = async (data) => {
@@ -29,14 +36,27 @@ const ReviewProvider = ({ children }) => {
     );
   };
 
-  /**Get All Reviews */
-
-  const getAllReviews = async (query_params) => {
+  const getRecentReviews = async () => {
     const response = await GetRequest(
-      BaseUrlPath + "/api/reviews/" + query_params,
+      `${BaseUrlPath}/api/reviews/recent_reviews/`,
       getBearerToken
     );
-    response.data.count > 0 && setReviews(response.data.results);
+    response && setRecentReview(response.data);
+  };
+
+  /**Get All Reviews */
+  const getAllReviews = async (query_params) => {
+    const response = await GetRequest(
+      `${BaseUrlPath}/api/reviews/${query_params || ""}`,
+      getBearerToken,
+      null,
+      null,
+      updatePreloader
+    );
+    response && response.data.count && setReviews(response.data.results);
+    response && setPrevious(response.data.previous);
+    response && setNext(response.data.next);
+    response && setCount(response.data.count);
   };
 
   const data = {
@@ -45,6 +65,8 @@ const ReviewProvider = ({ children }) => {
     postReview,
     getAllReviews,
     reviews,
+    recentReview,
+    getRecentReviews,
   };
   return (
     <ReviewContext.Provider value={data}>{children}</ReviewContext.Provider>

@@ -12,7 +12,7 @@ const HolidayCalenderView = ({ holidays }) => {
               ✕
             </button>
           </form>
-          <h3 className="font-bold text-lg">Calender View!</h3>
+          <h3 className="font-bold text-xl">Calender View!</h3>
           <div className="py-4">
             <FullCalendar
               plugins={[dayGridPlugin]}

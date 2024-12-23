@@ -96,7 +96,7 @@ const Holiday = () => {
               </label>
               {holidays && count && (
                 <button
-                  className="btn btn-sm  bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:bg-gradient-to-l transition-all duration-300"
+                  className="btn btn-sm  bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:bg-gradient-to-l"
                   onClick={() =>
                     document.getElementById("holiday_calender_view").showModal()
                   }

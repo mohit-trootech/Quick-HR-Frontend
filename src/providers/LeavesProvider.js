@@ -12,12 +12,7 @@ import {
 import { getBearerToken } from "../utils/utils";
 import { BaseUrlPath } from "../utils/contants";
 import { newLeaveCreated, updateLeaveSuccess } from "../utils/handleResponses";
-import {
-  GetRequest,
-  PatchRequest,
-  PostRequest,
-  PutRequest,
-} from "../utils/AxiosRequest";
+import { GetRequest, PostRequest, PutRequest } from "../utils/AxiosRequest";
 
 const LeavesProvider = ({ children }) => {
   /**Leaves Provider Context */
