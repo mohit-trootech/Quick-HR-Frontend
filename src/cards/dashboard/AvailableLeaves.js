@@ -1,16 +1,22 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /**Available Leave Card */
-import { useContext } from "react";
-import { DashboardContext } from "../../context/Contexts";
+/**React Hooks */
+import { useContext, useEffect } from "react";
+import { LeavesContext } from "../../context/Contexts";
+import { Link } from "react-router-dom";
+/**Icons */
 import { GiWaveSurfer } from "react-icons/gi";
 import { FaCashRegister } from "react-icons/fa";
 import { MdEmergency } from "react-icons/md";
 import { GiEmptyHourglass } from "react-icons/gi";
 import { BsArrowDownLeftCircleFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
 
 const AvailableLeaves = () => {
   /**Available DaisyUI & Tailwind CSS Card */
-  const { availableLeave } = useContext(DashboardContext);
+  const { availableLeave, getAvailableLeave } = useContext(LeavesContext);
+  useEffect(() => {
+    availableLeave || getAvailableLeave();
+  }, []);
   return (
     <>
       {availableLeave && (

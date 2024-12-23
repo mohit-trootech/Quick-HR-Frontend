@@ -32,7 +32,7 @@ const ProjectProvider = ({ children }) => {
     /**Get Projects API Call */
     if (auth) {
       const response = await GetRequest(
-        `${BaseUrlPath}/api/projects/project/?user=${auth.id}${query_params}`,
+        `${BaseUrlPath}/api/projects/project/?user=${auth.user.id}${query_params}`,
         getBearerToken,
         null,
         null,
@@ -97,7 +97,6 @@ const ProjectProvider = ({ children }) => {
       null,
       updatePreloader
     );
-    console.log(response);
     response && response.data && setActivity(response.data);
     response && setDuration(response.data.duration);
   };

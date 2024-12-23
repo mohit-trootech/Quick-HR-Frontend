@@ -11,8 +11,13 @@ import {
 /**Utils Functions & Constants */
 import { getBearerToken } from "../utils/utils";
 import { BaseUrlPath } from "../utils/contants";
-import { newLeaveCreated } from "../utils/handleResponses";
-import { GetRequest, PostRequest } from "../utils/AxiosRequest";
+import { newLeaveCreated, updateLeaveSuccess } from "../utils/handleResponses";
+import {
+  GetRequest,
+  PatchRequest,
+  PostRequest,
+  PutRequest,
+} from "../utils/AxiosRequest";
 
 const LeavesProvider = ({ children }) => {
   /**Leaves Provider Context */
@@ -23,7 +28,7 @@ const LeavesProvider = ({ children }) => {
   /**Get Available Leaves */
   const getAvailableLeave = async (url) => {
     const response = await GetRequest(
-      BaseUrlPath + "/api/leaves/available/" + url,
+      BaseUrlPath + "/api/leaves/available-leaves/",
       getBearerToken,
       null,
       null,
@@ -40,7 +45,7 @@ const LeavesProvider = ({ children }) => {
       null,
       updatePreloader
     );
-    response && setLeaves(response.data.results);
+    response && response.data.count > 0 && setLeaves(response.data.results);
     response && setPrevious(response.data.previous);
     response && setNext(response.data.next);
     response && setCount(response.data.count);
@@ -55,15 +60,37 @@ const LeavesProvider = ({ children }) => {
       newLeaveCreated,
       id
     );
-    response && setLeaves([response.data, ...leaves]);
+    if (leaves) {
+      response && setLeaves([response.data, ...leaves]);
+    } else {
+      response && setLeaves([response.data]);
+    }
   };
-
+  const updateLeave = async (data, id) => {
+    let toastId = toast.loading("Please Wait, Updating Leave...");
+    const response = await PutRequest(
+      `${BaseUrlPath}/api/leaves/list/${id}/`,
+      data,
+      getBearerToken,
+      updateLeaveSuccess,
+      toastId
+    );
+    if (response) {
+      // Update Leave in the State
+      setLeaves(
+        leaves.map((leave) =>
+          leave.id === response.data.id ? response.data : leave
+        )
+      );
+    }
+  };
   const data = {
     leaves,
     availableLeave,
     getLeaves,
     createLeave,
     getAvailableLeave,
+    updateLeave,
   };
   return (
     <LeavesContext.Provider value={data}>{children}</LeavesContext.Provider>

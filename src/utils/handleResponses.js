@@ -18,7 +18,10 @@ export const newLeaveCreated = (response, id) => {
   /**Handle New Leave Create Success Response */
   SuccessToast(id, "Leave Request Created Successfully..");
 };
-
+export const updateLeaveSuccess = (response, id) => {
+  /**Handle Update Leave Success Response */
+  SuccessToast(id, "Leave Updated Successfully..");
+};
 export const organizationRegisterSuccess = (response, id) => {
   /**Handle Organization Register Success Response */
   SuccessToast(

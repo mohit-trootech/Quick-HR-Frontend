@@ -2,7 +2,6 @@
 import LeaveCalenderView from "../../modals/LeaveCalenderView";
 const LeaveCard = ({ leave }) => {
   /**Leave Card DaisyUI & Tailwind CSS */
-
   return (
     <>
       <div className="card static w-80 self-start bg-base-100 shadow-sm my-5 rounded-xl border hover:shadow-xl hover:border transition duration-300">
@@ -15,7 +14,7 @@ const LeaveCard = ({ leave }) => {
             alt="profile"
             className="rounded-full avtar w-20 h-20"
           />
-          <h1 className="card-title">{leave.title}</h1>
+          <h1 className="card-title capitalize">{leave.user.username}</h1>
           <button
             className="btn btn-sm text-sm text-zinc-500"
             onClick={() =>

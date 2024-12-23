@@ -14,19 +14,8 @@ const DashboardProvider = ({ children }) => {
   /**Dashboard States */
   const { updatePreloader } = useContext(PreloadContext);
   const { setPrevious, setNext, setCount } = useContext(PaginationContext);
-  const [availableLeave, setAvailableLeave] = useState(null);
   const [broadCastMessages, setBroadCastMessages] = useState(null);
-  /**Available Leaves GET Request */
-  const getAvailableLeaves = async () => {
-    const response = await GetRequest(
-      `${BaseUrlPath}/api/leaves/available-leave/`,
-      getBearerToken,
-      null,
-      null,
-      updatePreloader
-    );
-    response && setAvailableLeave(response.data);
-  };
+
   /**BroadCast Messages */
   const getBroadCastMessages = async () => {
     const response = await GetRequest(
@@ -42,8 +31,6 @@ const DashboardProvider = ({ children }) => {
     response && setCount(response.data.count);
   };
   const data = {
-    availableLeave,
-    getAvailableLeaves,
     broadCastMessages,
     getBroadCastMessages,
   };

@@ -35,7 +35,7 @@ const OrganizationCustomization = () => {
       {(preload && <Preloader />) || (
         <div className="grid grid-cols-9 gap-2">
           <div className="hidden lg:block lg:col-span-2">
-            <OrganizationSidebar user={auth} organization={organization} />
+            <OrganizationSidebar user={auth.user} organization={organization} />
           </div>
           <div className="col-span-9 lg:col-span-7 mx-3">
             <div className="px-3 py-1 border shadow-md my-2 rounded-lg flex items-center justify-between">

@@ -42,7 +42,9 @@ const OrganizationProvider = ({ children }) => {
   const getOrganization = async (query_params) => {
     if (auth) {
       const response = await GetRequest(
-        `${BaseUrlPath}/api/organizations/${auth.organization}/${query_params}`,
+        `${BaseUrlPath}/api/organizations/${auth.organization.id}/${
+          query_params || ""
+        }`,
         getBearerToken,
         null,
         null,

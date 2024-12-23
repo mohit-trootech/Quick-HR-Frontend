@@ -14,15 +14,10 @@ import SidenavDrawer from "../../components/SidenavDrawer";
 import { BiHomeAlt } from "react-icons/bi";
 
 const Dashboard = () => {
-  const {
-    availableLeaves,
-    getAvailableLeaves,
-    broadcastMessages,
-    getBroadCastMessages,
-  } = useContext(DashboardContext);
+  const { broadcastMessages, getBroadCastMessages } =
+    useContext(DashboardContext);
   const { preload } = useContext(PreloadContext);
   useEffect(() => {
-    availableLeaves || getAvailableLeaves();
     broadcastMessages || getBroadCastMessages();
   }, []);
 

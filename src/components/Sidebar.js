@@ -17,7 +17,7 @@ const Sidebar = () => {
   const { organization, getOrganization, customization } =
     useContext(OrganizationContext);
   useEffect(() => {
-    getOrganization("");
+    organization || getOrganization();
   }, [auth]);
   return (
     <>
@@ -39,7 +39,7 @@ const Sidebar = () => {
         )}
         <div className="pl-3">
           {/* Card */}
-          <UserCard user={auth} />
+          <UserCard auth={auth} />
           <div className="divider mr-3 my-0"></div>
           {/* Stats */}
           <Stats />

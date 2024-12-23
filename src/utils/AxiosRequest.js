@@ -102,6 +102,26 @@ export const PatchRequest = async (
     updatePreloader
   );
 };
+/**Put Request */
+export const PutRequest = async (
+  url,
+  data,
+  header,
+  callback,
+  toast,
+  updatePreloader
+) => {
+  /**Common Put Request Handling */
+  return await AxiosRequest(
+    url,
+    "PUT",
+    data,
+    header,
+    callback,
+    toast,
+    updatePreloader
+  );
+};
 
 /**Delete Request */
 export const DeleteRequest = async (
