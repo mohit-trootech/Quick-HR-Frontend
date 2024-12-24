@@ -61,7 +61,10 @@ const ReviewDetailsModal = ({ review }) => {
               <div>
                 <div className="flex justify-between items-center">
                   <span className="font-bold">Performance</span>
-                  <Rating rating={review.performance_rating} id="performance" />
+                  <Rating
+                    rating={review.performance_rating}
+                    id={`performance_rating_modal_${review.id}`}
+                  />
                 </div>
                 <p className="text-start text-zinc-500">
                   {review.performance_comment}
@@ -71,7 +74,10 @@ const ReviewDetailsModal = ({ review }) => {
                 <div className="flex justify-between items-center">
                   <span className="font-bold">Project Delivery</span>
                   <span>
-                    <Rating rating={review.delivery_rating} id="delivery" />
+                    <Rating
+                      rating={review.delivery_rating}
+                      id={`delivery_rating_modal_${review.id}`}
+                    />
                   </span>
                 </div>
                 <p className="text-start text-zinc-500">
@@ -84,7 +90,7 @@ const ReviewDetailsModal = ({ review }) => {
                   <span>
                     <Rating
                       rating={review.socialization_rating}
-                      id="socialization"
+                      id={`socialization_rating_modal_${review.id}`}
                     />
                   </span>
                 </div>

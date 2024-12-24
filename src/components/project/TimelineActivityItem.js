@@ -1,5 +1,4 @@
 /**Project Timeline Activity Item */
-
 import profile from "../../static/img/no-profile.webp";
 const TimelineActivityItem = ({ activity }) => {
   return (
@@ -62,13 +61,12 @@ const TimelineActivityItem = ({ activity }) => {
                 ? "Paused"
                 : "Completed"}
             </span>
-            {/* Duration in Format of HH:MM:SS */}
             <span className="badge badge-info">
               {activity.duration &&
                 new Date(activity.duration * 1000).toISOString().slice(11, 19)}
             </span>
           </div>
-          <div className="prose">
+          <div className="prose max-w-full overflow-y-auto">
             <div
               dangerouslySetInnerHTML={{ __html: activity.task.description }}
             />

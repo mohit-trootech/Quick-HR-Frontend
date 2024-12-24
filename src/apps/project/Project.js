@@ -22,13 +22,17 @@ import Preloader from "../../components/Preloader";
 import ProjectsTable from "../../tables/ProjectsTable";
 import ProjectDetail from "../../modals/ProjectDetail";
 import SidenavDrawer from "../../components/SidenavDrawer";
+import { MANAGER } from "../../utils/contants";
+import CreateProject from "../../modals/project/CreateProject";
+import MardownFormatHelp from "../../modals/MardownFormatHelp";
 
 const Project = () => {
-  const { auth } = useContext(AuthContext);
+  /**Project Home Page */
   const [current, setCurrent] = useState(null);
   const { preload } = useContext(PreloadContext);
+  const { auth } = useContext(AuthContext);
   const { projects, getProjects } = useContext(ProjectsContext);
-  const { previous, next, count } = useContext(PaginationContext);
+  const { previous, next } = useContext(PaginationContext);
   const handleChange = (e) => {
     e.preventDefault();
     getProjects("?search=" + e.target.value);
@@ -38,8 +42,8 @@ const Project = () => {
     getProjects("?" + e.target.href.split("?")[1]);
   };
   useEffect(() => {
-    projects || getProjects("");
-  }, [auth, projects]);
+    projects || getProjects();
+  }, [projects]);
   return (
     <>
       {(preload && <Preloader />) || (
@@ -78,9 +82,24 @@ const Project = () => {
                 />
                 <FaMagnifyingGlass className="h-4 w-4 opacity-70" />
               </label>
+              {auth && auth.designation === MANAGER && (
+                <>
+                  <button
+                    onClick={() =>
+                      document
+                        .getElementById("create_project_modal")
+                        .showModal()
+                    }
+                    className="btn btn-sm btn-primary"
+                  >
+                    Create Project
+                  </button>
+                  <CreateProject />
+                </>
+              )}
             </div>
             <div className="p-5">
-              {(projects && count && (
+              {(projects && (
                 <>
                   <div className="overflow-x-auto">
                     <table className="w-full text-left table-auto min-w-max">
@@ -154,7 +173,7 @@ const Project = () => {
                       <a
                         role="button"
                         onClick={handleClick}
-                        disabled={!next}
+                        disabled={next}
                         href={next}
                         className="btn btn-primary join-item"
                       >
@@ -177,6 +196,7 @@ const Project = () => {
           </div>
         </div>
       )}
+      <MardownFormatHelp />
     </>
   );
 };

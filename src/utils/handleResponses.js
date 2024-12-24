@@ -70,6 +70,11 @@ export const createActivitySuccess = (response, id) => {
   SuccessToast(id, "Activity Created Successfully");
 };
 
+export const createProjectSuccess = (response, id) => {
+  /**Handle Create Project Success Response */
+  SuccessToast(id, "Project Created Successfully");
+};
+
 export const newResignationCreated = (response, id) => {
   /**Handle New Resignation Create Success Response */
   SuccessToast(id, "Resignation Request Created Successfully..");

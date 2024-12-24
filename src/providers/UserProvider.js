@@ -21,6 +21,8 @@ const UserProvider = ({ children }) => {
   /**User App States */
   let id = null;
   const [toggle, setToggle] = useState(false);
+  const [projectManagers, setProjectManagers] = useState(null);
+  const [usersList, setUsersList] = useState(null);
   const loginRequest = async (data) => {
     id = toast.loading("Please Wait, Logging in...");
     await PostRequest(urlLogin, data, null, handleLogin, id);
@@ -77,6 +79,27 @@ const UserProvider = ({ children }) => {
     );
     response && setUserData(response.data);
   };
+  /**Get Project Manager */
+  const getProjectManagers = async (query_params) => {
+    const response = await GetRequest(
+      `${BaseUrlPath}/accounts/user-list/project_managers/${
+        query_params || ""
+      }`,
+      getBearerToken,
+      null,
+      null
+    );
+    response && setProjectManagers(response.data);
+  };
+  /**Get User List */
+  const getUsersList = async (query_params) => {
+    const response = await GetRequest(
+      `${BaseUrlPath}/accounts/user-list/${query_params || ""}`,
+      getBearerToken
+    );
+    response && setUsersList(response.data.results);
+  };
+
   const data = {
     loginRequest,
     forgotPassword,
@@ -87,6 +110,10 @@ const UserProvider = ({ children }) => {
     organizationRegisterRequest,
     userData,
     getUserData,
+    getProjectManagers,
+    getUsersList,
+    projectManagers,
+    usersList,
   };
   return <UserContext.Provider value={data}>{children}</UserContext.Provider>;
 };

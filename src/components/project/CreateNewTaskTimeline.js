@@ -4,7 +4,6 @@ import RichText from "../RichText";
 import { ProjectsContext } from "../../context/Contexts";
 import { FaEye } from "react-icons/fa";
 import { MdHelp } from "react-icons/md";
-import MardownFormatHelp from "../../modals/MardownFormatHelp";
 const CreateNewTaskTimeline = ({ project }) => {
   const [content, setContent] = useState(null);
   const [toggle, setToggle] = useState(false);
@@ -25,7 +24,12 @@ const CreateNewTaskTimeline = ({ project }) => {
           onSubmit={handleSubmit}
           className="card-body px-2 py-3"
         >
-          <input className="hidden" defaultValue={project.id} name="project" />
+          <input
+            className="hidden"
+            type="number"
+            defaultValue={project.id}
+            name="project"
+          />
           <div className="form-control">
             <label className="label">
               <span className="label-text">Task Title</span>
@@ -74,7 +78,6 @@ const CreateNewTaskTimeline = ({ project }) => {
           </div>
         </form>
       </div>
-      <MardownFormatHelp />
     </>
   );
 };

@@ -12,7 +12,7 @@ import { BsArrowDownLeftCircleFill } from "react-icons/bs";
 import { IoMdCloseCircle, IoMdPause, IoMdPlayCircle } from "react-icons/io";
 import { MdOutlineFreeBreakfast } from "react-icons/md";
 /**Contexts */
-import { ProjectsContext, AuthContext } from "../../context/Contexts";
+import { ProjectsContext } from "../../context/Contexts";
 
 const TimeTracker = () => {
   /**User Occupied Devices Component using DaisyUI and Tailwind CSS */
@@ -21,7 +21,6 @@ const TimeTracker = () => {
   const [hours, setHours] = useState(0);
   const [disabled, setDisabled] = useState(true);
   const [btnDisabled, setBtnDisabled] = useState(true);
-  const { auth } = useContext(AuthContext);
   const {
     duration,
     setDuration,
@@ -57,9 +56,8 @@ const TimeTracker = () => {
 
   useEffect(() => {
     activity || getLastUserActivity();
-    projects || getProjects("");
-  }, [activity, auth]);
-
+    projects || getProjects();
+  }, [activity]);
   const handleSubmit = (event) => {
     /**Handle Task Create Form Submit */
     event.preventDefault();
@@ -73,10 +71,6 @@ const TimeTracker = () => {
 
   const handleClick = (event) => {
     event.preventDefault();
-    console.log(
-      `${event.target.getAttribute("data-activity")}/`,
-      event.target.id
-    );
     updateActivity(
       `${event.target.getAttribute("data-activity")}/`,
       event.target.id

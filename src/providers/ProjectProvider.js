@@ -7,7 +7,6 @@ import {
   ProjectsContext,
   PreloadContext,
   PaginationContext,
-  AuthContext,
 } from "../context/Contexts";
 /**Utils Functions & Constants */
 import { getBearerToken } from "../utils/utils";
@@ -15,11 +14,11 @@ import { BaseUrlPath } from "../utils/contants";
 import {
   createTaskSuccess,
   createActivitySuccess,
+  createProjectSuccess,
 } from "../utils/handleResponses";
 import { GetRequest, PatchRequest, PostRequest } from "../utils/AxiosRequest";
 
 const ProjectProvider = ({ children }) => {
-  const { auth } = useContext(AuthContext);
   const [projects, setProjects] = useState(null);
   const [tasks, setTasks] = useState(null);
   const [activity, setActivity] = useState(null);
@@ -30,24 +29,38 @@ const ProjectProvider = ({ children }) => {
 
   const getProjects = async (query_params) => {
     /**Get Projects API Call */
-    if (auth) {
-      const response = await GetRequest(
-        `${BaseUrlPath}/api/projects/project/?user=${auth.user.id}${query_params}`,
-        getBearerToken,
-        null,
-        null,
-        updatePreloader
-      );
-      response && setProjects(response.data.results);
-      response && setPrevious(response.data.previous);
-      response && setNext(response.data.next);
-      response && setCount(response.data.count);
-    }
+    const response = await GetRequest(
+      `${BaseUrlPath}/api/projects/project/list_users_assigned_projects/${
+        query_params || ""
+      }`,
+      getBearerToken,
+      null,
+      null,
+      updatePreloader
+    );
+    response && setProjects(response.data.results);
+    response && setPrevious(response.data.previous);
+    response && setNext(response.data.next);
+    response && setCount(response.data.count);
+  };
+  const createProject = async (data) => {
+    /**Create Project API Call */
+    let id = toast.loading("Please Wait, Creating Project...");
+    const response = await PostRequest(
+      BaseUrlPath + "/api/projects/project/",
+      data,
+      getBearerToken,
+      createProjectSuccess,
+      id,
+      updatePreloader
+    );
+    response && console.log(response.data);
+    response && setProjects([response.data, ...projects]);
   };
   const getTasks = async (query_params) => {
     /**Get Tasks API Call */
     const response = await GetRequest(
-      `${BaseUrlPath}/api/projects/task/?${query_params}`,
+      `${BaseUrlPath}/api/projects/task/?${query_params || ""}`,
       getBearerToken,
       null,
       null,
@@ -146,6 +159,7 @@ const ProjectProvider = ({ children }) => {
     setDuration,
     activities,
     getActivities,
+    createProject,
   };
   return (
     <ProjectsContext.Provider value={data}>{children}</ProjectsContext.Provider>
