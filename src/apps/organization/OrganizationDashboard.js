@@ -22,12 +22,12 @@ const OrganizationDashboard = () => {
   const { preload, updatePreloader } = useContext(PreloadContext);
 
   useEffect(() => {
-    organization || getOrganization("");
+    organization || getOrganization();
   }, [auth, organization]);
 
   useEffect(() => {
-    auth && organization && updatePreloader();
-  }, [organization, preload]);
+    auth && updatePreloader();
+  }, [auth, preload]);
 
   return (
     <>

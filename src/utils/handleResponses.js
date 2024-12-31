@@ -56,6 +56,11 @@ export const createOrganizationUserSuccess = (response, id) => {
   /**Handle Create Organization User Success Response */
   SuccessToast(id, "User Created Successfully");
 };
+export const updateOrganizationSuccess = (response, id) => {
+  /**Handle Update Organization Success Response */
+  SuccessToast(id, "Organization Updated Successfully");
+};
+
 export const removeUserSuccess = (response, id) => {
   /**Handle Remove User Success Response */
   SuccessToast(id, "User Removed Successfully");

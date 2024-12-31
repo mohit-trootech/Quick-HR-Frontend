@@ -10,7 +10,7 @@ import ForgotPassword from "./apps/accounts/ForgotPassword";
 import Review from "./apps/review/Review";
 import Unauthorized from "./pages/Unauthorized";
 /**Apps */
-import OrganizationLogin from "./apps/organization/OrganizationLogin";
+import OrganizationAccounts from "./apps/organization/OrganizationAccounts";
 import OrganizationDashboard from "./apps/organization/OrganizationDashboard";
 import OrganizationCustomization from "./apps/organization/OrganizationCustomization";
 import OrganizationUsers from "./apps/organization/OrganizationUsers";
@@ -60,7 +60,7 @@ function App() {
                             <Route path="/login" element={<Login />} />
                             <Route
                               path="/organization/accounts"
-                              element={<OrganizationLogin />}
+                              element={<OrganizationAccounts />}
                             />
                             <Route
                               path="/forgot-password"

@@ -1,18 +1,32 @@
 /**Organization Details */
 import emptyImg from "../../static/img/empty.png";
 import { TbUsersGroup, TbTrophy } from "react-icons/tb";
+import UpdateOrganization from "../../modals/UpdateOrganization";
 const OrganizationDetails = ({ organization }) => {
   return (
     <>
       <div className="card static hover:shadow-xl transition-all duration-300">
         <div className="card-content static border p-4 rounded-xl">
-          <div className="flex justify-start items-center gap-x-3">
-            <img
-              src={organization.logo || emptyImg}
-              alt="logo"
-              className="avtar w-10 h-10"
-            />
-            <p>{organization.name}</p>
+          <div className="flex justify-between items-center gap-x-3">
+            <div className="flex items-center">
+              <img
+                src={organization.logo || emptyImg}
+                alt="logo"
+                className="avtar w-10 h-10"
+              />
+              <p>{organization.name}</p>
+            </div>
+            <div>
+              <button
+                className="btn btn-sm"
+                onClick={() =>
+                  document.getElementById("update_organization").showModal()
+                }
+              >
+                Customize Label
+              </button>
+              <UpdateOrganization organization={organization} />
+            </div>
           </div>
           <div className="divider mr-3 my-0"></div>
           <div className="relative group flex items-center justify-center overflow-hidden">
@@ -74,7 +88,7 @@ const OrganizationDetails = ({ organization }) => {
                     <input
                       type="checkbox"
                       className="checkbox checkbox-sm checkbox-success "
-                      defaultChecked={organization.customization.leave}
+                      defaultChecked
                       disabled={true}
                     />
                     <div className="stat-title">Leave</div>
@@ -110,7 +124,7 @@ const OrganizationDetails = ({ organization }) => {
                     <input
                       type="checkbox"
                       className="checkbox checkbox-sm checkbox-success"
-                      defaultChecked={organization.customization.review}
+                      defaultChecked
                       disabled={true}
                     />
                     <div className="stat-title">Salary</div>
@@ -134,7 +148,7 @@ const OrganizationDetails = ({ organization }) => {
                     <input
                       type="checkbox"
                       className="checkbox checkbox-sm checkbox-success "
-                      defaultChecked={organization.customization.holiday}
+                      defaultChecked
                       disabled={true}
                     />
                     <div className="stat-title">Holidays</div>

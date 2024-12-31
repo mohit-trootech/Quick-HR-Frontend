@@ -17,7 +17,7 @@ const AddOrganizationUser = () => {
   return (
     <>
       <dialog id="add_organization_user" className="modal">
-        <div className="modal-box">
+        <div className="modal-box w-full max-w-3xl">
           <form method="dialog">
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
               ✕

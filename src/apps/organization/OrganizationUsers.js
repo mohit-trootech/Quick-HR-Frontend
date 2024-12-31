@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /**Organization Users */
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import OrganizationSidebar from "../../components/organization/OrganizationSidebar";
 import {
   AuthContext,
@@ -14,20 +14,28 @@ import { Link } from "react-router-dom";
 import OrganizationUsersTable from "../../tables/OrganizationUsersTable";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import OrganizationCreateUserModal from "../../modals/OrganizationCreateUserModal";
+import CreateDepartmentModal from "../../modals/CreateDepartment";
 const OrganizationUsers = () => {
   const {
     users,
     organization,
+    getOrganization,
     getOrganizationUsers,
     createOrganizationUser,
     removeOrganizationUser,
+    departments,
+    getDepartments,
   } = useContext(OrganizationContext);
   const { preload, updatePreloader } = useContext(PreloadContext);
   const { previous, next } = useContext(PaginationContext);
   const { auth } = useContext(AuthContext);
   useEffect(() => {
-    users || getOrganizationUsers("");
+    users || getOrganizationUsers();
+    departments || getDepartments();
   }, [auth, users]);
+  useEffect(() => {
+    organization || getOrganization();
+  }, [auth, organization]);
 
   useEffect(() => {
     updatePreloader(false);
@@ -70,7 +78,7 @@ const OrganizationUsers = () => {
               <div className="breadcrumbs text-sm">
                 <ul>
                   <li>
-                    <Link to="/dashboard">
+                    <Link to="/organization/">
                       <BiHomeAlt /> Dashboard
                     </Link>
                   </li>
@@ -88,17 +96,32 @@ const OrganizationUsers = () => {
                 />
                 <FaMagnifyingGlass className="h-4 w-4 opacity-70" />
               </label>
-              <button
-                onClick={() => {
-                  document
-                    .getElementById("create_organization_user")
-                    .showModal();
-                }}
-                className="btn btn-sm  bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:bg-gradient-to-l transition-all duration-300"
-              >
-                Create User
-              </button>
-              <OrganizationCreateUserModal handleSubmit={handleSubmit} />
+              <div className="flex items-center gap-2">
+                <button
+                  className="btn btn-sm"
+                  role="button"
+                  onClick={() => {
+                    document.getElementById("create_department").showModal();
+                  }}
+                >
+                  Create New Department
+                </button>
+                <CreateDepartmentModal />
+                <button
+                  onClick={() => {
+                    document
+                      .getElementById("create_organization_user")
+                      .showModal();
+                  }}
+                  className="btn btn-sm  bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:bg-gradient-to-l transition-all duration-300"
+                >
+                  Create User
+                </button>
+              </div>
+              <OrganizationCreateUserModal
+                handleSubmit={handleSubmit}
+                departments={departments}
+              />
             </div>
             <div className="p-5">
               {(users && (

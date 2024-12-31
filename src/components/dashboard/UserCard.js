@@ -5,11 +5,7 @@ import { Link } from "react-router-dom";
 import profile from "../../static/img/no-profile.webp";
 import { FaArrowDown } from "react-icons/fa";
 import { LogOut } from "../../utils/LogOut";
-const UserCard = ({ auth }) => {
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    auth && setUser(auth.user);
-  }, [auth]);
+const UserCard = ({ user }) => {
   return (
     <>
       <div className="flex justify-start gap-2 items-center py-3">

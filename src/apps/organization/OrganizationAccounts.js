@@ -7,7 +7,7 @@ import OrganizationRegisterCard from "../../cards/organization/OrganizationRegis
 /**Custom Static Files */
 import "../../static/css/accounts.css";
 // import logo from "../../static/img/logo.png";
-const OrganizationLogin = () => {
+const OrganizationAccounts = () => {
   /**Desgined With Daisy UI and Tailwind CSS */
   const [login, setLogin] = useState(true);
   const { toggle, setToggle } = useContext(UserContext);
@@ -46,4 +46,4 @@ const OrganizationLogin = () => {
   );
 };
 
-export default OrganizationLogin;
+export default OrganizationAccounts;

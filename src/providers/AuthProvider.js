@@ -9,13 +9,12 @@ const AuthProvider = ({ children }) => {
   /**Authenticated User Provider Context */
   const [auth, setAuth] = useState(null);
   const getAuthenticatedUser = async () => {
+    let apiUrl = BaseUrlPath + "/accounts/logged-in-user/";
+    if (window.location.pathname.includes("organization")) {
+      apiUrl = BaseUrlPath + "/accounts/logged-in-admin/";
+    }
     if (!IGNORE_URL_PATHS.includes(window.location.pathname)) {
-      const response = await GetRequest(
-        BaseUrlPath + "/accounts/logged-in-user/",
-        getBearerToken,
-        null,
-        null
-      );
+      const response = await GetRequest(apiUrl, getBearerToken, null, null);
       response && isUserInOrganization(response.data);
       response && setAuth(response.data);
     }

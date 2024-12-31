@@ -18,12 +18,12 @@ const OrganizationCustomization = () => {
   const { preload, updatePreloader } = useContext(PreloadContext);
 
   useEffect(() => {
-    organization || getOrganization("");
-  }, [auth]);
+    organization || getOrganization();
+  }, [auth, organization]);
 
   useEffect(() => {
-    organization && updatePreloader();
-  }, [organization, preload]);
+    auth && updatePreloader();
+  }, [auth, preload]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -35,7 +35,7 @@ const OrganizationCustomization = () => {
       {(preload && <Preloader />) || (
         <div className="grid grid-cols-9 gap-2">
           <div className="hidden lg:block lg:col-span-2">
-            <OrganizationSidebar user={auth.user} organization={organization} />
+            <OrganizationSidebar user={auth} organization={organization} />
           </div>
           <div className="col-span-9 lg:col-span-7 mx-3">
             <div className="px-3 py-1 border shadow-md my-2 rounded-lg flex items-center justify-between">
@@ -45,7 +45,7 @@ const OrganizationCustomization = () => {
               <div className="breadcrumbs text-sm">
                 <ul>
                   <li>
-                    <Link to="/dashboard">
+                    <Link to="/organization/">
                       <BiHomeAlt className="mr-2" /> Dashboard
                     </Link>
                   </li>
@@ -95,6 +95,7 @@ const OrganizationCustomization = () => {
                       <input
                         type="checkbox"
                         defaultChecked
+                        disabled
                         name="leave"
                         className="checkbox checkbox-primary"
                       />
@@ -133,6 +134,7 @@ const OrganizationCustomization = () => {
                       <input
                         type="checkbox"
                         defaultChecked
+                        disabled
                         name="review"
                         className="checkbox checkbox-primary"
                       />
@@ -171,6 +173,7 @@ const OrganizationCustomization = () => {
                       <input
                         type="checkbox"
                         defaultChecked
+                        readOnly
                         name="holiday"
                         className="checkbox checkbox-primary"
                       />

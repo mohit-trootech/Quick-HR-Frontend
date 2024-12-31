@@ -23,6 +23,7 @@ import {
   createOrganizationSuccess,
   createOrganizationUserSuccess,
   removeUserSuccess,
+  updateOrganizationSuccess,
 } from "../utils/handleResponses";
 
 const OrganizationProvider = ({ children }) => {
@@ -32,17 +33,43 @@ const OrganizationProvider = ({ children }) => {
   const { setPrevious, setNext, setCount } = useContext(PaginationContext);
   const [organization, setOrganization] = useState(null);
   const [customization, setCustomizations] = useState(null);
+  const [departments, setDepartments] = useState(null);
   const [users, setUsers] = useState(null);
   /**Fetch Authenticated User Data if Not Available */
   useEffect(() => {
     getAuthenticatedUser();
     return () => {};
   }, []);
+  const getDepartments = async () => {
+    /**Create Organization Departments */
+    const response = await GetRequest(
+      BaseUrlPath + "/api/departments/",
+      getBearerToken,
+      null,
+      null,
+      updatePreloader
+    );
+    response && setDepartments(response.data);
+  };
+  const createDepartment = async (data) => {
+    /**Create Organization Departments */
+    let response = await PostRequest(
+      BaseUrlPath + "/api/departments/",
+      data,
+      getBearerToken,
+      null,
+      null,
+      updatePreloader
+    );
+    response && departments
+      ? setDepartments([response.data, ...departments])
+      : setDepartments([response.data]);
+  };
   /**Fetch Authenticated User Organization */
   const getOrganization = async (query_params) => {
-    if (auth) {
+    if (auth && auth.organization_admin) {
       const response = await GetRequest(
-        `${BaseUrlPath}/api/organizations/${auth.organization.id}/${
+        `${BaseUrlPath}/api/organizations/${auth.organization_admin.id}/${
           query_params || ""
         }`,
         getBearerToken,
@@ -69,10 +96,25 @@ const OrganizationProvider = ({ children }) => {
       response && setOrganization(response.data);
     }
   };
+  /**Create a New Organization */
+  const updateOrganization = async (data) => {
+    if (auth) {
+      let id = toast.loading("Please Wait, Updating Organization...");
+      let response = await PatchRequest(
+        `${BaseUrlPath}/api/organizations/${organization.id}/`,
+        data,
+        getBearerToken,
+        updateOrganizationSuccess,
+        id,
+        updatePreloader
+      );
+      response && setOrganization(response.data);
+    }
+  };
   /**Organization Users */
   const getOrganizationUsers = async (query_params) => {
     const response = await GetRequest(
-      `${BaseUrlPath}/api/organization-users/${query_params}`,
+      `${BaseUrlPath}/api/organization-users/${query_params || ""}`,
       getBearerToken,
       null,
       null,
@@ -134,7 +176,10 @@ const OrganizationProvider = ({ children }) => {
     updateCustomization,
     getOrganizationUsers,
     createOrganizationUser,
+    updateOrganization,
     removeOrganizationUser,
+    getDepartments,
+    createDepartment,
   };
   return (
     <OrganizationContext.Provider value={data}>
