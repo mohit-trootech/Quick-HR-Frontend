@@ -19,9 +19,9 @@ const DashboardProvider = ({ children }) => {
   const [broadCastMessages, setBroadCastMessages] = useState(null);
 
   /**BroadCast Messages */
-  const getBroadCastMessages = async () => {
+  const getBroadCastMessages = async (query_params) => {
     const response = await GetRequest(
-      BaseUrlPath + "/api/broadcasts/",
+      `${BaseUrlPath}/api/broadcasts/${query_params || ""}`,
       getBearerToken,
       null,
       null,

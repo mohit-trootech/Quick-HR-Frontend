@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /**Holiday Component */
 /**React Hooks */
-import { Form, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 
 /**Contexts */
@@ -27,6 +27,8 @@ import { BaseUrlPath } from "../../utils/contants";
 import { getBearerToken } from "../../utils/utils";
 import { FaInfoCircle } from "react-icons/fa";
 import SidenavDrawer from "../../components/SidenavDrawer";
+import { toast } from "react-toastify";
+import { handleCsvSubmitSuccess } from "../../utils/handleResponses";
 
 const Holiday = () => {
   const [holidays, setHolidays] = useState(null);
@@ -57,6 +59,20 @@ const Holiday = () => {
       updatePreloader
     );
     response && getHolidays();
+  };
+  const handleCsvSubmit = async (event) => {
+    // Handle CSV Submit
+    event.preventDefault();
+    let id = toast.loading("Uploading Holidays CSV...");
+    let response = await PostRequest(
+      `${BaseUrlPath}/api/holidays/holidays_csv_upload/`,
+      new FormData(event.target),
+      getBearerToken,
+      handleCsvSubmitSuccess,
+      id,
+      null
+    );
+    console.log(response);
   };
   const handleChange = (event) => {
     event.preventDefault();
@@ -106,8 +122,8 @@ const Holiday = () => {
                 </ul>
               </div>
             </div>
-            <div className="flex justify-between my-5 items-center">
-              <label className="input input-sm input-bordered flex items-center gap-2 w-1/3">
+            <div className="flex flex-col md:flex-row gap-2 justify-between my-5 items-center">
+              <label className="input input-sm input-bordered flex items-center gap-2 md:w-1/3 w-full">
                 <input
                   type="text"
                   onChange={handleChange}
@@ -116,11 +132,38 @@ const Holiday = () => {
                 />
                 <FaMagnifyingGlass className="h-4 w-4 opacity-70" />
               </label>
-              <div className="flex gap-2 items-center">
+              <div className="flex flex-col md:flex-row gap-2 justify-end items-center w-full">
+                <details className="dropdown dropdown-bottom w-full md:w-auto">
+                  <summary className="btn btn-sm m-1 w-full md:w-auto">
+                    Read CSV
+                  </summary>
+                  <form
+                    method="POST"
+                    onSubmit={handleCsvSubmit}
+                    encType="multipart/form-data"
+                    className="menu dropdown-content bg-base-100 rounded-box z-[999] w-60 p-2 shadow-lg gap-3 border"
+                  >
+                    <label className="form-control w-full">
+                      <div className="label">
+                        <span className="label-text text-xs">
+                          Pick Holidays CSV
+                        </span>
+                      </div>
+                      <input
+                        type="file"
+                        name="csv"
+                        className="file-input file-input-sm file-input-bordered w-full"
+                      />
+                    </label>
+                    <button className="btn btn-sm btn-primary w-full">
+                      Upload
+                    </button>
+                  </form>
+                </details>
                 {auth && auth.department.name === "hr" && (
                   <>
                     <button
-                      className="btn btn-sm  bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:bg-gradient-to-l"
+                      className="btn btn-sm  bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:bg-gradient-to-l w-full md:w-auto"
                       onClick={() =>
                         document.getElementById("add_holiday").showModal()
                       }
@@ -133,7 +176,7 @@ const Holiday = () => {
                 {holidays && (
                   <>
                     <button
-                      className="btn btn-sm  bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:bg-gradient-to-l"
+                      className="btn btn-sm  bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:bg-gradient-to-l w-full md:w-auto"
                       onClick={() =>
                         document
                           .getElementById("holiday_calender_view")
@@ -150,30 +193,30 @@ const Holiday = () => {
             <div className="p-5">
               {(holidays && count && (
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left table-auto min-w-max">
+                  <table className="w-full text-left table-auto min-w-max rounded-lg">
                     <thead>
                       <tr>
-                        <th className="p-4 border-b border-slate-200 bg-slate-50">
+                        <th className="p-4 border-b border-slate-200 bg-base-300">
                           <p className="text-sm font-normal leading-none text-slate-500">
                             ID
                           </p>
                         </th>
-                        <th className="p-4 border-b border-slate-200 bg-slate-50">
+                        <th className="p-4 border-b border-slate-200 bg-base-300">
                           <p className="text-sm font-normal leading-none text-slate-500">
                             Title
                           </p>
                         </th>
-                        <th className="p-4 border-b border-slate-200 bg-slate-50">
+                        <th className="p-4 border-b border-slate-200 bg-base-300">
                           <p className="text-sm font-normal leading-none text-slate-500">
                             Starts From
                           </p>
                         </th>
-                        <th className="p-4 border-b border-slate-200 bg-slate-50">
+                        <th className="p-4 border-b border-slate-200 bg-base-300">
                           <p className="text-sm font-normal leading-none text-slate-500">
                             Ends On
                           </p>
                         </th>
-                        <th className="p-4 border-b border-slate-200 bg-slate-50">
+                        <th className="p-4 border-b border-slate-200 bg-base-300">
                           <p className="text-sm font-normal leading-none text-slate-500">
                             No of Days
                           </p>

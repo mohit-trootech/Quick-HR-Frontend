@@ -20,7 +20,10 @@ const BroadCastMessagesModal = ({ message }) => {
             </button>
           </form>
           <h3 className="capitalize font-bold text-lg"> {message.title}!</h3>
-          <p className="py-4">{message.description}</p>
+          <p
+            className="py-4 md:prose"
+            dangerouslySetInnerHTML={{ __html: message.description }}
+          ></p>
           <div className="modal-action">
             <button className="btn btn-sm">{message.created_ago} ago </button>
           </div>

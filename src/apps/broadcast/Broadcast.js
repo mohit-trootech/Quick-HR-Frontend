@@ -1,7 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /**Broadcast Page */
 import { useContext, useState } from "react";
-import { DashboardContext, PreloadContext } from "../../context/Contexts";
+import {
+  DashboardContext,
+  PreloadContext,
+  PaginationContext,
+} from "../../context/Contexts";
 import { useEffect } from "react";
 import Sidebar from "../../components/Sidebar";
 import SidenavDrawer from "../../components/SidenavDrawer";
@@ -17,8 +21,18 @@ const Broadcast = () => {
   /**Broadcast Page Component */
   const { preload } = useContext(PreloadContext);
   const [messageDetail, setMessageDetail] = useState(null);
+  const { previous, next } = useContext(PaginationContext);
   const { broadCastMessages, getBroadCastMessages, createBroadCastMessage } =
     useContext(DashboardContext);
+  const handleClickPageNumber = (event) => {
+    event.preventDefault();
+    event.preventDefault();
+    let url =
+      event.target.href.split("?")[1] === undefined
+        ? "page=1"
+        : event.target.href.split("?")[1];
+    getBroadCastMessages("?" + url);
+  };
   const handleClick = (message) => {
     setMessageDetail(message);
     document.getElementById(`broadcast_detail`).showModal();
@@ -69,18 +83,41 @@ const Broadcast = () => {
             </div>
             <div className="p-5">
               {(broadCastMessages && (
-                <div className="flex flex-col md:grid md:grid-cols-3 gap-3 items-center justify-around flex-wrap">
-                  <>
-                    {broadCastMessages.map((message, index) => (
-                      <BroadcastMessageCard
-                        key={index}
-                        message={message}
-                        handleClick={handleClick}
-                      />
-                    ))}
-                  </>
-                  <BroadcastDetailModal messageDetail={messageDetail} />
-                </div>
+                <>
+                  <div className="flex flex-col md:grid md:grid-cols-3 gap-3 items-center justify-around flex-wrap">
+                    <>
+                      {broadCastMessages.map((message, index) => (
+                        <BroadcastMessageCard
+                          key={index}
+                          message={message}
+                          handleClick={handleClick}
+                        />
+                      ))}
+                    </>
+                    <BroadcastDetailModal messageDetail={messageDetail} />
+                  </div>
+                  {/* Pagination */}
+                  <div className="join m-5 flex justify-end">
+                    <a
+                      role="button"
+                      onClick={handleClickPageNumber}
+                      href={previous}
+                      disabled={!previous}
+                      className="btn btn-info join-item"
+                    >
+                      Previous
+                    </a>
+                    <a
+                      role="button"
+                      onClick={handleClickPageNumber}
+                      disabled={!next}
+                      href={next}
+                      className="btn btn-primary join-item"
+                    >
+                      Next
+                    </a>
+                  </div>
+                </>
               )) || (
                 <>
                   <div className="alert shadow-lg">

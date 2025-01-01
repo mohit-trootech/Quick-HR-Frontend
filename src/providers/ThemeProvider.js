@@ -4,7 +4,7 @@ import { getLocalStorage, updateLocalStorage } from "../utils/utils";
 import { ThemeContext } from "../context/Contexts";
 const ThemeProvider = ({ children }) => {
   /**Theme Provider Context */
-  const [theme, setTheme] = useState(getLocalStorage("theme") || "dark");
+  const [theme, setTheme] = useState(getLocalStorage("theme") || "light");
   const updateTheme = (event) => {
     setTheme(event.target.value);
     updateLocalStorage("theme", event.target.value);

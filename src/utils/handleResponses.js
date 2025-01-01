@@ -87,3 +87,8 @@ export const newResignationCreated = (response, id) => {
   /**Handle New Resignation Create Success Response */
   SuccessToast(id, "Resignation Request Created Successfully..");
 };
+
+export const handleCsvSubmitSuccess = (response, id) => {
+  /**Handle CSV Submit Success Response */
+  SuccessToast(id, response.data);
+};

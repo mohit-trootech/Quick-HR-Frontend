@@ -49,7 +49,7 @@ const Profile = () => {
           {/* User Details */}
           <div className="border-t border-gray-200 rounded-lg">
             <dl className="capitalize">
-              <div className="bg-base-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 hover:bg-gray-300">
+              <div className="bg-base-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 hover:bg-base-100">
                 <dt className="text-sm font-medium text-gray-500">Full name</dt>
                 <dd className="mt-1 text-sm sm:mt-0 sm:col-span-2">
                   {(user &&
@@ -58,25 +58,25 @@ const Profile = () => {
                     (user && user.username)}
                 </dd>
               </div>
-              <div className="bg-base-300 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 hover:bg-gray-300">
+              <div className="bg-base-300 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 hover:bg-base-100">
                 <dt className="text-sm font-medium text-gray-500">Email</dt>
                 <dd className="mt-1 text-sm sm:mt-0 sm:col-span-2 lowercase">
                   {user && user.email}
                 </dd>
               </div>
-              <div className="bg-base-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 hover:bg-gray-300">
+              <div className="bg-base-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 hover:bg-base-100">
                 <dt className="text-sm font-medium text-gray-500">Age</dt>
                 <dd className="mt-1 text-sm sm:mt-0 sm:col-span-2">
                   {(user && user.age && `${user.age} Years Old`) || "N/A"}
                 </dd>
               </div>
-              <div className="bg-base-300 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 hover:bg-gray-300">
+              <div className="bg-base-300 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 hover:bg-base-100">
                 <dt className="text-sm font-medium text-gray-500">Address</dt>
                 <dd className="mt-1 text-sm sm:mt-0 sm:col-span-2">
                   {(user && user.address) || "N/A"}
                 </dd>
               </div>
-              <div className="bg-base-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 hover:bg-gray-300">
+              <div className="bg-base-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 hover:bg-base-100">
                 <dt className="text-sm font-medium text-gray-500">
                   Verification Status
                 </dt>
@@ -84,7 +84,7 @@ const Profile = () => {
                   {user && user.is_verified ? "Verified" : "Not Verified"}
                 </dd>
               </div>
-              <div className="bg-base-300 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 hover:bg-gray-300">
+              <div className="bg-base-300 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 hover:bg-base-100">
                 <dt className="text-sm font-medium text-gray-500">
                   Date Joined
                 </dt>

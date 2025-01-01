@@ -33,16 +33,9 @@ import ProjectProvider from "./providers/ProjectProvider";
 import ResignationProvider from "./providers/ResignationProvider";
 import Profile from "./apps/accounts/Profile";
 import ThemeProvider from "./providers/ThemeProvider";
-// Contexts
-import { ThemeContext } from "./context/Contexts";
-import { useContext, useEffect } from "react";
 import Broadcast from "./apps/broadcast/Broadcast";
 
 function App() {
-  const { theme } = useContext(ThemeContext);
-  useEffect(() => {
-    theme && document.querySelector("html").setAttribute("data-theme", theme);
-  }, [theme]);
   return (
     <BrowserRouter>
       <ThemeProvider>

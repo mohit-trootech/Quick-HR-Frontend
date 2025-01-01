@@ -6,7 +6,7 @@ const BroadcastMessageCard = ({ message, handleClick }) => {
   return (
     <div
       onClick={() => handleClick(message)}
-      className="card static bordered hover:shadow-lg w-full"
+      className="card static bordered hover:shadow-lg w-full cursor-pointer"
     >
       <div className="card-body">
         <h2 className="card-title">{message.title}</h2>
