@@ -67,11 +67,21 @@ const OrganizationProvider = ({ children }) => {
   };
   /**Fetch Authenticated User Organization */
   const getOrganization = async (query_params) => {
-    if (auth && auth.organization.id) {
+    /**Fetch Authenticated User Organization */
+    let url = null;
+
+    if (window.location.pathname.includes("organization")) {
+      url = `${BaseUrlPath}/api/organizations/${
+        auth && auth.organization_admin.id
+      }/${query_params || ""}`;
+    } else {
+      url = `${BaseUrlPath}/api/organizations/${
+        (auth && auth.organization && auth.organization.id) || ""
+      }${query_params || ""}`;
+    }
+    if (auth) {
       const response = await GetRequest(
-        `${BaseUrlPath}/api/organizations/${auth.organization.id}/${
-          query_params || ""
-        }`,
+        url,
         getBearerToken,
         null,
         null,

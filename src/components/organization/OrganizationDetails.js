@@ -7,12 +7,12 @@ const OrganizationDetails = ({ organization }) => {
     <>
       <div className="card static hover:shadow-xl transition-all duration-300">
         <div className="card-content static border p-4 rounded-xl">
-          <div className="flex justify-between items-center gap-x-3">
-            <div className="flex items-center">
+          <div className="flex justify-between items-center gap-3">
+            <div className="flex items-center gap-2 truncate">
               <img
                 src={organization.logo || emptyImg}
                 alt="logo"
-                className="avtar w-10 h-10"
+                className="avtar rounded-full w-10 h-10"
               />
               <p>{organization.name}</p>
             </div>
@@ -31,7 +31,7 @@ const OrganizationDetails = ({ organization }) => {
           <div className="divider mr-3 my-0"></div>
           <div className="relative group flex items-center justify-center overflow-hidden">
             <div className="group relative mx-auto w-8/12 h-72">
-              <div className="relative leading-7 -left-9 top-0 z-10 w-full h-full rounded-xl bg-[#3d348b] px-5 py-3 text-base font-semibold transition-all duration-700 group-hover:-left-14">
+              <div className="truncate relative leading-7 -left-9 top-0 z-10 w-full h-full rounded-xl bg-[#3d348b] px-5 py-3 text-base font-semibold transition-all duration-700 group-hover:-left-12 md:group-hover:-left-14">
                 <div className="flex flex-col gap-4">
                   <div className="flex items-center gap-2">
                     <TbTrophy className="text-xl text-secondary" />
