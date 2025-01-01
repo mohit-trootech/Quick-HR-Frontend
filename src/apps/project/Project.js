@@ -173,7 +173,7 @@ const Project = () => {
                       <a
                         role="button"
                         onClick={handleClick}
-                        disabled={next}
+                        disabled={!next}
                         href={next}
                         className="btn btn-primary join-item"
                       >

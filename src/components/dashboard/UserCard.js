@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /**Dashboard UserCard Coponent */
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import profile from "../../static/img/no-profile.webp";
 import { FaArrowDown } from "react-icons/fa";

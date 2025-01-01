@@ -27,13 +27,15 @@ const ReviewProvider = ({ children }) => {
   /*Post Review */
   const postReview = async (data) => {
     let id = toast.loading("Please Wait, Creating Review...");
-    await PostRequest(
+    let response = await PostRequest(
       BaseUrlPath + "/api/reviews/",
       data,
       getBearerToken,
       postReviewSuccess,
       id
     );
+    response && reviews && setReviews([response.data, ...reviews]);
+    response && setReviews([response.data]);
   };
 
   const getRecentReviews = async () => {

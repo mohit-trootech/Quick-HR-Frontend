@@ -65,7 +65,7 @@ const OrganizationCreateUserModal = ({ handleSubmit, departments }) => {
                   <span className="label-text">Designation</span>
                 </div>
                 <select
-                  name="department"
+                  name="designation"
                   className="select select-sm select-bordered w-full"
                   required
                 >

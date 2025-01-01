@@ -72,7 +72,7 @@ const Review = () => {
                 <div>
                   <FilterReviews getAllReviews={getAllReviews} />
                 </div>
-                <div>
+                <div className="flex gap-3 items-center">
                   {auth && auth.designation === MANAGER && (
                     <button
                       className="btn btn-sm btn-primary"
@@ -97,7 +97,7 @@ const Review = () => {
               {/* Reviews */}
               <div className="">
                 {reviews && reviews.length > 0 ? (
-                  <>
+                  <div key={reviews.id}>
                     <div className="flex flex-wrap items-center justify-around">
                       {reviews.map((review) => {
                         return <ReviewCard key={review.id} review={review} />;
@@ -124,7 +124,7 @@ const Review = () => {
                         Next
                       </a>
                     </div>
-                  </>
+                  </div>
                 ) : (
                   <div className="alert alert-warning shadow-lg">
                     <div>

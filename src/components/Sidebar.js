@@ -39,7 +39,7 @@ const Sidebar = () => {
         )}
         <div className="pl-3">
           {/* Card */}
-          <UserCard auth={auth} />
+          <UserCard user={auth && auth.user} />
           <div className="divider mr-3 my-0"></div>
           {/* Stats */}
           <Stats />

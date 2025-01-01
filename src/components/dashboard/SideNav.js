@@ -23,30 +23,26 @@ const SideNav = ({ customization }) => {
             <MdDashboard /> Dashboard
           </NavLink>
         </li>
-        {customization && customization.leave && (
-          <li>
-            <NavLink
-              role="button"
-              to="/leaves/"
-              className="flex flex-row justify-start gap-2 items-center"
-              end
-            >
-              <SlCalender /> Leave
-            </NavLink>
-          </li>
-        )}
-        {customization && customization.holiday && (
-          <li>
-            <NavLink
-              to="/holidays/"
-              role="button"
-              className="flex flex-row justify-start gap-2 items-center"
-              end
-            >
-              <FaList /> Holiday
-            </NavLink>
-          </li>
-        )}
+        <li>
+          <NavLink
+            role="button"
+            to="/leaves/"
+            className="flex flex-row justify-start gap-2 items-center"
+            end
+          >
+            <SlCalender /> Leave
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/holidays/"
+            role="button"
+            className="flex flex-row justify-start gap-2 items-center"
+            end
+          >
+            <FaList /> Holiday
+          </NavLink>
+        </li>
         {customization && customization.salary && (
           <li>
             <NavLink
@@ -71,18 +67,16 @@ const SideNav = ({ customization }) => {
             </NavLink>
           </li>
         )}
-        {customization && customization.review && (
-          <li>
-            <NavLink
-              role="button"
-              to="/review/"
-              className="flex flex-row justify-start gap-2 items-center"
-              end
-            >
-              <VscPreview /> Review
-            </NavLink>
-          </li>
-        )}
+        <li>
+          <NavLink
+            role="button"
+            to="/review/"
+            className="flex flex-row justify-start gap-2 items-center"
+            end
+          >
+            <VscPreview /> Review
+          </NavLink>
+        </li>
         {customization && customization.overtime && (
           <li>
             <NavLink

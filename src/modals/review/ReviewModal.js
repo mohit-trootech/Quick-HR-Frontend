@@ -45,10 +45,10 @@ const ReviewModal = () => {
                     return (
                       <option
                         className="capitalize"
-                        key={user.id}
-                        value={user.id}
+                        key={user.user.id}
+                        value={user.user.id}
                       >
-                        {user.username}
+                        {user.user.username}
                       </option>
                     );
                   })}

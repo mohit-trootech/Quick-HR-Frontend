@@ -1,23 +1,28 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /**Holiday Component */
 /**React Hooks */
-import { Link } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 
 /**Contexts */
-import { PaginationContext, PreloadContext } from "../../context/Contexts";
+import {
+  PaginationContext,
+  PreloadContext,
+  AuthContext,
+} from "../../context/Contexts";
 
 /**Components */
 import Sidebar from "../../components/Sidebar";
 import HolidayTable from "../../tables/HolidayTable";
 import HolidayCalenderView from "../../components/holiday/HolidayCalenderView";
 import Preloader from "../../components/Preloader";
+import AddHolidayModal from "../../modals/AddHolidayModal";
 /**Icons */
 import { BiHomeAlt, BiCalendar } from "react-icons/bi";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
 /**Utility Functions & Constants */
-import { GetRequest } from "../../utils/AxiosRequest";
+import { GetRequest, PostRequest } from "../../utils/AxiosRequest";
 import { BaseUrlPath } from "../../utils/contants";
 import { getBearerToken } from "../../utils/utils";
 import { FaInfoCircle } from "react-icons/fa";
@@ -25,12 +30,13 @@ import SidenavDrawer from "../../components/SidenavDrawer";
 
 const Holiday = () => {
   const [holidays, setHolidays] = useState(null);
+  const { auth } = useContext(AuthContext);
   const { previous, setPrevious, next, setNext, count, setCount } =
     useContext(PaginationContext);
   const { preload, updatePreloader } = useContext(PreloadContext);
-  const getHolidays = async (url) => {
+  const getHolidays = async (query_params) => {
     let response = await GetRequest(
-      BaseUrlPath + "/api/holidays/" + url,
+      `${BaseUrlPath}/api/holidays/${query_params || ""}`,
       getBearerToken,
       null,
       null,
@@ -40,6 +46,17 @@ const Holiday = () => {
     response && setNext(response.data.next);
     response && setCount(response.data.count);
     response && setHolidays(response.data.results);
+  };
+  const createHoliday = async (data) => {
+    // Create Holiday
+    let response = await PostRequest(
+      `${BaseUrlPath}/api/holidays/`,
+      data,
+      getBearerToken,
+      null,
+      updatePreloader
+    );
+    response && getHolidays();
   };
   const handleChange = (event) => {
     event.preventDefault();
@@ -54,9 +71,14 @@ const Holiday = () => {
     getHolidays("?" + url);
   };
   useEffect(() => {
-    holidays || getHolidays("");
+    holidays || getHolidays();
     return () => {};
   }, []);
+  const handleSubmit = (event) => {
+    // Handle Submit to Create New Holidays
+    event.preventDefault();
+    createHoliday(new FormData(event.target));
+  };
   return (
     <>
       {(preload && <Preloader />) || (
@@ -94,16 +116,36 @@ const Holiday = () => {
                 />
                 <FaMagnifyingGlass className="h-4 w-4 opacity-70" />
               </label>
-              {holidays && count && (
-                <button
-                  className="btn btn-sm  bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:bg-gradient-to-l"
-                  onClick={() =>
-                    document.getElementById("holiday_calender_view").showModal()
-                  }
-                >
-                  Holiday Calender View
-                </button>
-              )}
+              <div className="flex gap-2 items-center">
+                {auth && auth.department.name === "hr" && (
+                  <>
+                    <button
+                      className="btn btn-sm  bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:bg-gradient-to-l"
+                      onClick={() =>
+                        document.getElementById("add_holiday").showModal()
+                      }
+                    >
+                      Add New Holiday
+                    </button>
+                    <AddHolidayModal handleSubmit={handleSubmit} />
+                  </>
+                )}
+                {holidays && (
+                  <>
+                    <button
+                      className="btn btn-sm  bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:bg-gradient-to-l"
+                      onClick={() =>
+                        document
+                          .getElementById("holiday_calender_view")
+                          .showModal()
+                      }
+                    >
+                      Holiday Calender View
+                    </button>
+                    <HolidayCalenderView holidays={holidays} />
+                  </>
+                )}
+              </div>
             </div>
             <div className="p-5">
               {(holidays && count && (
@@ -168,8 +210,6 @@ const Holiday = () => {
                       Next
                     </a>
                   </div>
-                  {/* Calender View */}
-                  <HolidayCalenderView holidays={holidays} />
                 </div>
               )) || (
                 <>

@@ -67,9 +67,9 @@ const OrganizationProvider = ({ children }) => {
   };
   /**Fetch Authenticated User Organization */
   const getOrganization = async (query_params) => {
-    if (auth && auth.organization_admin) {
+    if (auth && auth.organization.id) {
       const response = await GetRequest(
-        `${BaseUrlPath}/api/organizations/${auth.organization_admin.id}/${
+        `${BaseUrlPath}/api/organizations/${auth.organization.id}/${
           query_params || ""
         }`,
         getBearerToken,
@@ -152,7 +152,8 @@ const OrganizationProvider = ({ children }) => {
       toast_id,
       null
     );
-    response && setUsers(users.filter((user) => user.id !== id));
+    response &&
+      setUsers(users.filter((user) => user.id !== parseInt(id)) || []);
   };
   /**Customize Organization */
   const updateCustomization = async (data) => {
@@ -178,6 +179,7 @@ const OrganizationProvider = ({ children }) => {
     createOrganizationUser,
     updateOrganization,
     removeOrganizationUser,
+    departments,
     getDepartments,
     createDepartment,
   };

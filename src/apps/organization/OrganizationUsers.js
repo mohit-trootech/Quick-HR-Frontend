@@ -1,6 +1,7 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
 /* eslint-disable react-hooks/exhaustive-deps */
 /**Organization Users */
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import OrganizationSidebar from "../../components/organization/OrganizationSidebar";
 import {
   AuthContext,
@@ -160,7 +161,7 @@ const OrganizationUsers = () => {
                       {users.map((user) => {
                         return (
                           <OrganizationUsersTable
-                            user={user}
+                            user={user.user}
                             key={user.id}
                             handleClick={handleRemoveClick}
                           />
