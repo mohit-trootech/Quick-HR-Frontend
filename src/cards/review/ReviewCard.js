@@ -70,7 +70,7 @@ const ReviewCard = ({ review }) => {
             )}
           </div>
           <button
-            className="btn glass bg-base-200 btn-sm text-sm text-zinc-500"
+            className="btn glass bg-base-200 btn-sm text-sm"
             onClick={() =>
               document.getElementById(`review_modal_${review.id}`).showModal()
             }

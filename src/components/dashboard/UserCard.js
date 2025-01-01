@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /**Dashboard UserCard Coponent */
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import profile from "../../static/img/no-profile.webp";
 import { FaArrowDown } from "react-icons/fa";
 import { LogOut } from "../../utils/LogOut";
@@ -14,8 +14,8 @@ const UserCard = ({ user }) => {
           className="rounded-lg w-14 h-14"
         />
         <div>
-          <p className="text-md text-zinc-500">Welcome,</p>
-          <div className="text-lg font-semibold text-zinc-700 flex flex-row justify-start gap-2 items-center">
+          <p className="text-md text-gray-500">Welcome,</p>
+          <div className="text-lg font-semibold flex flex-row justify-start gap-2 items-center">
             <span className="capitalize">
               {(user && user.get_full_name) || (user && user.username)}
             </span>
@@ -28,7 +28,7 @@ const UserCard = ({ user }) => {
                 className="dropdown-content menu bg-base-100 rounded-box z-[999] w-40 p-2 shadow border"
               >
                 <li>
-                  <Link to="/profile">Profile</Link>
+                  <NavLink to="/profile">Profile</NavLink>
                 </li>
                 <li>
                   <p onClick={LogOut}>Logout</p>

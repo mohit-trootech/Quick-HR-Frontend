@@ -13,6 +13,7 @@ const Login = () => {
     event.preventDefault();
     loginRequest(new FormData(event.target));
   };
+
   return (
     <>
       <div className="relative min-h-screen flex">

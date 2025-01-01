@@ -89,6 +89,16 @@ const SideNav = ({ customization }) => {
             </NavLink>
           </li>
         )}
+        <li>
+          <NavLink
+            role="button"
+            to="/broadcast"
+            className="flex flex-row justify-start gap-2 items-center"
+            end
+          >
+            <FaTowerBroadcast /> Broadcast
+          </NavLink>
+        </li>
         {customization && customization.device && (
           <li>
             <NavLink
@@ -113,7 +123,7 @@ const SideNav = ({ customization }) => {
             </NavLink>
           </li>
         )}
-        <li>
+        {/* <li>
           <details close="true">
             <summary>Other</summary>
             <ul>
@@ -148,8 +158,8 @@ const SideNav = ({ customization }) => {
                 </NavLink>
               </li>
             </ul>
-          </details>
-        </li>
+          </details>  
+        </li> */}
       </ul>
     </>
   );

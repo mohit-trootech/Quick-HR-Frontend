@@ -30,7 +30,7 @@ const Sidebar = () => {
                 alt="logo"
                 className="w-8 h-8"
               />
-              <p className="text-xl italic text-zinc-700">
+              <p className="text-xl italic text-gray-400">
                 {organization.name}
               </p>
             </div>

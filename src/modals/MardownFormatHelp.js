@@ -4,7 +4,7 @@ const MardownFormatHelp = () => {
   return (
     <>
       <dialog id="markdown_help" className="modal bg-opcaity-50">
-        <div className="modal-box w-full max-w-3xl border shadow-xl shadow-blue-900/50">
+        <div className="modal-box w-full max-w-3xl border shadow-xl">
           <form method="dialog">
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
               ✕
@@ -15,8 +15,8 @@ const MardownFormatHelp = () => {
             This text provides a brief guide on how to use Markdown for text
             formatting.
           </p>
-          <div className="px-1 py-5">
-            <table className="table w-full border p-2 rounded-xl">
+          <div className="px-3 my-3 py-5 border">
+            <table className="table w-full rounded-xl">
               <thead>
                 <tr>
                   <th>Tag</th>

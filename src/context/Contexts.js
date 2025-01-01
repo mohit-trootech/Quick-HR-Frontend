@@ -1,8 +1,7 @@
 // ThemeContext.js
 import { createContext } from "react";
 import { getLocalStorage } from "../utils/utils";
-
-export const ThemeContext = createContext(getLocalStorage("theme") || "light");
+export const ThemeContext = createContext(getLocalStorage("theme") || "dark");
 
 export const AuthContext = createContext();
 

@@ -9,23 +9,21 @@ const ProjectsTable = ({ project, setCurrent }) => {
 
   return (
     <>
-      <tr className="hover:bg-slate-50 border-b border-slate-200">
+      <tr className="hover:bg-base-300 border-b border-slate-200">
         <td className="p-4 py-5">
-          <p className="block font-semibold text-sm text-slate-800">
-            {project.title}
-          </p>
+          <p className="block font-semibold text-sm">{project.title}</p>
         </td>
         <td className="p-4 py-5">
-          <p className="text-sm text-slate-500">{project.created_ago} Ago</p>
+          <p className="text-sm">{project.created_ago} Ago</p>
         </td>
         <td className="p-4 py-5">
-          <p className="text-sm text-slate-500">
+          <p className="text-sm">
             {(project.deadline && new Date(project.deadline).toDateString()) ||
               "No Deadline"}
           </p>
         </td>
         <td className="p-4 py-5">
-          <p className="text-sm text-slate-500 flex gap-2 items-center justify-start border p-2 rounded-lg bg-base-100 w-fit hover:shadow-lg">
+          <p className="text-sm flex gap-2 items-center justify-start border p-2 rounded-lg bg-base-100 w-fit hover:shadow-lg">
             {
               <img
                 src={project.team_lead.image || profile}
@@ -37,7 +35,7 @@ const ProjectsTable = ({ project, setCurrent }) => {
           </p>
         </td>
         <td className="p-4 py-5">
-          <div className="text-sm text-slate-500 flex gap-2 items-center justify-start border p-2 rounded-lg bg-base-100 w-fit hover:shadow-lg">
+          <div className="text-sm flex gap-2 items-center justify-start border p-2 rounded-lg bg-base-100 w-fit hover:shadow-lg">
             {
               <img
                 src={project.project_manager.image || profile}
@@ -51,7 +49,7 @@ const ProjectsTable = ({ project, setCurrent }) => {
           </div>
         </td>
         <td className="p-4 py-5">
-          <p className="text-sm text-slate-500">
+          <p className="text-sm">
             <button
               onClick={() => handleClick(project)}
               className="btn btn-sm btn-primary"

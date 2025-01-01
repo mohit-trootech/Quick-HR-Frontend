@@ -7,9 +7,11 @@ import {
   PaginationContext,
 } from "../context/Contexts";
 /**Utils Functions & Constants */
-import { GetRequest } from "../utils/AxiosRequest";
+import { GetRequest, PostRequest } from "../utils/AxiosRequest";
 import { getBearerToken } from "../utils/utils";
 import { BaseUrlPath } from "../utils/contants";
+import { createBroadCastMessageSuccess } from "../utils/handleResponses";
+import { toast } from "react-toastify";
 const DashboardProvider = ({ children }) => {
   /**Dashboard States */
   const { updatePreloader } = useContext(PreloadContext);
@@ -30,9 +32,25 @@ const DashboardProvider = ({ children }) => {
     response && setNext(response.data.next);
     response && setCount(response.data.count);
   };
+  const createBroadCastMessage = async (data) => {
+    let id = toast.loading("Creating Broadcast Message...");
+    const response = await PostRequest(
+      BaseUrlPath + "/api/broadcasts/",
+      data,
+      getBearerToken,
+      createBroadCastMessageSuccess,
+      id,
+      null
+    );
+    response &&
+      broadCastMessages &&
+      setBroadCastMessages([response.data, ...broadCastMessages]);
+    response && setBroadCastMessages([response.data]);
+  };
   const data = {
     broadCastMessages,
     getBroadCastMessages,
+    createBroadCastMessage,
   };
 
   return (

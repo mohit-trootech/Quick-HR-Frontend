@@ -5,14 +5,12 @@ const OrganizationUsers = ({ user, handleClick }) => {
   /**User Table DaisyUI Component */
   return (
     <>
-      <tr className="hover:bg-slate-50 border-b border-slate-200 capitalize">
+      <tr className="hover:bg-base-200 border-b border-slate-200 capitalize">
         <td className="p-4 py-5">
-          <p className="block font-semibold text-sm text-slate-800">
-            {user.id}
-          </p>
+          <p className="block font-semibold text-sm">{user.id}</p>
         </td>
         <td className="p-4 py-5">
-          <p className="text-sm text-slate-500">
+          <p className="text-sm">
             {(user.image && (
               <img
                 src={user.image}
@@ -29,15 +27,13 @@ const OrganizationUsers = ({ user, handleClick }) => {
           </p>
         </td>
         <td className="p-4 py-5">
-          <p className="text-sm text-slate-500">{user.username}</p>
+          <p className="text-sm">{user.username}</p>
         </td>
         <td className="p-4 py-5">
-          <p className="text-sm text-slate-500">
-            {user.get_full_name || "No Full name"}
-          </p>
+          <p className="text-sm">{user.get_full_name || "No Full name"}</p>
         </td>
         <td className="p-4 py-5">
-          <div className="text-sm text-slate-500">
+          <div className="text-sm">
             <p className="join">
               <button
                 onClick={handleClick}

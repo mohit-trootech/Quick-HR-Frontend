@@ -12,9 +12,9 @@ const Broadcast = () => {
         <div className="card-body">
           <div className="flex flex-row justify-start gap-x-2 items-center">
             <h2 className="card-title capitalize">Broadcast Messages</h2>
-            <span>
+            <a href="/broadcast" className="hover:text-primary">
               <BsArrowDownLeftCircleFill className="hover:text-primary hover:rotate-180 transition duration-200" />
-            </span>
+            </a>
           </div>
           {(broadCastMessages &&
             broadCastMessages.length > 0 &&

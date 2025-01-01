@@ -76,6 +76,10 @@ const TimeTracker = () => {
       event.target.id
     );
   };
+  const handleBreakClick = (event) => {
+    event.preventDefault();
+    createActivity(new FormData(event.target));
+  };
   return (
     <>
       <div className="w-full md:col-span-2">
@@ -242,6 +246,7 @@ const TimeTracker = () => {
               <button
                 disabled={activity ? true : false}
                 className="btn btn-warning w-full text-lg p-0"
+                onClick={handleBreakClick}
               >
                 Start Break
                 <MdOutlineFreeBreakfast />

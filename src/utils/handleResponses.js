@@ -60,7 +60,10 @@ export const updateOrganizationSuccess = (response, id) => {
   /**Handle Update Organization Success Response */
   SuccessToast(id, "Organization Updated Successfully");
 };
-
+export const createBroadCastMessageSuccess = (response, id) => {
+  /**Handle Create Broadcast Message Success Response */
+  SuccessToast(id, "Broadcast Message Created Successfully");
+};
 export const removeUserSuccess = (response, id) => {
   /**Handle Remove User Success Response */
   SuccessToast(id, "User Removed Successfully");

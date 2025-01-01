@@ -1,12 +1,12 @@
 // UserProvider.js
-import React, { useState } from "react";
-import { UserContext } from "../context/Contexts";
+import React, { useState, useContext } from "react";
+import { UserContext, PreloadContext, AuthContext } from "../context/Contexts";
 import {
   urlLogin,
   urlForgotPassword,
   urlForgotPasswordOtpSubmit,
 } from "../utils/contants";
-import { PostRequest, GetRequest } from "../utils/AxiosRequest";
+import { PostRequest, GetRequest, PatchRequest } from "../utils/AxiosRequest";
 import { toast } from "react-toastify";
 import {
   handleLogin,
@@ -20,9 +20,13 @@ import { getBearerToken } from "../utils/utils";
 const UserProvider = ({ children }) => {
   /**User App States */
   let id = null;
+  const { updatePreloader } = useContext(PreloadContext);
+  const { auth } = useContext(AuthContext);
   const [toggle, setToggle] = useState(false);
   const [projectManagers, setProjectManagers] = useState(null);
   const [usersList, setUsersList] = useState(null);
+  const [user, setUser] = useState(null);
+  /**User App Functions */
   const loginRequest = async (data) => {
     id = toast.loading("Please Wait, Logging in...");
     await PostRequest(urlLogin, data, null, handleLogin, id);
@@ -99,7 +103,30 @@ const UserProvider = ({ children }) => {
     );
     response && setUsersList(response.data.results);
   };
-
+  /**Get User Profile Details */
+  const getUserProfile = async () => {
+    if (auth) {
+      const response = await GetRequest(
+        `${BaseUrlPath}/accounts/profile/${auth && auth.user.id}/`,
+        getBearerToken,
+        null,
+        null,
+        updatePreloader
+      );
+      response && setUser(response.data);
+    }
+  };
+  /**Update User Profile */
+  const updateUserProfile = async (data) => {
+    let response = await PatchRequest(
+      `${BaseUrlPath}/accounts/profile/${auth && auth.user.id}/`,
+      data,
+      getBearerToken,
+      null,
+      updatePreloader
+    );
+    response && setUser(response.data);
+  };
   const data = {
     loginRequest,
     forgotPassword,
@@ -114,6 +141,9 @@ const UserProvider = ({ children }) => {
     getUsersList,
     projectManagers,
     usersList,
+    user,
+    getUserProfile,
+    updateUserProfile,
   };
   return <UserContext.Provider value={data}>{children}</UserContext.Provider>;
 };

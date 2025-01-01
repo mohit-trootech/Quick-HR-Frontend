@@ -1,13 +1,13 @@
 /**Theme Provider */
 import React, { useState } from "react";
-import { loadLocalstorage, SaveUpdateLocalstorage } from "../utils/BaseUtils";
-import { ThemeContext } from "../contexts/Contexts";
+import { getLocalStorage, updateLocalStorage } from "../utils/utils";
+import { ThemeContext } from "../context/Contexts";
 const ThemeProvider = ({ children }) => {
   /**Theme Provider Context */
-  const [theme, setTheme] = useState(loadLocalstorage("theme") || "light");
+  const [theme, setTheme] = useState(getLocalStorage("theme") || "dark");
   const updateTheme = (event) => {
     setTheme(event.target.value);
-    SaveUpdateLocalstorage("theme", event.target.value);
+    updateLocalStorage("theme", event.target.value);
   };
   const data = { updateTheme, theme };
   return <ThemeContext.Provider value={data}>{children}</ThemeContext.Provider>;

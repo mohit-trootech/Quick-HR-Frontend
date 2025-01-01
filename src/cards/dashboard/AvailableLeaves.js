@@ -29,7 +29,7 @@ const AvailableLeaves = () => {
               </Link>
             </div>
             <div className="lg:grid lg:grid-cols-2 flex flex-col gap-2">
-              <div className="flex gap-2">
+              <div className="flex gap-2 truncate">
                 <div className="stat-figure">
                   <div className="p-2 border rounded-full hover:border-secondary duration-200 hover:shadow-inner static">
                     <GiWaveSurfer />
@@ -42,7 +42,7 @@ const AvailableLeaves = () => {
                   <div className="text-zinc-500">Casual</div>
                 </div>
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-2 truncate">
                 <div className="stat-figure">
                   <div className="p-2 border rounded-full hover:border-secondary duration-200 hover:shadow-inner static">
                     <MdEmergency />
@@ -55,7 +55,7 @@ const AvailableLeaves = () => {
                   <div className="text-zinc-500">Emergency</div>
                 </div>
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-2 truncate">
                 <div className="stat-figure">
                   <div className="p-2 border rounded-full hover:border-secondary duration-200 hover:shadow-inner static">
                     <FaCashRegister />
@@ -68,7 +68,7 @@ const AvailableLeaves = () => {
                   <div className="text-zinc-500">Encashment</div>
                 </div>
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-2 truncate">
                 <div className="stat-figure">
                   <div className="p-2 border rounded-full hover:border-secondary duration-200 hover:shadow-inner static">
                     <GiEmptyHourglass />

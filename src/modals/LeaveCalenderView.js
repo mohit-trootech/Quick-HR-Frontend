@@ -24,9 +24,9 @@ const LeaveCalenderView = ({ leave }) => {
           </form>
           <h3 className="font-bold text-lg text-start">Leave Calender View!</h3>
           <div className="py-4">
-            <div className="flex flex-col bg-zinc-200 p-3 rounded-xl mb-3 capitalize">
+            <div className="flex flex-col p-3 rounded-xl mb-3 capitalize">
               <h1 className="text-xl text-start font-bold">{leave.title}</h1>
-              <p className="text-zinc-400 text-start">{leave.description}</p>
+              <p className="text-start">{leave.description}</p>
               <div className="divider p-0 m-0"></div>
               <div className="flex justify-between items-center hover:bg-base-200 p-2 rounded-lg">
                 <div>Duration</div>
@@ -61,7 +61,8 @@ const LeaveCalenderView = ({ leave }) => {
                   >
                     {leave.status}
                   </div>
-                ) : auth && auth.user.id !== leave.user.id ? (
+                ) : // TODO: Update Condition So that only the user who created the leave can't  update it
+                auth && auth.user.id === leave.user.id ? (
                   <form
                     className="flex gap-x-3 items-center justify-end"
                     onSubmit={handleSubmit}
