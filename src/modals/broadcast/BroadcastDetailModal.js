@@ -38,9 +38,9 @@ const BroadcastDetailModal = ({ messageDetail }) => {
             )) ||
               "No Message Selected"}
           </div>
-          <div className="modal-action">
+          <form method="dialog" className="modal-action">
             <button className="btn btn-sm btn-primary">Close</button>
-          </div>
+          </form>
         </div>
       </dialog>
     </>

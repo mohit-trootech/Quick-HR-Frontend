@@ -1,11 +1,7 @@
 // UserProvider.js
 import React, { useState, useContext } from "react";
 import { UserContext, PreloadContext, AuthContext } from "../context/Contexts";
-import {
-  urlLogin,
-  urlForgotPassword,
-  urlForgotPasswordOtpSubmit,
-} from "../utils/contants";
+import { urlLogin, urlForgotPasswordOtpSubmit } from "../utils/contants";
 import { PostRequest, GetRequest, PatchRequest } from "../utils/AxiosRequest";
 import { toast } from "react-toastify";
 import {
@@ -13,6 +9,7 @@ import {
   handleForgotPassword,
   organizationRegisterSuccess,
   organizationLoginSuccess,
+  otpRequestSuccess,
 } from "../utils/handleResponses";
 import { BaseUrlPath } from "../utils/contants";
 import { getBearerToken } from "../utils/utils";
@@ -31,17 +28,33 @@ const UserProvider = ({ children }) => {
     id = toast.loading("Please Wait, Logging in...");
     await PostRequest(urlLogin, data, null, handleLogin, id);
   };
-  const forgotPassword = async (data) => {
-    id = toast.loading("Please wait, Verifying Email...");
+  const otpRequest = async (data) => {
+    id = toast.loading("Please Wait, Verifying Email...");
     let response = await PostRequest(
-      urlForgotPassword,
+      BaseUrlPath + "/accounts/otp-request/",
       data,
       null,
-      handleForgotPassword,
+      otpRequestSuccess,
       id
     );
     return response;
   };
+  const accountVerificationRequest = async (data) => {
+    id = toast.loading("Please Wait, Verifying OTP...");
+    let response = await PostRequest(
+      BaseUrlPath + "/accounts/account-verification/",
+      data,
+      null,
+      handleLogin,
+      id
+    );
+    response &&
+      toast.update(id, {
+        render: "Account Verified Successfully",
+        type: "success",
+      });
+  };
+  /**Forgot Password */
   const forgotPasswordOtpSubmit = async (data) => {
     id = toast.loading("Please wait, Verifying OTP...");
     await PostRequest(
@@ -129,8 +142,6 @@ const UserProvider = ({ children }) => {
   };
   const data = {
     loginRequest,
-    forgotPassword,
-    forgotPasswordOtpSubmit,
     toggle,
     setToggle,
     organizationLoginRequest,
@@ -144,6 +155,9 @@ const UserProvider = ({ children }) => {
     user,
     getUserProfile,
     updateUserProfile,
+    otpRequest,
+    accountVerificationRequest,
+    forgotPasswordOtpSubmit,
   };
   return <UserContext.Provider value={data}>{children}</UserContext.Provider>;
 };

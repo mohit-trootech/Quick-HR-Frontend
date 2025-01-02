@@ -37,6 +37,10 @@ export const organizationLoginSuccess = (response, id) => {
   updateLocalStorage("refresh", response.refresh);
   SuccessToast(id, "Login Successful", "/organization/");
 };
+export const otpRequestSuccess = (response, id) => {
+  /**Handle OTP Request Success Response */
+  SuccessToast(id, response.message);
+};
 
 export const updateCustomizationSuccess = (response, id) => {
   /**Handle Update Customization Success Response */

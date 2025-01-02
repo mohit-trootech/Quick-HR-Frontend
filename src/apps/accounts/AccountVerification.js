@@ -8,10 +8,10 @@ import { otpInputs } from "../../utils/utils";
 import "../../static/css/accounts.css";
 import logo from "../../static/img/logo.png";
 
-const ForgotPassword = () => {
+const AccountVerification = () => {
   /**Desgined With Daisy UI and Tailwind CSS */
   const [otpBlock, setOtpBlock] = useState(false);
-  const { otpRequest, forgotPasswordOtpSubmit } = useContext(UserContext);
+  const { otpRequest, accountVerificationRequest } = useContext(UserContext);
   const handleResendOtp = async () => {
     let email = document.querySelector("input[name=email]").value;
     email && (await otpRequest({ email }));
@@ -28,7 +28,7 @@ const ForgotPassword = () => {
       .map((input) => input.value)
       .join("");
     let email = event.target.email.value;
-    await forgotPasswordOtpSubmit({ otp, email });
+    await accountVerificationRequest({ otp, email });
   };
   return (
     <>
@@ -197,4 +197,4 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default AccountVerification;

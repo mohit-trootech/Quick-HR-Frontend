@@ -7,7 +7,7 @@ import { UserContext, AuthContext } from "../../context/Contexts";
 import Sidebar from "../../components/Sidebar";
 import SidenavDrawer from "../../components/SidenavDrawer";
 import UpdateProfileModal from "../../modals/UpdateProfileModal";
-
+import ResetPasswordModal from "../../modals/ResetPasswordModal";
 const Profile = () => {
   const { auth } = useContext(AuthContext);
   const { user, getUserProfile, updateUserProfile } = useContext(UserContext);
@@ -34,7 +34,16 @@ const Profile = () => {
             <SidenavDrawer />
           </div>
         </div>
-        <div className="flex justify-end my-5 items-center">
+        <div className="flex justify-end my-5 gap-2 items-center">
+          <button
+            className="btn btn-primary btn-sm"
+            onClick={() =>
+              document.getElementById("reset_password").showModal()
+            }
+          >
+            Reset Password
+          </button>
+          <ResetPasswordModal user={user} />
           <button
             className="btn btn-primary btn-sm"
             onClick={() =>

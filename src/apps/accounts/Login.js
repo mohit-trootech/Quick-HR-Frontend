@@ -79,10 +79,10 @@ const Login = () => {
                   </div>
                   <div>
                     <Link
-                      to="/forgot-password"
-                      className="text-xs text-zinc-500 hover:underline italic"
+                      to="/verify-account"
+                      className="text-xs text-zinc-500 hover:underline italic capitalize"
                     >
-                      Forgot password?
+                      Account Verification
                     </Link>
                   </div>
                 </div>
@@ -98,13 +98,13 @@ const Login = () => {
                   </Link>
                 </div>
                 <p className="flex gap-x-2 items-center justify-center mt-10 text-center text-md text-zinc-500">
-                  <span>Doesn't have have an account?</span>
-                  <a
-                    href="{% url 'accounts:register' %}"
+                  <span>Doesn't remember your password?</span>
+                  <Link
+                    to="/forgot-password"
                     className="text-indigo-400 hover:text-blue-500 italic no-underline hover:underline cursor-pointer transition ease-in duration-300"
                   >
-                    Register
-                  </a>
+                    Forgot Password?
+                  </Link>
                 </p>
               </form>
             </div>

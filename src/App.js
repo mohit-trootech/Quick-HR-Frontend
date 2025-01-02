@@ -9,6 +9,7 @@ import Login from "./apps/accounts/Login";
 import ForgotPassword from "./apps/accounts/ForgotPassword";
 import Review from "./apps/review/Review";
 import Unauthorized from "./pages/Unauthorized";
+import AccountVerification from "./apps/accounts/AccountVerification";
 /**Apps */
 import OrganizationAccounts from "./apps/organization/OrganizationAccounts";
 import OrganizationDashboard from "./apps/organization/OrganizationDashboard";
@@ -20,6 +21,7 @@ import Attendence from "./apps/attendence/Attendence";
 import Holiday from "./apps/holiday/Holiday";
 import Leaves from "./apps/leave/Leaves";
 import Resignation from "./apps/resignation/Resignation";
+
 /**Providers */
 import PaginationProvider from "./providers/PagniationProvider";
 import AuthProvider from "./providers/AuthProvider";
@@ -63,6 +65,10 @@ function App() {
                               <Route
                                 path="/organization/accounts"
                                 element={<OrganizationAccounts />}
+                              />
+                              <Route
+                                path="/verify-account"
+                                element={<AccountVerification />}
                               />
                               <Route
                                 path="/forgot-password"

@@ -29,7 +29,7 @@ const ProjectDetail = ({ project }) => {
                 <ProjectInfoCard project={project} />
                 <div className="flex flex-col gap-4 lg:col-span-2">
                   <div className="card static shadow-sm hover:shadow-lg transition-all duration-250 border">
-                    <div className="card-content p-3 h-96 overflow-y-auto">
+                    <div className="card-content p-3 h-[600px] overflow-y-auto">
                       <div className="">
                         <h1 className="text-xl font-bold">Project Activity</h1>
                         <CreateNewTaskTimeline project={project} />

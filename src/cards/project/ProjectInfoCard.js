@@ -8,7 +8,12 @@ const ProjectInfoCard = ({ project }) => {
         <div className="card static bg-base-100 hover:shadow-xl shadow-sm transition-all duration-250 border">
           <div className="flex flex-col gap-2 p-3">
             <h2 className="card-title">{project.title}</h2>
-            <p>{project.description || ""}</p>
+            <p
+              className="prose"
+              dangerouslySetInnerHTML={{
+                __html: project.description,
+              }}
+            ></p>
             <ul className="menu bg-base-100 rounded-box gap-2">
               <li>
                 <p className="flex flex-row justify-between items-center border border-zinc-500">

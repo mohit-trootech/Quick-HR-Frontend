@@ -103,7 +103,7 @@ const CreateProject = () => {
                     type="text"
                     required
                     onChange={handleInputChange}
-                    name="project_manager"
+                    name="project_manager_id"
                     list="project_manager_list"
                     id="project_manager"
                     placeholder="Type here for project managers list..."
@@ -123,7 +123,7 @@ const CreateProject = () => {
                     type="text"
                     required
                     onChange={handleInputChange}
-                    name="team_lead"
+                    name="team_lead_id"
                     list="team_lead_list"
                     id="team_lead"
                     placeholder="Type here for team lead list..."

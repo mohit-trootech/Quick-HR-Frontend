@@ -39,6 +39,8 @@ export const themes = [
 export const IGNORE_URL_PATHS = [
   "/login",
   "/login/",
+  "/verify-account",
+  "/verify-account/",
   "/forgot-password",
   "/forgot-password/",
   "/register",
