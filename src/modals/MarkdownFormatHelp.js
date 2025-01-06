@@ -1,6 +1,6 @@
 /**How to Use Markdown Modal Explaination For Text Formatting Only Not for Images & Links */
 
-const MardownFormatHelp = () => {
+const MarkdownFormatHelp = () => {
   return (
     <>
       <dialog id="markdown_help" className="modal bg-opcaity-50">
@@ -102,4 +102,4 @@ const MardownFormatHelp = () => {
     </>
   );
 };
-export default MardownFormatHelp;
+export default MarkdownFormatHelp;

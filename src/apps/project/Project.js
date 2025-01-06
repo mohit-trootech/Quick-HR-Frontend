@@ -24,7 +24,7 @@ import ProjectDetail from "../../modals/ProjectDetail";
 import SidenavDrawer from "../../components/SidenavDrawer";
 import { MANAGER } from "../../utils/contants";
 import CreateProject from "../../modals/project/CreateProject";
-import MardownFormatHelp from "../../modals/MardownFormatHelp";
+import MarkdownFormatHelp from "../../modals/MarkdownFormatHelp";
 
 const Project = () => {
   /**Project Home Page */
@@ -196,7 +196,7 @@ const Project = () => {
           </div>
         </div>
       )}
-      <MardownFormatHelp />
+      <MarkdownFormatHelp />
     </>
   );
 };

@@ -13,6 +13,8 @@ export const OrganizationContext = createContext();
 
 export const UserContext = createContext(getLocalStorage("access"));
 
+export const DeviceContext = createContext();
+
 export const DashboardContext = createContext();
 
 export const LeavesContext = createContext();

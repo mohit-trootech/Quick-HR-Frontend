@@ -1,7 +1,7 @@
 import { MdHelp } from "react-icons/md";
 import RichText from "../../components/RichText";
 import { useState } from "react";
-import MardownFormatHelp from "../MardownFormatHelp";
+import MarkdownFormatHelp from "../MarkdownFormatHelp";
 const NewBroadcastModal = ({ createBroadCastMessage }) => {
   /**Daisy UI Broadcast Modal */
 
@@ -76,7 +76,7 @@ const NewBroadcastModal = ({ createBroadCastMessage }) => {
             </div>
           </form>
         </div>
-        <MardownFormatHelp />
+        <MarkdownFormatHelp />
       </dialog>
     </>
   );

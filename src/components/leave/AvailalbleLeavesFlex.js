@@ -11,7 +11,7 @@ const AvailableLeavesFlex = ({ availableLeave }) => {
   return (
     <>
       <div className="flex p-3 justify-around w-full gap-x-3">
-        <div className="card sticky border w-full hover:shadow-xl hover:border transition duration-300">
+        <div className="card static border w-full hover:shadow-xl hover:border transition duration-300">
           <div className="card-body p-3 flex flex-row gap-x-3 items-center">
             <MdSurfing className="h-4 w-4" />
             <div className="flex flex-col">
@@ -22,7 +22,7 @@ const AvailableLeavesFlex = ({ availableLeave }) => {
             </div>
           </div>
         </div>
-        <div className="card sticky border w-full hover:shadow-xl hover:border transition duration-300">
+        <div className="card static border w-full hover:shadow-xl hover:border transition duration-300">
           <div className="card-body p-3 flex flex-row gap-x-3 items-center">
             <MdEmergency className="h-4 w-4" />
             <div className="flex flex-col">

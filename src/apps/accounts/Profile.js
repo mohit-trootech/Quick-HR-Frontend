@@ -27,9 +27,7 @@ const Profile = () => {
       </div>
       <div className="col-span-9 lg:col-span-7 mx-3">
         <div className="px-3 py-1 border shadow-md my-2 rounded-lg flex items-center justify-between">
-          <span className="text-xl font-semibold hidden lg:block">
-            User Profile
-          </span>
+          <span className="text-xl font-semibold block">User Profile</span>
           <div className="breadcrumbs text-sm flex flex-row items-center justify-start gap-2">
             <SidenavDrawer />
           </div>
@@ -56,7 +54,7 @@ const Profile = () => {
         </div>
         <div className="p-5">
           {/* User Details */}
-          <div className="border-t border-gray-200 rounded-lg">
+          <div className="border-t border-gray-200 rounded-lg mb-5">
             <dl className="capitalize">
               <div className="bg-base-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 hover:bg-base-100">
                 <dt className="text-sm font-medium text-gray-500">Full name</dt>

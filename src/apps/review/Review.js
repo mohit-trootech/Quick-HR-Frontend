@@ -56,18 +56,18 @@ const Review = () => {
                   <ul>
                     <li>
                       <Link to="/">
-                        <BiHomeAlt /> Dashboard
+                        <BiHomeAlt className="mr-2" /> Dashboard
                       </Link>
                     </li>
                     <li>
-                      <VscPreview />
+                      <VscPreview className="mr-2" />
                       Review
                     </li>
                   </ul>
                 </div>
               </div>
               {/* Header */}
-              <div className="p-5 flex justify-between items-center gap-3">
+              <div className="p-5 flex flex-col md:flex-row justify-between items-center gap-3">
                 {/* Filter Review Based on Month & Year */}
                 <div>
                   <FilterReviews getAllReviews={getAllReviews} />

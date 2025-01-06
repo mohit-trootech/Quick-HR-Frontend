@@ -26,7 +26,7 @@ const UserCard = ({ user }) => {
             <span className="capitalize">
               {(user && user.get_full_name) || (user && user.username)}
             </span>
-            <div className="dropdown">
+            <div className="dropdown dropdown-bottom dropdown-end">
               <div tabIndex={0} className="btn btn-xs btn-circle">
                 <FaArrowDown className="text-zinc-500" />
               </div>

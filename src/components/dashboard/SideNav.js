@@ -103,11 +103,11 @@ const SideNav = ({ customization }) => {
           <li>
             <NavLink
               role="button"
-              to="/overtime/"
+              to="/device/"
               className="flex flex-row justify-start gap-2 items-center"
               end
             >
-              <FaMobile /> Mobile
+              <FaMobile /> Devices
             </NavLink>
           </li>
         )}
