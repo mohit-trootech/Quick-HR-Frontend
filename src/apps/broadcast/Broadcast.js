@@ -1,51 +1,48 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /**Broadcast Page */
-import { useContext, useState } from "react";
+/*React Hooks*/
+import { useContext, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { getFirestore } from "firebase/firestore";
+
+/*Contexts */
 import {
   DashboardContext,
   PreloadContext,
   PaginationContext,
+  BroadcastContext,
 } from "../../context/Contexts";
-import { useEffect } from "react";
-import Sidebar from "../../components/Sidebar";
-import SidenavDrawer from "../../components/SidenavDrawer";
+
+/*Icons */
 import { BiHomeAlt } from "react-icons/bi";
-import { Link } from "react-router-dom";
 import { FaTowerBroadcast } from "react-icons/fa6";
 import { FaInfoCircle } from "react-icons/fa";
+
+/*Components */
+import Sidebar from "../../components/Sidebar";
+import SidenavDrawer from "../../components/SidenavDrawer";
 import NewBroadcastModal from "../../modals/broadcast/NewBroadcastModal";
 import Preloader from "../../components/Preloader";
 import BroadcastMessageCard from "../../cards/broadcast/BroadcastMessageCard";
 import BroadcastDetailModal from "../../modals/broadcast/BroadcastDetailModal";
+
 const Broadcast = () => {
   /**Broadcast Page Component */
-  // function notifyMe() {
-  //   if (!("Notification" in window)) {
-  //     // Check if the browser supports notifications
-  //     alert("This browser does not support desktop notification");
-  //   } else if (Notification.permission === "granted") {
-  //     // Check whether notification permissions have already been granted;
-  //     // if so, create a notification
-  //     const notification = new Notification("Hi there!");
-  //     // …
-  //   } else if (Notification.permission !== "denied") {
-  //     // We need to ask the user for permission
-  //     Notification.requestPermission().then((permission) => {
-  //       // If the user accepts, let's create a notification
-  //       if (permission === "granted") {
-  //         const notification = new Notification("Hi there!");
-  //         // …
-  //       }
-  //     });
-  //   }
-  // }
+  const { app, getFirestoreConfiguration, createCollectionDocument, setDb } =
+    useContext(BroadcastContext);
+
+  useEffect(() => {
+    app || getFirestoreConfiguration();
+  }, []);
+  useEffect(() => {
+    app && setDb(getFirestore(app));
+  }, [app]);
   const { preload } = useContext(PreloadContext);
   const [messageDetail, setMessageDetail] = useState(null);
   const { previous, next } = useContext(PaginationContext);
   const { broadCastMessages, getBroadCastMessages, createBroadCastMessage } =
     useContext(DashboardContext);
   const handleClickPageNumber = (event) => {
-    event.preventDefault();
     event.preventDefault();
     let url =
       event.target.href.split("?")[1] === undefined
@@ -77,11 +74,11 @@ const Broadcast = () => {
                 <ul>
                   <li>
                     <Link to="/">
-                      <BiHomeAlt /> Dashboard
+                      <BiHomeAlt className="mr-2" /> Dashboard
                     </Link>
                   </li>
                   <li>
-                    <FaTowerBroadcast />
+                    <FaTowerBroadcast className="mr-2" />
                     Broadcast
                   </li>
                 </ul>
@@ -99,6 +96,8 @@ const Broadcast = () => {
               </button>
               <NewBroadcastModal
                 createBroadCastMessage={createBroadCastMessage}
+                createCollectionDocument={createCollectionDocument}
+                app={app}
               />
             </div>
             <div className="p-5">

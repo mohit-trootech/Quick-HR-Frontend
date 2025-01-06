@@ -11,6 +11,8 @@ export const PreloadContext = createContext(true);
 
 export const OrganizationContext = createContext();
 
+export const BroadcastContext = createContext();
+
 export const UserContext = createContext(getLocalStorage("access"));
 
 export const DeviceContext = createContext();

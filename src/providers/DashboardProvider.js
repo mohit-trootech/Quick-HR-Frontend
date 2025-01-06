@@ -42,10 +42,11 @@ const DashboardProvider = ({ children }) => {
       id,
       null
     );
-    response &&
-      broadCastMessages &&
-      setBroadCastMessages([response.data, ...broadCastMessages]);
-    response && setBroadCastMessages([response.data]);
+    if (broadCastMessages) {
+      response && setBroadCastMessages([response.data, ...broadCastMessages]);
+    } else {
+      response && setBroadCastMessages([response.data]);
+    }
   };
   const data = {
     broadCastMessages,

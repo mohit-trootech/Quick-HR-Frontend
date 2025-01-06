@@ -2,7 +2,11 @@ import { MdHelp } from "react-icons/md";
 import RichText from "../../components/RichText";
 import { useState } from "react";
 import MarkdownFormatHelp from "../MarkdownFormatHelp";
-const NewBroadcastModal = ({ createBroadCastMessage }) => {
+const NewBroadcastModal = ({
+  createBroadCastMessage,
+  createCollectionDocument,
+  app,
+}) => {
   /**Daisy UI Broadcast Modal */
 
   const [content, setContent] = useState(null);
@@ -14,6 +18,9 @@ const NewBroadcastModal = ({ createBroadCastMessage }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     createBroadCastMessage(new FormData(e.target));
+    createCollectionDocument(new FormData(e.target));
+    e.target.reset();
+    document.getElementById("new_broadcast").close();
   };
   return (
     <>
