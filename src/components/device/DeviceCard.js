@@ -17,18 +17,21 @@ const DeviceCard = ({ device, setCurrentDevice }) => {
 
   return (
     <>
-      <div className="card static bg-base-100 shadow-xl z-[0] w-full md:w-56">
-        <div className="card-body">
+      <div className="card static bg-base-200 rounded-xl shadow-sm hover:shadow-blue-400/10 border hover:shadow-xl w-full z-[-1] lg:z-0 md:w-56">
+        <div className="card-body p-4">
           <div className="flex justify-between items-center">
             <h2 className="card-title">{device.title}</h2>
             <div className="flex gap-2">
-              <div className="dropdown dropdown-hover z-[9999] dropdown-end">
-                <label tabIndex={0} className="btn btn-sm btn-circle">
+              <div className="dropdown dropdown-hover dropdown-end z-[1]">
+                <label
+                  tabIndex={0}
+                  className="btn btn-sm btn-primary btn-circle"
+                >
                   <BsThreeDotsVertical id="my-drawer" />
                 </label>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content menu bg-base-100 rounded-box w-40 p-2 shadow"
+                  className="dropdown-content menu bg-base-100 rounded-box w-40 shadow"
                 >
                   <li>
                     <label

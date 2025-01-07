@@ -58,7 +58,6 @@ function App() {
                                 <ToastContainer
                                   draggablePercent={60}
                                   draggable
-                                  className={"capitalize"}
                                   stacked
                                 />
                                 <Routes>

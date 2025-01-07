@@ -60,13 +60,15 @@ const ProjectInfoCard = ({ project }) => {
                       </div>
                     );
                   })}
-                <div className="avatar placeholder">
-                  <div className="bg-neutral text-neutral-content w-7">
-                    <span className="text-xs">
-                      {project.assigned_users.length - 3}+
-                    </span>
+                {project.assigned_users.length > 3 && (
+                  <div className="avatar placeholder">
+                    <div className="bg-neutral text-neutral-content w-7">
+                      <span className="text-xs">
+                        {project.assigned_users.length - 3}
+                      </span>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </li>

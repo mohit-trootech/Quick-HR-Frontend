@@ -21,7 +21,7 @@ const Sidebar = () => {
   }, [auth]);
   return (
     <>
-      <div className="min-h-screen sticky top-0 p-2 lg:my-2 lg:mr-2 lg:rounded-lg lg:shadow-xl">
+      <div className="min-h-screen sticky top-0 p-2 pr-4 lg:my-2 lg:rounded-lg lg:shadow-xl">
         {organization && (
           <div>
             <div className="flex flex-row justify-start gap-x-2 items-center">

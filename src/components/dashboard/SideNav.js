@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 /**Dashboard Menu */
 import { MdDashboard } from "react-icons/md";
-import { TbBodyScan, TbFileAlert } from "react-icons/tb";
+import { TbBodyScan } from "react-icons/tb";
 import { SlCalender } from "react-icons/sl";
 import { NavLink } from "react-router-dom";
-import { FaList, FaMoneyCheck, FaMobile } from "react-icons/fa";
+import { FaList, FaMoneyCheck, FaMobileAlt } from "react-icons/fa";
 import { VscPreview } from "react-icons/vsc";
 import { MdOutlineMoreTime } from "react-icons/md";
 import { FaTowerBroadcast } from "react-icons/fa6";
@@ -107,7 +107,7 @@ const SideNav = ({ customization }) => {
               className="flex flex-row justify-start gap-2 items-center"
               end
             >
-              <FaMobile /> Devices
+              <FaMobileAlt /> Devices
             </NavLink>
           </li>
         )}

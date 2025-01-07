@@ -3,6 +3,7 @@ import { BsArrowDownLeftCircleFill, BsInfo } from "react-icons/bs";
 import { useContext } from "react";
 import { DashboardContext } from "../../context/Contexts";
 import BroadCastMessagesModal from "../../modals/BroadCastMesagesModal";
+
 const Broadcast = () => {
   /**BroadCast Component using DaisyUI & Tailwind CSS */
   const { broadCastMessages } = useContext(DashboardContext);
@@ -18,9 +19,11 @@ const Broadcast = () => {
           </div>
           {(broadCastMessages &&
             broadCastMessages.length > 0 &&
-            broadCastMessages.map((message) => (
-              <BroadCastMessagesModal message={message} key={message.id} />
-            ))) || (
+            broadCastMessages
+              .slice(0, 3)
+              .map((message) => (
+                <BroadCastMessagesModal message={message} key={message.id} />
+              ))) || (
             <div
               role="alert"
               className="flex items-center gap-x-1 bg-base-200 p-2 rounded-lg cursor-pointer"

@@ -11,8 +11,8 @@ import CreateNewTaskTimeline from "../components/project/CreateNewTaskTimeline";
 const ProjectDetail = ({ project }) => {
   const { activities, getActivities } = useContext(ProjectsContext);
   useEffect(() => {
-    activities || getActivities();
-  }, []);
+    getActivities(`?project=${project && project.id}`);
+  }, [project]);
   return (
     <>
       <dialog id={`project_details`} className="modal">

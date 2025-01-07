@@ -55,7 +55,7 @@ const Project = () => {
             {/* Breadcrumb */}
             <div className="px-3 py-1 border shadow-md my-2 rounded-lg flex items-center justify-between">
               <span className="text-xl font-semibold hidden lg:block">
-                Leaves Management
+                Project Management
               </span>
               <div className="breadcrumbs text-sm flex flex-row items-center justify-start gap-2">
                 <SidenavDrawer />

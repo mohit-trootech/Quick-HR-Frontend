@@ -31,6 +31,16 @@ const CreateProject = () => {
       getProjectManagers(`?search=${event.target.value}`);
     event.target.id === "team_lead" &&
       getUsersList(`?search=${event.target.value}`);
+    event.target.id === "users-select" &&
+      getUsersList(`?search=${event.target.value}`);
+  };
+  const handleClick = () => {
+    let userSelect = document.querySelector("#users-select");
+    let assignedUsers = document.querySelector("#assigned_users");
+    if (userSelect.value) {
+      assignedUsers.value += `${userSelect.value},`;
+    }
+    userSelect.value = "";
   };
   return (
     <>
@@ -140,17 +150,33 @@ const CreateProject = () => {
                     Assigned Users<sup>*</sup>
                   </span>
                 </div>
-                <input
-                  type="text"
-                  required
-                  multiple={true}
-                  onChange={handleInputChange}
-                  name="assigned_users"
-                  list="assigned_users_list"
-                  id="assigned_users"
-                  placeholder="Type here for team lead list..."
-                  className="input input-sm input-bordered"
-                />
+                <div className="flex flex-col gap-3">
+                  <input
+                    type="text"
+                    required
+                    name="assigned_users"
+                    id="assigned_users"
+                    readOnly
+                    className="input input-sm input-bordered"
+                  />
+                  <div className="join w-full">
+                    <input
+                      type="text"
+                      id="users-select"
+                      onChange={handleInputChange}
+                      list="assigned_users_list"
+                      placeholder="Type here for team lead list..."
+                      className="input input-sm input-bordered w-full"
+                    />
+                    <button
+                      type="button"
+                      className="btn btn-sm join-item rounded-r-full"
+                      onClick={handleClick}
+                    >
+                      Subscribe
+                    </button>
+                  </div>
+                </div>
                 <datalist id="assigned_users_list">
                   <UserDataList data={usersList} />
                 </datalist>

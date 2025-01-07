@@ -90,16 +90,17 @@ const ProjectProvider = ({ children }) => {
   const getActivities = async (query_params) => {
     /**Get Activities API Call */
     const response = await GetRequest(
-      `${BaseUrlPath}/api/projects/activity/?${query_params || ""}`,
+      `${BaseUrlPath}/api/projects/activity/${query_params || ""}`,
       getBearerToken,
       null,
       null,
       updatePreloader
     );
-    response && setActivities(response.data.results);
-    response && setPrevious(response.data.previous);
-    response && setNext(response.data.next);
-    response && setCount(response.data.count);
+    response && setActivities(response.data);
+    // response && setActivities(response.data.results);
+    // response && setPrevious(response.data.previous);
+    // response && setNext(response.data.next);
+    // response && setCount(response.data.count);
   };
   const getLastUserActivity = async () => {
     /**Get Last User Activity API Call */

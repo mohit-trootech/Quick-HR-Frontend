@@ -69,10 +69,9 @@ const OrganizationProvider = ({ children }) => {
   const getOrganization = async (query_params) => {
     /**Fetch Authenticated User Organization */
     let url = null;
-
     if (window.location.pathname.includes("organization")) {
       url = `${BaseUrlPath}/api/organizations/${
-        auth && auth.organization_admin.id
+        auth && auth.organization_admin && auth.organization_admin.id
       }/${query_params || ""}`;
     } else {
       url = `${BaseUrlPath}/api/organizations/${

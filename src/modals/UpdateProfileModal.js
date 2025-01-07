@@ -13,7 +13,25 @@ const UpdateProfileModal = ({ user, handleSubmit }) => {
             </button>
           </form>
           <h3 className="font-bold text-lg">Update Profile!</h3>
-          <form method="POST" className="py-4 gap-3" onSubmit={handleSubmit}>
+          <form
+            method="POST"
+            className="py-4 gap-3"
+            onSubmit={handleSubmit}
+            encType="multipart/form-data"
+          >
+            <label className="form-control w-full">
+              <div className="label">
+                <span className="label-text">Profile Picture</span>
+              </div>
+              <input
+                type="file"
+                name="image"
+                accept="image/*"
+                placeholder="Enter Profile Picture"
+                className="file-input file-input-bordered w-full file-input-sm"
+                required
+              />
+            </label>
             <label className="form-control w-full">
               <div className="label">
                 <span className="label-text">First Name</span>
