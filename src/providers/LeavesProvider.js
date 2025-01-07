@@ -40,7 +40,7 @@ const LeavesProvider = ({ children }) => {
       null,
       updatePreloader
     );
-    response && response.data.count > 0 && setLeaves(response.data.results);
+    response && response.data && setLeaves(response.data.results);
     response && setPrevious(response.data.previous);
     response && setNext(response.data.next);
     response && setCount(response.data.count);

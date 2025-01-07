@@ -5,10 +5,14 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 const DeviceCard = ({ device, setCurrentDevice }) => {
   const { updateDevice } = useContext(DeviceContext);
   const { auth } = useContext(AuthContext);
-  const handleClick = async (event) => {
-    event.preventDefault();
-    const data = { user_id: auth.user.id };
-    updateDevice(device.id, data, `?action=${event.target.id}`);
+  const handleClick = async (action, id) => {
+    let data = null;
+    if (id) {
+      data = { user_id: id };
+    } else {
+      data = { user_id: auth.user.id };
+    }
+    updateDevice(device.id, data, `?action=${action}`);
   };
 
   return (
@@ -38,7 +42,13 @@ const DeviceCard = ({ device, setCurrentDevice }) => {
                   <li>
                     {(device && device.acquired_by && (
                       <button
-                        onClick={handleClick}
+                        onClick={() => {
+                          if (
+                            device.acquired_by.username === auth.user.username
+                          ) {
+                            handleClick("release", device.acquired_by.id);
+                          }
+                        }}
                         id="release"
                         className="capitalize"
                       >
@@ -46,7 +56,9 @@ const DeviceCard = ({ device, setCurrentDevice }) => {
                       </button>
                     )) || (
                       <button
-                        onClick={handleClick}
+                        onClick={() => {
+                          handleClick("acquire");
+                        }}
                         id="acquire"
                         className="capitalize"
                       >
