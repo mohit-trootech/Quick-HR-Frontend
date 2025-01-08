@@ -6,6 +6,9 @@ import { MdHelp } from "react-icons/md";
 import { useContext, useEffect } from "react";
 import { ProjectsContext, UserContext } from "../../context/Contexts";
 import UserDataList from "../../datalists/UserDataList";
+import profile from "../../static/img/no-profile.webp";
+import { IoIosCloseCircleOutline } from "react-icons/io";
+
 const CreateProject = () => {
   /**Project create form using DaisyUI modal */
   const { createProject } = useContext(ProjectsContext);
@@ -36,11 +39,27 @@ const CreateProject = () => {
   };
   const handleClick = () => {
     let userSelect = document.querySelector("#users-select");
-    let assignedUsers = document.querySelector("#assigned_users");
-    if (userSelect.value) {
-      assignedUsers.value += `${userSelect.value},`;
+    let assignedUsersInput = document.querySelector("#assigned_users");
+    let assignedUsersView = document.querySelector("#assigned_users_view");
+    let assignedUsers = assignedUsersInput.value.split(",");
+    if (userSelect.value && usersList) {
+      let user = usersList.find(
+        (user) => user.user.username === userSelect.value
+      );
+      if (user && !assignedUsers.includes(String(user.user.id))) {
+        assignedUsersView.innerHTML += `<div class="capitalize -2 btn">
+          <img
+                      src=${user.user.image || profile}
+                      class="w-6 h-6 rounded-full"
+                      alt=""
+                    />
+                    ${user.user.username}
+                    <button type="button" id="remove_user_from_assigned_users" class="btn btn-sm btn-circle btn-ghost">✕</button>
+                  </div>`;
+        assignedUsersInput.value += `${user.user.id},`;
+        userSelect.value = "";
+      }
     }
-    userSelect.value = "";
   };
   return (
     <>
@@ -113,6 +132,9 @@ const CreateProject = () => {
                     type="text"
                     required
                     onChange={handleInputChange}
+                    autoCorrect="off"
+                    autoCapitalize="off"
+                    spellCheck="false"
                     name="project_manager_id"
                     list="project_manager_list"
                     id="project_manager"
@@ -133,6 +155,9 @@ const CreateProject = () => {
                     type="text"
                     required
                     onChange={handleInputChange}
+                    autoCorrect="off"
+                    autoCapitalize="off"
+                    spellCheck="false"
                     name="team_lead_id"
                     list="team_lead_list"
                     id="team_lead"
@@ -151,18 +176,23 @@ const CreateProject = () => {
                   </span>
                 </div>
                 <div className="flex flex-col gap-3">
+                  <div
+                    id="assigned_users_view"
+                    className="flex flex-wrap gap-2 w-full border rounded-xl border-gray-300 p-3"
+                  ></div>
                   <input
                     type="text"
-                    required
+                    className="hidden"
                     name="assigned_users"
                     id="assigned_users"
-                    readOnly
-                    className="input input-sm input-bordered"
                   />
                   <div className="join w-full">
                     <input
                       type="text"
                       id="users-select"
+                      autoCorrect="off"
+                      autoCapitalize="off"
+                      spellCheck="false"
                       onChange={handleInputChange}
                       list="assigned_users_list"
                       placeholder="Type here for team lead list..."
@@ -173,7 +203,7 @@ const CreateProject = () => {
                       className="btn btn-sm join-item rounded-r-full"
                       onClick={handleClick}
                     >
-                      Subscribe
+                      Add User
                     </button>
                   </div>
                 </div>

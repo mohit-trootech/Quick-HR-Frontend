@@ -54,7 +54,6 @@ const ProjectProvider = ({ children }) => {
       id,
       updatePreloader
     );
-    response && console.log(response.data);
     response && setProjects([response.data, ...projects]);
   };
   const getTasks = async (query_params) => {

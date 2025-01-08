@@ -5,9 +5,7 @@ const UserDataList = ({ data }) => {
     <>
       {data &&
         data.map((user) => (
-          <option key={user.user.id} value={user.user.id}>
-            {user.user.username}
-          </option>
+          <option key={user.user.id}>{user.user.username}</option>
         ))}
     </>
   );
